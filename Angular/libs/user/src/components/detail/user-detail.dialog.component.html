@@ -11,7 +11,7 @@
       <mat-card-header>
         <div #avatar mat-card-avatar [ngStyle]="{ 'background-image': 'url(' + user.profileImageURL + ')'}"></div>
         <mat-card-title [attr.contenteditable]="editMode"><span #userName>{{ user.username }}</span></mat-card-title>
-        <mat-card-subtitle [attr.contenteditable]="editMode"><span #firstName>{{ user.firstName }}</span> <span #lastName>{{ user.lastName }}</span></mat-card-subtitle>
+        <mat-card-subtitle [attr.contenteditable]="editMode"><span #firstName>{{ user.firstName }}</span>&nbsp;<span #lastName>{{ user.lastName }}</span></mat-card-subtitle>
       </mat-card-header>
       <img
         #image

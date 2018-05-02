@@ -3,10 +3,11 @@ import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angul
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { AuthenticationState } from '../+state/states/authentication-state.state';
-import * as fromAuthentication from '../+state/actions/authentication-state.actions';
-import { getLoggedIn } from '../+state/selectors/authentication-state.selectors';
+import { getIsUserLoading, getLoggedIn } from '../+state/selectors/authentication-state.selectors';
 import { fromRouter } from '@labdat/common/router-state';
 import { map } from 'rxjs/operators/map';
+import { switchMap } from 'rxjs/operators/switchMap';
+import { filter } from 'rxjs/operators/filter';
 
 @Injectable()
 export class AuthenticationGuardService implements CanActivate {
@@ -16,10 +17,11 @@ export class AuthenticationGuardService implements CanActivate {
 
     const path = state.url.split('/')[1];
 
-    return this.store.select(getLoggedIn)
+    return this.store.select(getIsUserLoading)
     .pipe(
-      map(loggedIn => {
-        const tokenExpiresIn = Number(localStorage.getItem('tokenExpiresIn'));
+      filter(isUserLoading => !isUserLoading),
+      switchMap(() => this.store.select(getLoggedIn)),
+      map((loggedIn: boolean) => {
         if (loggedIn) {
           if (path === 'auth') {
             this.store.dispatch(new fromRouter.Go({ path: ['home'] }));
@@ -28,21 +30,6 @@ export class AuthenticationGuardService implements CanActivate {
           }
 
           return true;
-        }
-
-        if (tokenExpiresIn) {
-          if (tokenExpiresIn > Date.now()) {
-            if (path === 'auth') {
-              this.store.dispatch(new fromRouter.Go({ path: ['home'] }));
-            }
-            this.store.dispatch(new fromAuthentication.LoadUser());
-
-            return false;
-          }
-
-          this.store.dispatch(new fromAuthentication.Logout('Token expired'));
-
-          return false;
         }
 
         if (path === 'auth') {

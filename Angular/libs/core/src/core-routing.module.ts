@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CoreGuardService } from './services/core.guard.service';
 import { AuthenticationGuardService } from '@labdat/authentication';
-// import {  } from '@labdat/authentication';
 import { TaskGuardService } from '@labdat/task';
 
 const coreRoutes: Routes = [

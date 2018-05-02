@@ -143,7 +143,7 @@ export class AuthenticationEffectsService {
         .pipe(
           catchError(error => {
             console.log(error);
-            this.store.dispatch(new fromAuthentication.UserUpdateFailure('Register Error'));
+            this.store.dispatch(new fromAuthentication.UserUpdateFailure('User Update Error'));
 
             return empty();
           })
@@ -152,7 +152,7 @@ export class AuthenticationEffectsService {
     map(payload => new fromAuthentication.UserUpdateSuccess({ user: payload }))
   );
 
-  @Effect({dispatch: false})
+  @Effect({ dispatch: false })
   UserUpdateSuccess$ = this.actions$.ofType(fromAuthentication.USER_UPDATE_SUCCESS)
   .pipe(
     tap(() => {
