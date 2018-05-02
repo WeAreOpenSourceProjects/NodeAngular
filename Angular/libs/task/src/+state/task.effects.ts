@@ -1,27 +1,18 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators/map';
 import { catchError } from 'rxjs/operators/catchError';
-import { mapTo } from 'rxjs/operators/mapTo';
 import { tap } from 'rxjs/operators/tap';
 import { Actions, Effect } from '@ngrx/effects';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { of } from 'rxjs/observable/of';
 import { TaskApiService } from '../services/task.api.service';
 import * as fromTasks from './task.actions';
-import { fromAuthentication } from '@labdat/authentication';
 import { Task } from '../models/task.model';
 import { TaskSnackComponent } from '../components/task-snack/task-snack.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class TaskEffects {
-  @Effect()
-  loginSuccess$ = this._actions$.ofType(fromAuthentication.LOGIN_SUCCESS)
-  .pipe(mapTo(new fromTasks.Load()));
-
-  @Effect()
-  registerSuccess$ = this._actions$.ofType(fromAuthentication.REGISTER_SUCCESS)
-  .pipe(mapTo(new fromTasks.Load()));
 
   @Effect()
   load$ = this._actions$
@@ -32,7 +23,7 @@ export class TaskEffects {
       catchError(error => of(new fromTasks.LoadFailure(error)))
     );
 
-    @Effect({ dispatch: false })
+  @Effect({ dispatch: false })
     loadFailure$ = this._actions$.ofType(fromTasks.LOAD_FAILURE)
     .pipe(
       map((action: fromTasks.LoadFailure) => action.payload),
@@ -56,7 +47,7 @@ export class TaskEffects {
       catchError(error => of(new fromTasks.AddFailure({ error })))
     );
 
-    @Effect({dispatch: false})
+  @Effect({ dispatch: false })
     addSuccess$ = this._actions$.ofType(fromTasks.ADD_SUCCESS)
     .pipe(
       tap(() => {
@@ -69,7 +60,7 @@ export class TaskEffects {
       })
     );
 
-    @Effect({ dispatch: false })
+  @Effect({ dispatch: false })
     addFailure$ = this._actions$.ofType(fromTasks.ADD_FAILURE)
     .pipe(
       map((action: fromTasks.AddFailure) => action.payload),
@@ -93,7 +84,7 @@ export class TaskEffects {
       catchError(error => of(new fromTasks.UpdateFailure(error)))
     );
 
-    @Effect({dispatch: false})
+  @Effect({ dispatch: false })
     updateSuccess$ = this._actions$.ofType(fromTasks.UPDATE_SUCCESS)
     .pipe(
       tap(() => {
@@ -106,7 +97,7 @@ export class TaskEffects {
       })
     );
 
-    @Effect({ dispatch: false })
+  @Effect({ dispatch: false })
     updateFailure$ = this._actions$.ofType(fromTasks.UPDATE_FAILURE)
     .pipe(
       map((action: fromTasks.UpdateFailure) => action.payload),
@@ -130,7 +121,7 @@ export class TaskEffects {
       catchError(error => of(new fromTasks.DeleteFailure(error)))
     );
 
-    @Effect({dispatch: false})
+  @Effect({ dispatch: false })
     deleteSuccess$ = this._actions$.ofType(fromTasks.DELETE_SUCCESS)
     .pipe(
       tap(() => {
@@ -143,7 +134,7 @@ export class TaskEffects {
       })
     );
 
-    @Effect({ dispatch: false })
+  @Effect({ dispatch: false })
     deleteFailure$ = this._actions$.ofType(fromTasks.DELETE_FAILURE)
     .pipe(
       map((action: fromTasks.DeleteFailure) => action.payload),

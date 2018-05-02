@@ -3,18 +3,27 @@ import { fromUser } from '@labdat/user';
 import { StatusState } from '../states/status.state';
 
 const initialStatusState: StatusState = {
-  user: undefined
+  user: undefined,
+  loading: false
 };
 
 export function statusReducer(state = initialStatusState, action: fromAuthentication.Actions | fromUser.Actions): StatusState {
   switch (action.type) {
+    case fromAuthentication.LOAD_USER: {
+
+      return {
+        ...state,
+        loading: true
+      };
+    }
     case fromAuthentication.USER_LOAD_SUCCESS:
     case fromAuthentication.REGISTER_SUCCESS:
     case fromAuthentication.LOGIN_SUCCESS: {
 
       return {
         ...state,
-        user: action.payload.user
+        user: action.payload.user,
+        loading: false
       };
     }
     case fromAuthentication.LOGOUT: {

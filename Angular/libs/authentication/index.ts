@@ -7,6 +7,7 @@ export { fromAuthentication };
 export {
   getUser,
   getLoggedIn,
+  getIsUserLoading,
   getLoginPagePending,
   getLoginPageError
 } from './src/+state/selectors/authentication-state.selectors';
