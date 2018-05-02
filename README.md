@@ -1,5 +1,6 @@
+[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/weareopensource?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+
 # MEANie
-[![Build Status](https://travis-ci.org/weareopensource/meanjs-2.svg?branch=master)](https://travis-ci.org/weareopensource/meanjs-2)
 
 ## Presentation 
 [Angular Kick Starter](https://github.com/weareopensource/Angular) / [Riess.js](https://github.com/weareopensource/Riess.js) association. This project, on active developpement, aims to be the next MEAN.
