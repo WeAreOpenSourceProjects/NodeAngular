@@ -1,6 +1,6 @@
 {
 	"scripts": {
-		"back:install": "cd Node/server && npm install",
+		"back:install": "cd Node && npm install",
 		"front:install": "cd Angular && npm install",
 		"install": "run-p front:install back:install",
 		"start": "run-p front back",
