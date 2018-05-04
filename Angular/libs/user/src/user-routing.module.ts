@@ -28,7 +28,7 @@ const userRoutes: Routes = [
     data: {
       page: 'user-detail'
     },
-    canActivate: [UserGuardService]
+    canActivate: [AuthenticationGuardService, RoleGuardService, UserGuardService]
   },
   {
     path: '**',

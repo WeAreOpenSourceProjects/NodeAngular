@@ -26,12 +26,10 @@ export class RoleGuardService implements CanActivate {
         if (user) {
           if (intersection(user.roles, roles).length > 0) {
             return true;
-          } else {
-            this.store.dispatch(new fromRouter.Go({ path: ['home'] }));
-        // redirect to not-authorized component
-
-            return false;
           }
+          this.store.dispatch(new fromRouter.Go({ path: ['home'] }));
+
+          return false;
         }
       }),
       filter(x => x !== undefined)
