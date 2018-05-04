@@ -1,8 +1,0 @@
-<h1 mat-dialog-title i18n="@@addTask">Add Task</h1>
-<mat-dialog-content>
-  <form [formGroup]="addTaskForm" (ngSubmit)="onSubmit()">
-    <formly-form [form]="addTaskForm" [model]="taskModel" [fields]="taskFields">
-      <button mat-button type="submit" i18n="@@addButton">Add</button>
-    </formly-form>
-  </form>
-</mat-dialog-content>

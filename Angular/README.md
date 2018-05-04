@@ -1,5 +1,7 @@
+[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/weareopensource?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+
 # WAOS Angular
-[![Build Status](https://travis-ci.org/weareopensource/meanjs-2.svg?branch=master)](https://travis-ci.org/weareopensource/meanjs-2)
+
 ## Angular X / material / ngRx Starter 
 ## Presentation 
 This project is part of MEANie stack but can be ran as a standalone application. It's build upon angular 5+ , [angular material](https://github.com/angular/material2), [angular-cli](https://github.com/angular/angular-cli) / [Nx](https://github.com/nrwl/nx) and [ngRx](https://github.com/ngrx).
