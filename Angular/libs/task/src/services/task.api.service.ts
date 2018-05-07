@@ -7,7 +7,7 @@ import { environment } from '@labdat/common/environments';
 @Injectable()
 export class TaskApiService {
   private _baseUrl: string;
-  private _endpoints: any
+  private _endpoints: any;
 
   constructor(private http: HttpClient) {
     const { protocol, host, port, endpoints } = environment.api;
@@ -16,7 +16,7 @@ export class TaskApiService {
   }
 
   loadTasks(): Observable<any> {
-    return this.http.get(`${this._baseUrl}/${this._endpoints.tasks}`);
+    return this.http.get(`${this._baseUrl}/${this._endpoints.tasks}/me`);
   }
 
   addTask(task: Task): Observable<any> {
@@ -28,7 +28,7 @@ export class TaskApiService {
   }
 
   updateTask(task: any): Observable<any> {
-    return this.http.put(`${this._baseUrl}/${this._endpoints.tasks}`, task.changes);
+    return this.http.put(`${this._baseUrl}/${this._endpoints.tasks}/${task.id}`, task.changes);
   }
 
   deleteImage(imageId: string): Observable<any> {

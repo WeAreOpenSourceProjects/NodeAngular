@@ -1,5 +1,5 @@
 export interface Task {
-  readonly id: number;
+  readonly id: string;
   title: string;
   description: string;
   readonly createdDate: Date;

@@ -30,12 +30,12 @@
     <ng-container matColumnDef="action">
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <mat-icon class="icon" svgIcon="image:ic_edit_24px" (click)="edit$.next(row._id); $event.stopPropagation();"></mat-icon>
-        <mat-icon class="icon" svgIcon="action:ic_delete_24px" (click)="delete$.next(row._id); $event.stopPropagation();"></mat-icon>
+        <mat-icon class="icon" svgIcon="image:ic_edit_24px" (click)="edit$.next(row.id); $event.stopPropagation();"></mat-icon>
+        <mat-icon class="icon" svgIcon="action:ic_delete_24px" (click)="delete$.next(row.id); $event.stopPropagation();"></mat-icon>
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="view$.next(row._id)"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="view$.next(row.id)"></mat-row>
   </mat-table>
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </mat-card>

@@ -9,7 +9,7 @@ import * as fromUser from '../+state/user.actions';
 import { selectUserLoaded } from '../+state/user.selectors';
 
 @Injectable()
-export class UserGuardService implements CanActivate {
+export class UsersGuardService implements CanActivate {
   constructor(private store: Store<any>) { }
 
   canActivate(): Observable<boolean> | boolean {

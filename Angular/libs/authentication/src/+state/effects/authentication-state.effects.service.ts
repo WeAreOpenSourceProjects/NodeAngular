@@ -22,7 +22,7 @@ export class AuthenticationEffectsService {
     exhaustMap(auth =>
       this.authenticationApiService.login(auth)
       .pipe(
-        catchError(error => {
+        catchError((error: any) => {
           console.log(error);
           this.store.dispatch(new fromAuthentication.LoginFailure('Email or Password Invalid'));
 

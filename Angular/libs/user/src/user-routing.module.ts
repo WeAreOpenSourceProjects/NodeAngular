@@ -2,7 +2,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserDetailComponent } from './components/detail/user-detail.component';
 import { UsersListComponent } from './components/list/users-list.component';
-import { UserGuardService } from './services/user.guard.service';
+import { UsersGuardService } from './services/users.guard.service';
 import { UserDetailPageComponent } from './components/detail/user-detail.page.component';
 import { AuthenticationGuardService, RoleGuardService } from '@labdat/authentication';
 
@@ -10,7 +10,7 @@ const userRoutes: Routes = [
   {
     path: '',
     component: UsersListComponent,
-    canActivate: [AuthenticationGuardService, RoleGuardService, UserGuardService],
+    canActivate: [AuthenticationGuardService, RoleGuardService, UsersGuardService],
     data: {
       page: 'users-list',
       roles: ['admin']
@@ -26,9 +26,10 @@ const userRoutes: Routes = [
     path: ':id',
     component: UserDetailPageComponent,
     data: {
-      page: 'user-detail'
+      page: 'user-detail',
+      roles: ['admin']
     },
-    canActivate: [AuthenticationGuardService, RoleGuardService, UserGuardService]
+    canActivate: [AuthenticationGuardService, RoleGuardService, UsersGuardService]
   },
   {
     path: '**',
@@ -47,7 +48,7 @@ export class UserRoutingModule {
   public static forRoot(): ModuleWithProviders {
     return {
       ngModule: RootUserRoutingModule,
-      providers: [UserGuardService]
+      providers: [UsersGuardService]
     };
   }
 }
