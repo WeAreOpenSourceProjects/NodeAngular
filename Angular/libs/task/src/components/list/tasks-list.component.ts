@@ -64,8 +64,7 @@ export class TasksListComponent implements OnInit, OnDestroy, AfterViewInit {
     });
 
     this.edit$
-    .subscribe(taskId => this.store.dispatch(new fromRouter.Go({ path: ['tasks', Number(taskId), 'edit'] })));
-      //    this.store.dispatch(new fromRouter.Go({ path: ['/', 'tasks', id] }))
+    .subscribe(taskId => this.store.dispatch(new fromRouter.Go({ path: ['tasks', String(taskId), 'edit'] })));
 
     this.add$
     .subscribe(_x => this.store.dispatch(new fromRouter.Go({ path: ['tasks', 'add'] })));

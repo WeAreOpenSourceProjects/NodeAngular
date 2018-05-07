@@ -60,7 +60,7 @@ export class LoadFailure implements Action {
 // tslint:disable-next-line:max-classes-per-file
 export class Handle implements Action {
   readonly type = HANDLE;
-  constructor(public payload: { taskId: Number }) {}
+  constructor(public payload: { taskId: String }) {}
 }
 
 // tslint:disable-next-line:max-classes-per-file
@@ -96,25 +96,25 @@ export class AddFailure implements Action {
 // tslint:disable-next-line:max-classes-per-file
 export class Update implements Action {
   readonly type = UPDATE;
-  constructor(public payload: { task: { id: number; changes: any } }) {}
+  constructor(public payload: { task: { id: string; changes: any } }) {}
 }
 
 // tslint:disable-next-line:max-classes-per-file
 export class UpdateSuccess implements Action {
   readonly type = UPDATE_SUCCESS;
-  constructor(public payload: { task: { id: number; changes: any } }) {}
+  constructor(public payload: { task: { id: string; changes: any } }) {}
 }
 
 // tslint:disable-next-line:max-classes-per-file
 export class AddMediasSuccess implements Action {
   readonly type = ADD_MEDIAS_SUCCESS;
-  constructor(public payload: { task: { id: number; changes: any } }) {}
+  constructor(public payload: { task: { id: string; changes: any } }) {}
 }
 
 // tslint:disable-next-line:max-classes-per-file
 export class DeleteMediasSuccess implements Action {
   readonly type = DELETE_MEDIAS_SUCCESS;
-  constructor(public payload: { task: { id: number; changes: any } }) {}
+  constructor(public payload: { task: { id: string; changes: any } }) {}
 }
 
 // tslint:disable-next-line:max-classes-per-file
@@ -144,5 +144,5 @@ export class DeleteFailure implements Action {
 // tslint:disable-next-line:max-classes-per-file
 export class SaveDescription implements Action {
   readonly type = SAVE_DESCRIPTION;
-  constructor(public payload: { taskId: number; text: string }) {}
+  constructor(public payload: { taskId: string; text: string }) {}
 }

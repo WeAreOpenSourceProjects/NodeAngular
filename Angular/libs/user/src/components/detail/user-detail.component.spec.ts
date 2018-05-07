@@ -19,7 +19,6 @@ describe('UserDetailComponent', () => {
       authentication: {
           status: {
             user: {
-              _id: 1,
               id: 1,
               firstName: 'test',
               lastName: 'test',
@@ -37,17 +36,17 @@ describe('UserDetailComponent', () => {
       user: {
           ids: [],
           entities: {},
-          loaded: true,
-          loading: false
-        },
+        loaded: true,
+        loading: false
+      },
       router: {
-          navigationId: 1,
-          state: {
+        navigationId: 1,
+        state: {
             params: {},
             queryParams: {},
             url: '/home'
           }
-        }
+      }
     };
 
     TestBed.configureTestingModule({

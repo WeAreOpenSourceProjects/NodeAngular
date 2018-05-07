@@ -19,7 +19,7 @@ export class UserApiService {
 
   loadUsers(): Observable<any> {
     return this.http.get(`${this._baseUrl}/${this._endpoints.users}`)
-    .pipe(map((users: Array<User>) => users.map(user => ({ ...user, id: user._id }))));
+    .pipe(map((users: Array<User>) => users.map(user => ({ ...user, id: user.id }))));
   }
 
   addUser(user: User): Observable<any> {
@@ -28,7 +28,7 @@ export class UserApiService {
 
   deleteUser(userId: string): Observable<any> {
     return this.http.delete(`${this._baseUrl}/${this._endpoints.users}/${userId}`)
-    .pipe(map((user: any) => ({ ...user, id: user._id })));
+    .pipe(map((user: any) => ({ ...user, id: user.id })));
   }
 
   updateUser(user: any): Observable<any> {

@@ -80,7 +80,7 @@ export class UserEffects {
     .pipe(
       map((action: fromUser.Update) => action.payload),
       switchMap(payload => this._userApiService.updateUser(payload.user)),
-      map((response: any) => new fromUser.UpdateSuccess({ user: { id: response._id, changes: { ...response } } })),
+      map((response: any) => new fromUser.UpdateSuccess({ user: { id: response.id, changes: { ...response } } })),
       catchError(error => of(new fromUser.UpdateFailure(error)))
     );
 
@@ -134,7 +134,7 @@ export class UserEffects {
       })
     );
 
-    @Effect({ dispatch: false })
+  @Effect({ dispatch: false })
     deleteFailure$ = this._actions$.ofType(fromUser.DELETE_FAILURE)
     .pipe(
       map((action: fromUser.DeleteFailure) => action.payload),
