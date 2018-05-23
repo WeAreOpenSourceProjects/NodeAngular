@@ -8,8 +8,6 @@ import { LoginComponent } from './components/login/login.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { DisableControlDirective } from './directives/disable-control/disable-control.directive';
 import { GoogleSignInComponent } from './components/google-sign-in/google-sign-in.component';
-import { FacebookLoginButtonComponent } from './components/facebook-login-button/facebook-login-button.component';
-import { TwitterLoginButtonComponent } from './components/twitter-login-button/twitter-login-button.component';
 import { GithubLoginButtonComponent } from './components/github-login-button/github-login-button.component';
 import { MicrosoftAuthenticationComponent } from './components/microsoft-authentication/microsoft-authentication.component';
 
@@ -33,8 +31,6 @@ const COMPONENTS = [
   ProfileComponent,
   PasswordResetComponent,
   GoogleSignInComponent,
-  FacebookLoginButtonComponent,
-  TwitterLoginButtonComponent,
   MicrosoftAuthenticationComponent,
   GithubLoginButtonComponent
 ];

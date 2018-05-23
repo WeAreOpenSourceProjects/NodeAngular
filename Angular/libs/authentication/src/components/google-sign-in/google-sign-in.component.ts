@@ -11,12 +11,10 @@ import {
 @Component({
   selector: 'google-signin',
   template: `
-  <div id="gSignInWrapper">
-    <button #signInButton class="customGPlusSignIn" mat-button>
+    <button class="customGPlusSignIn" mat-button (click)="signIn()">
       <mat-icon svgIcon="google"></mat-icon>
       <span>Login with Google</span>
-    </button>
-    </div>`
+    </button>`
 })
 export class GoogleSignInComponent implements AfterViewInit {
 
@@ -49,13 +47,7 @@ export class GoogleSignInComponent implements AfterViewInit {
     return this._fetchBasicProfile.toString();
   }
 
-  @Input()
-  set fetchBasicProfile(s: string) {
-    this._fetchBasicProfile = Boolean(s);
-  }
-
-  @Input()
-  public hostedDomain: string;
+  private auth2: any;
 
   @Output()
   public signInSuccess = new EventEmitter();
@@ -65,20 +57,19 @@ export class GoogleSignInComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     gapi.load('auth2', () => {
-      const oauth2 = gapi.auth2.init({
+      this.auth2 = gapi.auth2.init({
         client_id: this.clientId,
-        cookie_policy: this.cookiePolicy,
-        fetch_basic_profile: this._fetchBasicProfile,
-        hosted_domain: this.hostedDomain
+        fetch_basic_profile: true
       });
-      oauth2.attachClickHandler(
-        this.signInButton.nativeElement,
-        {},
-        (googleUser: any) => {
-          const idToken = googleUser.getAuthResponse().id_token;
-          this.signInSuccess.emit(idToken);
-        },
-        undefined);
     });
   }
+
+  signIn(): void {
+    this.auth2.signIn()
+    .then((googleUser: any) => {
+      const idToken = googleUser.getAuthResponse().id_token;
+      this.signInSuccess.emit(idToken);
+    });
+  }
+
 }
