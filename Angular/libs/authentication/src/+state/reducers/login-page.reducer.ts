@@ -8,21 +8,21 @@ const initialLoginPageState: LoginPageState = {
 
 export function loginPageReducer(state = initialLoginPageState, action: fromAuthentication.Actions): LoginPageState {
   switch (action.type) {
-    case fromAuthentication.LOGIN: {
+    case fromAuthentication.LOCAL_LOGIN: {
       return {
         ...state,
         error: undefined,
         pending: true
       };
     }
-    case fromAuthentication.LOGIN_SUCCESS: {
+    case fromAuthentication.LOCAL_LOGIN_SUCCESS: {
       return {
         ...state,
         error: undefined,
         pending: false
       };
     }
-    case fromAuthentication.LOGIN_FAILURE: {
+    case fromAuthentication.LOCAL_LOGIN_FAILURE: {
       return {
         ...state,
         error: action.payload,

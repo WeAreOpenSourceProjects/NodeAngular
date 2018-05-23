@@ -1,7 +1,7 @@
 {
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../../dist/out-tsc/e2e/storytelling",
+    "outDir": "../../../dist/out-tsc/e2e/meanie",
     "module": "commonjs",
     "target": "es5",
     "types": [

@@ -9,6 +9,7 @@ import { AuthenticationInitializationService } from './services/authentication.i
 import { AuthenticationApiService } from './services/authentication.api.service';
 import { AuthenticationInterceptorService } from './services/authentication.interceptor.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+// import { environment } from '@labdat/common/environments'
 
 export function initialisationFactory(authenticationInitialisation): any {
   return () => authenticationInitialisation.loadUser();

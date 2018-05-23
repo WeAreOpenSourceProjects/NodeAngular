@@ -1,14 +1,14 @@
-import { Authenticate } from '../../models/authenticate.model';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { first, keys } from 'lodash';
+import { environment } from '@labdat/common/environments';
 
 @Component({
   selector: 'auth-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy, OnInit {
 
   @Input('isPending')
   set pending(isPending: boolean) {
@@ -22,11 +22,16 @@ export class LoginComponent {
   @Input()
   public errorMessage: string | null;
 
-  @Output()
-  public loginSubmitted = new EventEmitter<Authenticate>();
+  public googleClientId = environment.authentication.providers.google.clientid;
+  public microsoftClientId = environment.authentication.providers.microsoft.clientid;
+  public microsoftRedirectUri = environment.authentication.providers.microsoft.redirecturi;
+  public microsoftGrapApiScopes = environment.authentication.providers.microsoft.scopes;
 
   @Output()
-  public emailSubmitted = new EventEmitter<string>();
+  public login = new EventEmitter();
+
+  @Output()
+  public email = new EventEmitter<string>();
 
   public forgotPassword = false;
 
@@ -57,14 +62,31 @@ export class LoginComponent {
     return first(keys(this.loginForm.get('password').errors)) || '';
   }
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(
+    private _formBuilder: FormBuilder
+  ) {
+  }
 
   public onLoginSubmit(): void {
-    this.loginSubmitted.emit(this.loginForm.value);
+    this.login.emit(this.loginForm.value);
   }
 
   public onForgotPasswordSubmit(email: string): void {
-    this.emailSubmitted.emit(email);
+    this.email.emit(email);
     this.forgotPassword = false;
+  }
+
+  ngOnInit(): void {
+  }
+
+  ngOnDestroy(): void {
+  }
+
+  onGoogleSignInSuccess(idToken: any): void {
+    this.login.emit({ idToken, provider: 'google' });
+  }
+
+  onMSSignInSuccess({ idToken, user }): void {
+    this.login.emit({ idToken, user, provider: 'microsoft' });
   }
 }

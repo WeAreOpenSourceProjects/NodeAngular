@@ -19,7 +19,6 @@ export class TaskEditDialogComponent {
     private _formBuilder: FormBuilder) { }
 
   onSubmit(): void {
-    console.log(this.taskForm.value);
     this.dialogRef.close({
       ...this.data.task,
       ...cloneDeep(this.taskForm.value)

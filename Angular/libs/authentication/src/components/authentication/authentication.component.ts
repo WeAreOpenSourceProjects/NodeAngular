@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthenticationState } from '../../+state/states/authentication-state.state';
 import * as fromAuthentication from '../../+state/actions/authentication-state.actions';
 import {
@@ -6,12 +6,10 @@ import {
   getLoginPagePending
 } from '../../+state/selectors/authentication-state.selectors';
 import { Store } from '@ngrx/store';
-import { Authenticate } from '../../models/authenticate.model';
 
 @Component({
   templateUrl: './authentication.component.html',
-  styleUrls: ['./authentication.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./authentication.component.scss']
 })
 export class AuthenticationComponent {
   public pending$ = this.store.select(getLoginPagePending);
@@ -19,8 +17,17 @@ export class AuthenticationComponent {
 
   constructor(private store: Store<AuthenticationState>) {}
 
-  onLogin(authenticate: Authenticate): void {
-    this.store.dispatch(new fromAuthentication.Login(authenticate));
+  onLogin(authentication: any): void {
+    switch (authentication.provider) {
+      case 'google':
+        this.store.dispatch(new fromAuthentication.GoogleLogin(authentication.idToken));
+        break;
+      case 'microsoft':
+        this.store.dispatch(new fromAuthentication.MicrosoftLogin(authentication.idToken));
+        break;
+      default:
+        this.store.dispatch(new fromAuthentication.LocalLogin(authentication));
+    }
   }
 
   onEmail(email: string): void {
