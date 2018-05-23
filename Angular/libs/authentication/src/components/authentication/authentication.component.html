@@ -3,8 +3,8 @@
     <mat-tab-group>
       <mat-tab label="Login" i18n-label="@@loginTab">
         <auth-login
-          (loginSubmitted)="onLogin($event)"
-          (emailSubmitted)="onEmail($event)"
+          (login)="onLogin($event)"
+          (email)="onEmail($event)"
           [isPending]="pending$ | async"
           [errorMessage]="error$ | async">
         </auth-login>

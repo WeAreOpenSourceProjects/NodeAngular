@@ -5,6 +5,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PasswordResetGuardService } from './services/password-reset.guard.service';
 import { RoleGuardService } from './services/role.guard.service';
+// import { MicrosoftAuthenticationComponent } from './components/microsoft-authentication/microsoft-authentication.component';
 
 const authenticationRoutes: Routes = [
   {

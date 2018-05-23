@@ -36,7 +36,8 @@
         "./stylesheets/styles.scss",
         "./stylesheets/theme.scss"
       ],
-      "scripts": [],
+      "scripts": [
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

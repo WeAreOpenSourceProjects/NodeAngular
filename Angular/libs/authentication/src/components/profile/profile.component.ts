@@ -11,7 +11,6 @@ import { AuthenticationState } from '../../+state/states/authentication-state.st
 import { cloneDeep } from 'lodash';
 import * as fromAuthentication from '../../+state/actions/authentication-state.actions';
 import { User } from '../../models/user.model';
-import { tap } from 'rxjs/operators/tap';
 import { UserDetailDialogComponent } from '@labdat/user';
 
 @Component({
@@ -34,7 +33,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const dialogSubscription = this.store.select(getUser)
     .pipe(
-      tap(console.log),
       delay(0),
       map(user => this._dialog.open(UserDetailDialogComponent, {
         width: '50%',

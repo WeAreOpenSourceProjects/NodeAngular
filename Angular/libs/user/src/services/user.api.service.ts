@@ -22,8 +22,8 @@ export class UserApiService {
     .pipe(map((users: Array<User>) => users.map(user => ({ ...user, id: user.id }))));
   }
 
-  addUser(user: User): Observable<any> {
-    return this.http.post(`${this._baseUrl}/${this._endpoints.users}`, user);
+  addUser(idToken: any): Observable<any> {
+    return this.http.post(`${this._baseUrl}/${this._endpoints.users}`, idToken);
   }
 
   deleteUser(userId: string): Observable<any> {

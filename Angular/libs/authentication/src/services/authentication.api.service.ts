@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AuthenticationApiService {
   private _baseUrl: string;
-  private _endpoints: any
+  private _endpoints: any;
 
   constructor(private http: HttpClient) {
     const { protocol, host, port, endpoints } = environment.api;
@@ -18,13 +18,18 @@ export class AuthenticationApiService {
   login({ email, password }: Authenticate): Observable<any> {
     return this.http.post(
       `${this._baseUrl}/${this._endpoints.auth}/signin`,
-      { usernameOrEmail: email, password },
+      { password, usernameOrEmail: email },
       { withCredentials: true }
     );
   }
 
   register(registration: any): Observable<any> {
     return this.http.post(`${this._baseUrl}/${this._endpoints.auth}/signup`, registration);
+    //      .do(token => this.setAuthorizationHeader(token));
+  }
+
+  addUser(idToken: any): Observable<any> {
+    return this.http.post(`${this._baseUrl}/${this._endpoints.users}/accounts`, idToken);
     //      .do(token => this.setAuthorizationHeader(token));
   }
 

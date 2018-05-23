@@ -12,6 +12,36 @@
   <button type="submit" [disabled]="!loginForm.valid" mat-raised-button i18n="@@loginButton">Login</button>
 </form>
 <br>
+<google-signin
+  fxLayout="row" fxLayoutAlign="space-between center"
+  [clientId]="googleClientId"
+  (signInSuccess)="onGoogleSignInSuccess($event)">
+</google-signin>
+<microsoft-authentication
+  fxLayout="row" fxLayoutAlign="space-between center"
+  [clientID]="microsoftClientId"
+  [redirectUri]="microsoftRedirectUri"
+  [grapApiScopes]="microsoftGrapApiScopes"
+  (signInSuccess)="onMSSignInSuccess($event)">
+</microsoft-authentication>
+<!--facebook-login-button
+  fxLayout="row" fxLayoutAlign="space-between center"
+  appId="637386269936890"
+  [cookie]="false"
+  [xfbml]="true"
+  [version]="'v3.0'">
+</facebook-login-button>
+<twitter-login-button
+  fxLayout="row" fxLayoutAlign="space-between center"
+  apiKey="tGp3mIPh4tJxjIp9s4jYUlqNe"
+  requestUrl="https://api.twitter.com/oauth/request_token">
+</twitter-login-button>
+<github-login-button
+  clientId="fd9eef2bbd9e2a94dca5"
+  fxLayout="row" fxLayoutAlign="space-between center">
+</github-login-button-->
+
+<br>
 <a *ngIf="!forgotPassword" (click)="forgotPassword = true" i18n="@@forgotPassword">Forgot password ?</a>
 <form *ngIf="forgotPassword" (ngSubmit)="onForgotPasswordSubmit(forgotField.value)">
   <span i18n="@@enterEmail">Enter your email</span>
@@ -24,3 +54,5 @@
   <button mat-button type="submit" [disabled]="forgotControl.invalid" mat-raised-button i18n="@@submitButton">Submit</button>
   <button mat-button (click)="forgotPassword = false" i18n="@@cancelButton">Cancel</button>
 </form>
+
+

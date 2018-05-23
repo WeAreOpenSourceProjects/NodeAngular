@@ -5,15 +5,16 @@ import { AuthenticationState } from '../+state/states/authentication-state.state
 
 @Injectable()
 export class AuthenticationInitializationService {
-  constructor(private store: Store<AuthenticationState>) {}
+  constructor(private _store: Store<AuthenticationState>) {}
 
-  loadUser(): void {
+  loadUser(): any {
     const tokenExpiresIn = Number(localStorage.getItem('tokenExpiresIn'));
+
     if (tokenExpiresIn) {
       if (tokenExpiresIn > Date.now()) {
-        this.store.dispatch(new fromAutentication.LoadUser());
+        this._store.dispatch(new fromAutentication.LoadUser());
       } else {
-        this.store.dispatch(new fromAutentication.Logout('Token expired'));
+        this._store.dispatch(new fromAutentication.Logout('Token expired'));
       }
     }
   }
