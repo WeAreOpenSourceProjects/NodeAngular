@@ -12,10 +12,19 @@ import { tap } from 'rxjs/operators/tap';
 import { exhaustMap } from 'rxjs/operators/exhaustMap';
 import { catchError } from 'rxjs/operators/catchError';
 import { empty } from 'rxjs/observable/empty';
-// import { environment } from '@labdat/common/environments';
+import { GoogleSignInService } from '../../services/google-sign-in.service';
+import { MsalService } from '../../services/msal.service';
+import { getUser } from '../../+state/selectors/authentication-state.selectors';
+import { withLatestFrom } from 'rxjs/operators/withLatestFrom';
+import { User } from '../../models/user.model';
+import { AuthenticationState } from '../../+state/states/authentication-state.state';
+import { switchMap } from 'rxjs/operators/switchMap';
 
 @Injectable()
 export class AuthenticationEffectsService {
+
+  private _currentUser$ = this._store.select(getUser);
+
   @Effect()
   localLogin$ = this._actions$.ofType(fromAuthentication.LOCAL_LOGIN)
   .pipe(
@@ -66,19 +75,54 @@ export class AuthenticationEffectsService {
   );
 
   @Effect()
-  logout$ = this._actions$.ofType(fromAuthentication.LOGOUT)
+  remoteLogout$ = this._actions$.ofType(fromAuthentication.REMOTE_LOGOUT)
   .pipe(
-    map((action: fromAuthentication.Logout) => action.payload),
-    tap((message: any) => {
+    withLatestFrom(
+      this._currentUser$,
+      (_: any, user: User) => user.provider),
+    switchMap((provider: string) => {
+      switch (provider) {
+        case 'google':
+          return this._googleSignInService.signOut();
+        case 'microsoft':
+          return this._msalService.signOut();
+        default:
+          return;
+      }
+    }),
+    map(() => new fromAuthentication.LocalLogout())
+  );
+
+  @Effect()
+  localLogout$ = this._actions$.ofType(fromAuthentication.LOCAL_LOGOUT)
+  .pipe(
+    tap(() => {
       localStorage.removeItem('tokenExpiresIn');
+      (document as any).cookie = 'TOKEN=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
       this._snackBar.openFromComponent(AuthenticationSnackComponent, {
         duration: 1000,
-        data: message || 'Logout',
+        data: 'Logout',
         horizontalPosition: 'right',
         verticalPosition: 'top'
       });
     }),
     mapTo(new fromRouter.Go({ path: ['auth'] }))
+  );
+
+  @Effect()
+  googleSignin$ = this._actions$.ofType(fromAuthentication.GOOGLE_SIGN_IN)
+  .pipe(
+    exhaustMap(() =>
+      this._googleSignInService.signIn()
+      .pipe(
+        catchError((error: any) => {
+          console.error(error);
+
+          return empty();
+        })
+      )
+    ),
+    map(idToken => new fromAuthentication.GoogleLogin(idToken))
   );
 
   @Effect()
@@ -98,7 +142,7 @@ export class AuthenticationEffectsService {
         })
       )
     ),
-    map(payload => new fromAuthentication.GoogleLoginSuccess({ user: payload.user, tokenExpiresIn: payload.tokenExpiresIn }))
+    map(payload => new fromAuthentication.GoogleLoginSuccess(payload))
   );
 
   @Effect()
@@ -127,6 +171,22 @@ export class AuthenticationEffectsService {
         verticalPosition: 'top'
       })
     )
+  );
+
+  @Effect()
+  microsoftSignin$ = this._actions$.ofType(fromAuthentication.MICROSOFT_SIGN_IN)
+  .pipe(
+    exhaustMap(() =>
+      this._msalService.signIn()
+      .pipe(
+        catchError((error: any) => {
+          console.error(error);
+
+          return empty();
+        })
+      )
+    ),
+    map(idToken => new fromAuthentication.MicrosoftLogin(idToken))
   );
 
   @Effect()
@@ -263,7 +323,7 @@ export class AuthenticationEffectsService {
   );
 
   @Effect({ dispatch: false })
-  UserUpdateFailure$ = this._actions$.ofType(fromAuthentication.USER_UPDATE_FAILURE)
+  userUpdateFailure$ = this._actions$.ofType(fromAuthentication.USER_UPDATE_FAILURE)
   .pipe(
     map((action: fromAuthentication.UserUpdateFailure) => action.payload),
     tap(message =>
@@ -310,7 +370,7 @@ export class AuthenticationEffectsService {
   );
 
   @Effect()
-changePassword$ = this._actions$.ofType(fromAuthentication.CHANGE_PASSWORD)
+  changePassword$ = this._actions$.ofType(fromAuthentication.CHANGE_PASSWORD)
   .pipe(
     map((action: fromAuthentication.ChangePassword) => action.payload),
     exhaustMap(payload =>
@@ -329,7 +389,7 @@ changePassword$ = this._actions$.ofType(fromAuthentication.CHANGE_PASSWORD)
   );
 
   @Effect({ dispatch: false })
-changePassordSuccess$ = this._actions$.ofType(fromAuthentication.CHANGE_PASSWORD_SUCCESS)
+  changePassordSuccess$ = this._actions$.ofType(fromAuthentication.CHANGE_PASSWORD_SUCCESS)
   .pipe(
     map((action: fromAuthentication.ChangePasswordSuccess) => action.payload),
     tap(() =>
@@ -343,7 +403,7 @@ changePassordSuccess$ = this._actions$.ofType(fromAuthentication.CHANGE_PASSWORD
   );
 
   @Effect({ dispatch: false })
-changePassordFailure$ = this._actions$.ofType(fromAuthentication.CHANGE_PASSWORD_FAILURE)
+  changePassordFailure$ = this._actions$.ofType(fromAuthentication.CHANGE_PASSWORD_FAILURE)
   .pipe(
     map((action: fromAuthentication.ChangePasswordFailure) => action.payload),
     tap(message =>
@@ -357,7 +417,7 @@ changePassordFailure$ = this._actions$.ofType(fromAuthentication.CHANGE_PASSWORD
   );
 
   @Effect()
-resetPassword$ = this._actions$.ofType(fromAuthentication.RESET_PASSWORD)
+  resetPassword$ = this._actions$.ofType(fromAuthentication.RESET_PASSWORD)
   .pipe(
     map((action: fromAuthentication.ResetPassword) => action.payload),
     exhaustMap(payload =>
@@ -376,7 +436,7 @@ resetPassword$ = this._actions$.ofType(fromAuthentication.RESET_PASSWORD)
   );
 
   @Effect({ dispatch: false })
-resetPassordSuccess$ = this._actions$.ofType(fromAuthentication.RESET_PASSWORD_SUCCESS)
+  resetPassordSuccess$ = this._actions$.ofType(fromAuthentication.RESET_PASSWORD_SUCCESS)
   .pipe(
     map((action: fromAuthentication.ResetPasswordSuccess) => action.payload),
     tap(() =>
@@ -391,7 +451,7 @@ resetPassordSuccess$ = this._actions$.ofType(fromAuthentication.RESET_PASSWORD_S
   );
 
   @Effect({ dispatch: false })
-resetPassordFailure$ = this._actions$.ofType(fromAuthentication.CHANGE_PASSWORD_FAILURE)
+  resetPassordFailure$ = this._actions$.ofType(fromAuthentication.CHANGE_PASSWORD_FAILURE)
   .pipe(
     map((action: fromAuthentication.ResetPasswordFailure) => action.payload),
     tap(message =>
@@ -407,7 +467,9 @@ resetPassordFailure$ = this._actions$.ofType(fromAuthentication.CHANGE_PASSWORD_
   constructor(
     private _actions$: Actions,
     private _authenticationApiService: AuthenticationApiService,
+    private _googleSignInService: GoogleSignInService,
+    private _msalService: MsalService,
     private _snackBar: MatSnackBar,
-    private _store: Store<any>
+    private _store: Store<AuthenticationState>
   ) { }
 }

@@ -9,6 +9,8 @@ import { AuthenticationInitializationService } from './services/authentication.i
 import { AuthenticationApiService } from './services/authentication.api.service';
 import { AuthenticationInterceptorService } from './services/authentication.interceptor.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { GoogleSignInService } from './services/google-sign-in.service';
+import { MsalService } from './services/msal.service';
 // import { environment } from '@labdat/common/environments'
 
 export function initialisationFactory(authenticationInitialisation): any {
@@ -32,6 +34,8 @@ export class AuthenticationStateModule {
       providers: [
         AuthenticationInitializationService,
         AuthenticationApiService,
+        GoogleSignInService,
+        MsalService,
         {
           provide: APP_INITIALIZER,
           useFactory: initialisationFactory,

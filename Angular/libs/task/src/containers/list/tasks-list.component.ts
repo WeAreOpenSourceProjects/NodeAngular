@@ -1,4 +1,4 @@
-import { TaskDeleteDialogComponent } from '../delete/task-delete.dialog.component';
+import { TaskDeleteDialogComponent } from '../../components/delete/task-delete.dialog.component';
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatTableDataSource } from '@angular/material';
 import { MatSort } from '@angular/material/sort';
@@ -57,7 +57,7 @@ export class TasksListComponent implements OnInit, OnDestroy, AfterViewInit {
       ),
       switchMap(dialogRef => dialogRef.afterClosed())
     )
-    .subscribe(taskId => {
+    .subscribe((taskId: string) => {
       if (taskId) {
         this.store.dispatch(new fromTask.Delete({ taskId }));
       }
@@ -76,9 +76,9 @@ export class TasksListComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   applyFilter(filterValue: string): void {
-    filterValue = filterValue.trim();
-    filterValue = filterValue.toLowerCase();
-    this.dataSource.filter = filterValue;
+    let filter = filterValue.trim();
+    filter = filterValue.toLowerCase();
+    this.dataSource.filter = filter;
   }
 
   getState(outlet): any {

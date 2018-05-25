@@ -18,7 +18,7 @@ export function taskReducer(
       return taskAdapter.addAll(action.payload.tasks, { ...state, loading: false, loaded: true });
     }
 
-    case fromAuthentication.LOGOUT: {
+    case fromAuthentication.LOCAL_LOGOUT: {
       //      return adapter.removeAll({ ...state, selectedUserId: null });
       return taskInitialState;
     }

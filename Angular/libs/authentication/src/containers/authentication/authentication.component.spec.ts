@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AuthenticationComponent } from './authentication.component';
-import { LoginComponent } from '../login/login.component';
+import { LocalLoginComponent } from '../../components/local-login/local-login.component';
 import { MatTabsModule } from '@angular/material/tabs';
-import { RegisterComponent } from '../register/register.component';
+import { RegisterComponent } from '../../components/register/register.component';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule, MatInputModule } from '@angular/material';
@@ -30,7 +30,7 @@ describe('AuthenticationComponent', () => {
           authentication: combineReducers(authenticationReducers)
         })
       ],
-      declarations: [ AuthenticationComponent, LoginComponent, RegisterComponent, DisableControlDirective ]
+      declarations: [AuthenticationComponent, LocalLoginComponent, RegisterComponent, DisableControlDirective]
     })
     .compileComponents();
   }));

@@ -18,7 +18,7 @@ export function userReducer(
       return userAdapter.addAll(action.payload.users, { ...state, loading: false, loaded: true });
     }
 
-    case fromAuthentication.LOGOUT: {
+    case fromAuthentication.LOCAL_LOGOUT: {
       //      return adapter.removeAll({ ...state, selectedUserId: null });
       return userInitialState;
     }

@@ -7,7 +7,7 @@ export function showSidenavReducer(
   action: fromCore.Actions | fromAuthentication.Actions
 ): ShowSidenavState {
   switch (action.type) {
-    case fromAuthentication.LOGOUT:
+    case fromAuthentication.LOCAL_LOGOUT:
     case fromCore.CLOSE_SIDENAV:
       return false;
     case fromCore.OPEN_SIDENAV:

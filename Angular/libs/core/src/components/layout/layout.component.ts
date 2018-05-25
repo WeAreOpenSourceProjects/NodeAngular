@@ -57,7 +57,7 @@ export class LayoutComponent implements OnInit {
 
   public editProfile(): void {
     this._store.dispatch(new fromRouter.Go({
-      path: [{outlets: { profile: 'profile' }}]
+      path: [{ outlets: { profile: 'profile' } }]
     }));
   }
 
@@ -74,7 +74,7 @@ export class LayoutComponent implements OnInit {
   }
 
   public logout(): void {
-    this._store.dispatch(new fromAuthentication.Logout());
+    this._store.dispatch(new fromAuthentication.RemoteLogout());
   }
 
   public trackByOrder(item: MenuItem): number {
