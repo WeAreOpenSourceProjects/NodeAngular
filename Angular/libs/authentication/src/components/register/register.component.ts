@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Authenticate } from '../../models/authenticate.model';
+import { Credentials } from '../../models/authenticate.model';
 import { ConfirmValidParentMatcher, CustomValidators } from './password-match.validator';
 import { first, keys } from 'lodash';
 
@@ -25,7 +25,8 @@ export class RegisterComponent implements OnInit {
     }, { validator: CustomValidators.childrenEqual })
   });
 
-  @Output() public submitted = new EventEmitter<Authenticate>();
+  @Output()
+  public register = new EventEmitter<Credentials>();
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -99,7 +100,7 @@ export class RegisterComponent implements OnInit {
       passwordGroup
     } = this.registerForm.value;
 
-    const subscription = {
+    const userInfos = {
       firstName,
       lastName,
       userName,
@@ -107,6 +108,6 @@ export class RegisterComponent implements OnInit {
       password: passwordGroup.password
     };
 
-    this.submitted.emit(subscription);
+    this.register.emit(userInfos);
   }
 }

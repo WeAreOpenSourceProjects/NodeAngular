@@ -1,7 +1,7 @@
 // import { ConnectFormDirective } from '@labdat/connect-form/src/components/directives';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TaskDetailComponent } from './components/detail/task-detail.component';
-import { TasksListComponent } from './components/list/tasks-list.component';
+import { TaskDetailComponent } from './containers/detail/task-detail.component';
+import { TasksListComponent } from './containers/list/tasks-list.component';
 import { TaskAddComponent } from './components/add/task-add.component';
 import { TaskEditComponent } from './components/edit/task-edit.component';
 import { TaskEditDialogComponent } from './components/edit/task-edit.dialog.component';

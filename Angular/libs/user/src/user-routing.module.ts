@@ -1,9 +1,9 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserDetailComponent } from './components/detail/user-detail.component';
-import { UsersListComponent } from './components/list/users-list.component';
+import { UserDetailComponent } from './containers/detail/user-detail.component';
+import { UsersListComponent } from './containers/list/users-list.component';
 import { UsersGuardService } from './services/users.guard.service';
-import { UserDetailPageComponent } from './components/detail/user-detail.page.component';
+import { UserDetailPageComponent } from './containers/detail/user-detail.page.component';
 import { AuthenticationGuardService, RoleGuardService } from '@labdat/authentication';
 
 const userRoutes: Routes = [

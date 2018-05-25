@@ -3,12 +3,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { AuthenticationComponent } from './components/authentication/authentication.component';
-import { LoginComponent } from './components/login/login.component';
+import { AuthenticationComponent } from './containers/authentication/authentication.component';
+import { LocalLoginComponent } from './components/local-login/local-login.component';
+import { ForgotComponent } from './components/forgot/forgot.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { DisableControlDirective } from './directives/disable-control/disable-control.directive';
 import { GoogleSignInComponent } from './components/google-sign-in/google-sign-in.component';
-import { GithubLoginButtonComponent } from './components/github-login-button/github-login-button.component';
 import { MicrosoftAuthenticationComponent } from './components/microsoft-authentication/microsoft-authentication.component';
 
 import {
@@ -26,13 +26,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 const COMPONENTS = [
   AuthenticationComponent,
-  LoginComponent,
+  LocalLoginComponent,
   RegisterComponent,
   ProfileComponent,
   PasswordResetComponent,
   GoogleSignInComponent,
   MicrosoftAuthenticationComponent,
-  GithubLoginButtonComponent
+  ForgotComponent
 ];
 
 const MATERIAL_MODULES = [

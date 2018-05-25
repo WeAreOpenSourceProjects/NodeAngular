@@ -28,7 +28,7 @@ export function statusReducer(state = initialStatusState, action: fromAuthentica
         loading: false
       };
     }
-    case fromAuthentication.LOGOUT: {
+    case fromAuthentication.LOCAL_LOGOUT: {
 
       return {
         ...state,

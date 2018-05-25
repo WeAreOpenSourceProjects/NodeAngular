@@ -1,8 +1,8 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UserDetailComponent } from './components/detail/user-detail.component';
-import { UserDetailDialogComponent } from './components/detail/user-detail.dialog.component';
-import { UserDetailPageComponent } from './components/detail/user-detail.page.component';
-import { UsersListComponent } from './components/list/users-list.component';
+import { UserDetailComponent } from './containers/detail/user-detail.component';
+import { UserDetailDialogComponent } from './containers/detail/user-detail.dialog.component';
+import { UserDetailPageComponent } from './containers/detail/user-detail.page.component';
+import { UsersListComponent } from './containers/list/users-list.component';
 import { UserDeleteDialogComponent } from './components/delete/user-delete.dialog.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';

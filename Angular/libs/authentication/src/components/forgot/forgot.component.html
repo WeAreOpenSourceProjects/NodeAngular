@@ -1,0 +1,14 @@
+<a *ngIf="!forgotPassword" (click)="forgotPassword = true" i18n="@@forgotPassword">Forgot password ?</a>
+<form *ngIf="forgotPassword" (ngSubmit)="onForgotPasswordSubmit(forgotField.value)">
+  <span i18n="@@enterEmail">Enter your email</span>
+  <br>
+  <mat-form-field>
+    <input #forgotField matInput placeholder="Email" [formControl]="forgotControl">
+    <mat-error i18n="@@emailError"> {forgotError, select, required {You must enter a value} email {Wrong Email format}}</mat-error>
+  </mat-form-field>
+  <br>
+  <button mat-button type="submit" [disabled]="forgotControl.invalid" mat-raised-button i18n="@@submitButton">Submit</button>
+  <button mat-button (click)="forgotPassword = false" i18n="@@cancelButton">Cancel</button>
+</form>
+
+

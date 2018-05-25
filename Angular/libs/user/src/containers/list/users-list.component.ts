@@ -1,4 +1,4 @@
-import { UserDeleteDialogComponent } from '../delete/user-delete.dialog.component';
+import { UserDeleteDialogComponent } from '../../components/delete/user-delete.dialog.component';
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatTableDataSource } from '@angular/material';
 import { MatSort } from '@angular/material/sort';

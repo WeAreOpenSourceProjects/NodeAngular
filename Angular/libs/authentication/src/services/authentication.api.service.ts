@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Authenticate } from '../models/authenticate.model';
+import { Credentials } from '../models/authenticate.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@labdat/common/environments';
 import { Observable } from 'rxjs/Observable';
@@ -15,7 +15,7 @@ export class AuthenticationApiService {
     this._endpoints = endpoints;
   }
 
-  login({ email, password }: Authenticate): Observable<any> {
+  login({ email, password }: Credentials): Observable<any> {
     return this.http.post(
       `${this._baseUrl}/${this._endpoints.auth}/signin`,
       { password, usernameOrEmail: email },

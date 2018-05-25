@@ -3,12 +3,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { LoginComponent } from './login.component';
+import { ForgotComponent } from './forgot.component';
 import { MatIconModule } from '@angular/material/icon';
 
 describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+  let component: ForgotComponent;
+  let fixture: ComponentFixture<ForgotComponent>;
 
   beforeEach(
     async(() => {
@@ -20,14 +20,14 @@ describe('LoginComponent', () => {
           MatInputModule,
           NoopAnimationsModule
         ],
-        declarations: [LoginComponent]
+        declarations: [ForgotComponent]
       })
       .compileComponents();
     })
   );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
+    fixture = TestBed.createComponent(ForgotComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

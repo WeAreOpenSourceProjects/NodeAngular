@@ -1,4 +1,4 @@
-import { AuthenticationComponent } from './components/authentication/authentication.component';
+import { AuthenticationComponent } from './containers/authentication/authentication.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { AuthenticationGuardService } from './services/authentication.guard.service';
 import { ModuleWithProviders, NgModule } from '@angular/core';

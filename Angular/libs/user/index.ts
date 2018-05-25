@@ -14,4 +14,4 @@ export { UserState } from './src/+state/user.interfaces';
 import * as fromUser from './src/+state/user.actions';
 export { fromUser };
 export { userReducer } from './src/+state/user.reducer';
-export { UserDetailDialogComponent } from './src/components/detail/user-detail.dialog.component';
+export { UserDetailDialogComponent } from './src/containers/detail/user-detail.dialog.component';

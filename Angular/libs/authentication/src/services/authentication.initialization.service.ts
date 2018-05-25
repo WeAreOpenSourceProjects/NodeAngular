@@ -14,7 +14,7 @@ export class AuthenticationInitializationService {
       if (tokenExpiresIn > Date.now()) {
         this._store.dispatch(new fromAutentication.LoadUser());
       } else {
-        this._store.dispatch(new fromAutentication.Logout('Token expired'));
+        this._store.dispatch(new fromAutentication.RemoteLogout('Token expired'));
       }
     }
   }
