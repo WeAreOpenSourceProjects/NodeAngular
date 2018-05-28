@@ -32,7 +32,7 @@ export class TaskEffects {
           duration: 1000,
           data: 'User Load Failure',
           horizontalPosition: 'right',
-          verticalPosition: 'top'
+          verticalPosition: 'bottom'
         })
       )
     );
@@ -55,7 +55,7 @@ export class TaskEffects {
           duration: 1000,
           data: 'Task Created',
           horizontalPosition: 'right',
-          verticalPosition: 'top'
+          verticalPosition: 'bottom'
         });
       })
     );
@@ -69,7 +69,7 @@ export class TaskEffects {
           duration: 1000,
           data: 'Task Creation Failure',
           horizontalPosition: 'right',
-          verticalPosition: 'top'
+          verticalPosition: 'bottom'
         })
       )
     );
@@ -92,7 +92,7 @@ export class TaskEffects {
           duration: 1000,
           data: 'Task Updated',
           horizontalPosition: 'right',
-          verticalPosition: 'top'
+          verticalPosition: 'bottom'
         });
       })
     );
@@ -106,7 +106,7 @@ export class TaskEffects {
           duration: 1000,
           data: 'Task Update Failure',
           horizontalPosition: 'right',
-          verticalPosition: 'top'
+          verticalPosition: 'bottom'
         })
       )
     );
@@ -129,7 +129,7 @@ export class TaskEffects {
           duration: 1000,
           data: 'Task Deleted',
           horizontalPosition: 'right',
-          verticalPosition: 'top'
+          verticalPosition: 'bottom'
         });
       })
     );
@@ -143,7 +143,7 @@ export class TaskEffects {
           duration: 1000,
           data: 'Task Deletion Failure',
           horizontalPosition: 'right',
-          verticalPosition: 'top'
+          verticalPosition: 'bottom'
         })
       )
     );

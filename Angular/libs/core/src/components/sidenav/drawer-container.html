@@ -1,0 +1,10 @@
+<div class="core-drawer-backdrop" (click)="_onBackdropClicked()" *ngIf="hasBackdrop"
+     [class.core-drawer-shown]="_isShowingBackdrop()"></div>
+
+<ng-content select="core-drawer"></ng-content>
+
+<ng-content select="core-drawer-content">
+</ng-content>
+<core-drawer-content *ngIf="!_content" cdkScrollable>
+  <ng-content></ng-content>
+</core-drawer-content>

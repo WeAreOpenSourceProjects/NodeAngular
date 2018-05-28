@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { DisableControlDirective } from './directives/disable-control/disable-control.directive';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {
   MatButtonModule,
@@ -23,7 +24,6 @@ import {
   MatTableModule,
   MatTooltipModule
 } from '@angular/material';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 const COMPONENTS = [
   UsersListComponent,

@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
 import { Task } from '../../models/task.model';
 import { fromRouter } from '@labdat/common/router-state';
+import { ObservableMedia } from '@angular/flex-layout';
 
 @Component({
   template: ''
@@ -15,11 +16,12 @@ export class TaskAddComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription;
 
-  constructor(public dialog: MatDialog, private store: Store<TaskState>) { }
+  constructor(public dialog: MatDialog, private store: Store<TaskState>, private _media: ObservableMedia) { }
 
   ngOnInit(): void {
     setTimeout(() => {
       const dialogRef = this.dialog.open(TaskEditDialogComponent, {
+        panelClass: this._media.isActive('xs') ? 'full-screen-dialog' : '',
         width: '700px',
         data: { title: 'Add Task' }
       });

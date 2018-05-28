@@ -19,7 +19,7 @@
     "@angular/cdk": "^6.0.0",
     "@angular/common": "^6.0.0",
     "@angular/core": "^6.0.0",
-    "@angular/flex-layout": "^5.0.0-beta.13",
+    "@angular/flex-layout": "^6.0.0-beta.15",
     "@angular/forms": "^6.0.0",
     "@angular/material": "^6.0.0",
     "@angular/platform-browser": "^6.0.0",

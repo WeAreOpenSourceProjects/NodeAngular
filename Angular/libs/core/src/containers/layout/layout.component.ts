@@ -1,13 +1,15 @@
+import { map } from 'rxjs/operators/map';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { combineLatest } from 'rxjs/operators/combineLatest';
 import { intersection, isEmpty, values } from 'lodash';
 import * as fromCore from '../../+state/actions/core-state.actions';
 import { getLogo, getMenuItems, getShowSidenav, getTitle } from '../../+state/selectors/core-state.selectors';
 import { fromAuthentication, getLoggedIn, getUser, User } from '@labdat/authentication';
-import { map } from 'rxjs/operators/map';
+import { Store } from '@ngrx/store';
 import { routesAnimation } from '../../animations/routes.animation';
 import { fromRouter } from '@labdat/common/router-state';
+import { ObservableMedia } from '@angular/flex-layout';
+import { CoreSidenav } from '../../components/sidenav/sidenav';
 import { MenuItem } from '../../models/menu-item.model';
 
 @Component({
@@ -21,6 +23,9 @@ export class LayoutComponent implements OnInit {
   @ViewChild('outlet')
   public outlet;
 
+  @ViewChild(CoreSidenav)
+  public sidenav;
+
   public logo$ = this._store.select(getLogo);
   public title$ = this._store.select(getTitle);
   public menuItems$;
@@ -31,7 +36,17 @@ export class LayoutComponent implements OnInit {
     map((user: User) => (user) ? user.roles.includes('admin') : false)
   );
 
-  constructor(private _store: Store<any>) { }
+  public mode$ = this.media
+  .asObservable()
+  .pipe(map(media => (media.mqAlias === 'xs') ? 'over' : 'side'));
+
+  public collapsedWidth$ = this.media
+  .asObservable()
+  .pipe(
+    map((media: any) => (media.mqAlias === 'xs') ?  0 : 70)
+  );
+
+  constructor(private _store: Store<any>, public media: ObservableMedia) { }
 
   ngOnInit(): void {
     const items$ = this._store.select(getMenuItems);
@@ -59,18 +74,23 @@ export class LayoutComponent implements OnInit {
     this._store.dispatch(new fromRouter.Go({
       path: [{ outlets: { profile: 'profile' } }]
     }));
+    this._store.dispatch(new fromCore.CloseSidenav());
   }
 
   public userManagement(): void {
     this._store.dispatch(new fromRouter.Go({ path: ['users'] }));
+    this._store.dispatch(new fromCore.CloseSidenav());
+
   }
 
   public goToAuthenticationPage(): void {
     this._store.dispatch(new fromRouter.Go({ path: ['auth'] }));
+    this._store.dispatch(new fromCore.CloseSidenav());
   }
 
   public goTo(link: string): void {
     this._store.dispatch(new fromRouter.Go({ path: [link] }));
+    this._store.dispatch(new fromCore.CloseSidenav());
   }
 
   public logout(): void {

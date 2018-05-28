@@ -1,15 +1,13 @@
-<div fxLayout="row" fxLayoutAlign="center center">
-  <mat-card>
-    <mat-card-header>
-      <div mat-card-avatar [ngStyle]="{ 'background-image': 'url(' + (currentUser$ | async)?.profileImageURL + ')'}"></div>
-      <mat-card-title><span #userName>{{ (currentUser$ | async)?.username }}</span></mat-card-title>
-      <mat-card-subtitle>{{ (currentUser$ | async)?.firstName }} {{ (currentUser$ | async)?.lastName }}</mat-card-subtitle>
-    </mat-card-header>
-    <img id="#image" mat-card-image [attr.src]="(currentUser$ | async)?.profileImageURL" alt="photo of the profile">
-    <mat-card-content>
-      Email: {{ (currentUser$ | async)?.email }}
-      <br>
-      Roles: {{ (currentUser$ |async)?.roles }}
-    </mat-card-content>
-  </mat-card>
-</div>
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar [ngStyle]="{ 'background-image': 'url(' + (currentUser$ | async)?.profileImageURL + ')'}"></div>
+    <mat-card-title><span #userName>{{ (currentUser$ | async)?.username }}</span></mat-card-title>
+    <mat-card-subtitle>{{ (currentUser$ | async)?.firstName }} {{ (currentUser$ | async)?.lastName }}</mat-card-subtitle>
+  </mat-card-header>
+  <img id="#image" mat-card-image [attr.src]="(currentUser$ | async)?.profileImageURL" alt="photo of the profile">
+  <mat-card-content>
+    Email: {{ (currentUser$ | async)?.email }}
+    <br>
+    Roles: {{ (currentUser$ |async)?.roles }}
+  </mat-card-content>
+</mat-card>
