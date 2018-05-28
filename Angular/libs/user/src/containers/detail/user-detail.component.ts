@@ -13,13 +13,14 @@ import { cloneDeep } from 'lodash';
 import * as fromUser from '../../+state/user.actions';
 import { User } from '../../models/user.model';
 import { UserDetailDialogComponent } from './user-detail.dialog.component';
+import { ObservableMedia } from '@angular/flex-layout';
 
 @Component({
   template: ''
 })
 export class UserDetailComponent implements OnInit, OnDestroy {
 
-  constructor(public _dialog: MatDialog, private _store: Store<UserState>) { }
+  constructor(public _dialog: MatDialog, private _store: Store<UserState>, private _media: ObservableMedia) { }
 
   public selectedUser$ = this._store.select(selectSelectedUser);
   private subscriptions: Subscription;
@@ -36,6 +37,7 @@ export class UserDetailComponent implements OnInit, OnDestroy {
       map(user => this._dialog.open(UserDetailDialogComponent,
         {
           width: '50%',
+          panelClass: this._media.isActive('xs') ? 'full-screen-dialog' : '',
           data: cloneDeep(user)
         })
       ),

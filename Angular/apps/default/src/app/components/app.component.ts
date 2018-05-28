@@ -3,7 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material';
 
 // Just to close the MS login popup on redirect
-declare var Msal;
+declare const Msal;
 (() => new Msal.UserAgentApplication())();
 
 @Component({

@@ -32,7 +32,7 @@ export class UserEffects {
           duration: 1000,
           data: 'User Load Failure',
           horizontalPosition: 'right',
-          verticalPosition: 'top'
+          verticalPosition: 'bottom'
         })
       )
     );
@@ -47,7 +47,7 @@ export class UserEffects {
       catchError(error => of(new fromUser.AddFailure({ error })))
     );
 
-    @Effect({dispatch: false})
+    @Effect({ dispatch: false})
     addSuccess$ = this._actions$.ofType(fromUser.ADD_SUCCESS)
     .pipe(
       tap(() => {
@@ -55,12 +55,12 @@ export class UserEffects {
           duration: 1000,
           data: 'User Created',
           horizontalPosition: 'right',
-          verticalPosition: 'top'
+          verticalPosition: 'bottom'
         });
       })
     );
 
-    @Effect({ dispatch: false })
+  @Effect({ dispatch: false })
     addFailure$ = this._actions$.ofType(fromUser.ADD_FAILURE)
     .pipe(
       map((action: fromUser.AddFailure) => action.payload),
@@ -69,7 +69,7 @@ export class UserEffects {
           duration: 1000,
           data: 'User Creation Failure',
           horizontalPosition: 'right',
-          verticalPosition: 'top'
+          verticalPosition: 'bottom'
         })
       )
     );
@@ -84,7 +84,7 @@ export class UserEffects {
       catchError(error => of(new fromUser.UpdateFailure(error)))
     );
 
-    @Effect({dispatch: false})
+  @Effect({dispatch: false})
     updateSuccess$ = this._actions$.ofType(fromUser.UPDATE_SUCCESS)
     .pipe(
       tap(() => {
@@ -92,12 +92,12 @@ export class UserEffects {
           duration: 1000,
           data: 'User Updated',
           horizontalPosition: 'right',
-          verticalPosition: 'top'
+          verticalPosition: 'bottom'
         });
       })
     );
 
-    @Effect({ dispatch: false })
+  @Effect({ dispatch: false })
     updateFailure$ = this._actions$.ofType(fromUser.UPDATE_FAILURE)
     .pipe(
       map((action: fromUser.UpdateFailure) => action.payload),
@@ -106,7 +106,7 @@ export class UserEffects {
           duration: 1000,
           data: 'User Update Failure',
           horizontalPosition: 'right',
-          verticalPosition: 'top'
+          verticalPosition: 'bottom'
         })
       )
     );
@@ -121,7 +121,7 @@ export class UserEffects {
       catchError(error => of(new fromUser.DeleteFailure(error)))
     );
 
-    @Effect({dispatch: false})
+  @Effect({ dispatch: false })
     deleteSuccess$ = this._actions$.ofType(fromUser.DELETE_SUCCESS)
     .pipe(
       tap(() => {
@@ -129,7 +129,7 @@ export class UserEffects {
           duration: 1000,
           data: 'User Deleted',
           horizontalPosition: 'right',
-          verticalPosition: 'top'
+          verticalPosition: 'bottom'
         });
       })
     );
@@ -143,7 +143,7 @@ export class UserEffects {
           duration: 1000,
           data: 'User Deletion Failure',
           horizontalPosition: 'right',
-          verticalPosition: 'top'
+          verticalPosition: 'bottom'
         })
       )
     );

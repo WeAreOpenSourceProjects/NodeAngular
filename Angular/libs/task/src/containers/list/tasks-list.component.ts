@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
 import { map } from 'rxjs/operators/map';
 import { switchMap } from 'rxjs/operators/switchMap';
+import { ObservableMedia } from '@angular/flex-layout';
 
 @Component({
   styleUrls: ['./tasks-list.component.scss'],
@@ -29,12 +30,12 @@ export class TasksListComponent implements OnInit, OnDestroy, AfterViewInit {
   public edit$ = new Subject();
   public add$ = new Subject();
 
-  public displayedColumns = ['id', 'title', 'action'];
+  public displayedColumns = ['title', 'action'];;
   public dataSource: MatTableDataSource<Task>;
 
   private subscriptions: Subscription;
 
-  constructor(public dialog: MatDialog, private store: Store<TaskState>) {}
+  constructor(public dialog: MatDialog, private store: Store<TaskState>, public media: ObservableMedia) {}
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource();
@@ -68,6 +69,20 @@ export class TasksListComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.add$
     .subscribe(_x => this.store.dispatch(new fromRouter.Go({ path: ['tasks', 'add'] })));
+
+    const displayedColumnsSubscription = this.media
+    .asObservable()
+    .pipe(
+      map((media: any) => {
+        if (media.mqAlias === 'xs') {
+          return ['title', 'action'];
+        }
+
+        return ['title', 'action'];
+      })
+    )
+    .subscribe(displayedColumns => this.displayedColumns = displayedColumns);
+    this.subscriptions.add(displayedColumnsSubscription);
   }
 
   ngAfterViewInit(): void {

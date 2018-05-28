@@ -1,8 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
-@import url( 'https://fonts.googleapis.com/icon?family=Material+Icons');
-@import url( 'https://fonts.googleapis.com/css?family=Montserrat:700');
-@import './spinner.scss';
-@import './animation.css';
 /*@font-face {
   font-family: "Montserrat";
   src: url("/assets/Montserrat-Bold.woff") format("woff")
@@ -58,35 +53,6 @@ html {
     height: 50px;
 }
 
-/* General */
-a {
-    text-decoration: none;
-}
-
-li,
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-/* Forms */
-textarea {
-    border: 1px solid #ddd;
-    height: 10em;
-}
-
-textarea:active,
-textarea:focus {
-    border: none !important;
-}
-
-button:disabled {
-    cursor: no-drop;
-    opacity: 0.5;
-}
-
-ngx-tooltip-content.ngx-tooltip-content.position-right.type-tooltip.animate {
-    z-index: 2147483648 !important;
-}
 /**
  Project specifications
  **/
@@ -127,4 +93,19 @@ ngx-tooltip-content.ngx-tooltip-content.position-right.type-tooltip.animate {
 
 mat-dialog-content{
   max-height: none !important;
+}
+
+.full-screen-dialog {
+  max-width: none !important;
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+.full-screen-content {
+  padding: 0px !important;
+  height: calc(100vh - 56px) !important;
+}
+
+mat-card {
+  height: 100% !important;
 }

@@ -19,6 +19,7 @@ import { withLatestFrom } from 'rxjs/operators/withLatestFrom';
 import { User } from '../../models/user.model';
 import { AuthenticationState } from '../../+state/states/authentication-state.state';
 import { switchMap } from 'rxjs/operators/switchMap';
+import { filter } from 'rxjs/operators/filter';
 
 @Injectable()
 export class AuthenticationEffectsService {
@@ -54,7 +55,7 @@ export class AuthenticationEffectsService {
         duration: 1000,
         data: 'Login Success',
         horizontalPosition: 'right',
-        verticalPosition: 'top'
+        verticalPosition: 'bottom'
       });
     }),
     mapTo(new fromRouter.Go({ path: ['tasks'] }))
@@ -69,7 +70,7 @@ export class AuthenticationEffectsService {
         duration: 1000,
         data: message,
         horizontalPosition: 'right',
-        verticalPosition: 'top'
+        verticalPosition: 'bottom'
       })
     )
   );
@@ -78,7 +79,7 @@ export class AuthenticationEffectsService {
   remoteLogout$ = this._actions$.ofType(fromAuthentication.REMOTE_LOGOUT)
   .pipe(
     withLatestFrom(
-      this._currentUser$,
+      this._currentUser$.pipe(filter(user => !! user)),
       (_: any, user: User) => user.provider),
     switchMap((provider: string) => {
       switch (provider) {
@@ -103,7 +104,7 @@ export class AuthenticationEffectsService {
         duration: 1000,
         data: 'Logout',
         horizontalPosition: 'right',
-        verticalPosition: 'top'
+        verticalPosition: 'bottom'
       });
     }),
     mapTo(new fromRouter.Go({ path: ['auth'] }))
@@ -153,7 +154,7 @@ export class AuthenticationEffectsService {
         duration: 1000,
         data: 'Login Success',
         horizontalPosition: 'right',
-        verticalPosition: 'top'
+        verticalPosition: 'bottom'
       });
     }),
     mapTo(new fromRouter.Go({ path: ['tasks'] }))
@@ -168,7 +169,7 @@ export class AuthenticationEffectsService {
         duration: 1000,
         data: message,
         horizontalPosition: 'right',
-        verticalPosition: 'top'
+        verticalPosition: 'bottom'
       })
     )
   );
@@ -217,7 +218,7 @@ export class AuthenticationEffectsService {
         duration: 1000,
         data: 'Login Success',
         horizontalPosition: 'right',
-        verticalPosition: 'top'
+        verticalPosition: 'bottom'
       });
     }),
     mapTo(new fromRouter.Go({ path: ['tasks'] }))
@@ -232,7 +233,7 @@ export class AuthenticationEffectsService {
         duration: 1000,
         data: message,
         horizontalPosition: 'right',
-        verticalPosition: 'top'
+        verticalPosition: 'bottom'
       })
     )
   );
@@ -270,7 +271,7 @@ export class AuthenticationEffectsService {
         duration: 1000,
         data: 'Register Success',
         horizontalPosition: 'right',
-        verticalPosition: 'top'
+        verticalPosition: 'bottom'
       });
     }),
     mapTo(new fromRouter.Go({ path: ['tasks'] }))
@@ -285,7 +286,7 @@ export class AuthenticationEffectsService {
         duration: 1000,
         data: message,
         horizontalPosition: 'right',
-        verticalPosition: 'top'
+        verticalPosition: 'bottom'
       })
     )
   );
@@ -317,7 +318,7 @@ export class AuthenticationEffectsService {
         duration: 1000,
         data: 'User Update Success',
         horizontalPosition: 'right',
-        verticalPosition: 'top'
+        verticalPosition: 'bottom'
       });
     })
   );
@@ -331,7 +332,7 @@ export class AuthenticationEffectsService {
         duration: 1000,
         data: message,
         horizontalPosition: 'right',
-        verticalPosition: 'top'
+        verticalPosition: 'bottom'
       })
     )
   );
@@ -364,7 +365,7 @@ export class AuthenticationEffectsService {
         duration: 1000,
         data: message,
         horizontalPosition: 'right',
-        verticalPosition: 'top'
+        verticalPosition: 'bottom'
       })
     )
   );
@@ -397,7 +398,7 @@ export class AuthenticationEffectsService {
         duration: 1000,
         data: 'An email has been sent to the provided email with further instructions',
         horizontalPosition: 'right',
-        verticalPosition: 'top'
+        verticalPosition: 'bottom'
       })
     )
   );
@@ -411,7 +412,7 @@ export class AuthenticationEffectsService {
         duration: 1000,
         data: message,
         horizontalPosition: 'right',
-        verticalPosition: 'top'
+        verticalPosition: 'bottom'
       })
     )
   );
@@ -444,7 +445,7 @@ export class AuthenticationEffectsService {
         duration: 1000,
         data: 'Password Reseted',
         horizontalPosition: 'right',
-        verticalPosition: 'top'
+        verticalPosition: 'bottom'
       })
     ),
     tap(() => this._store.dispatch(new fromRouter.Go({ path: ['auth'] })))
@@ -459,7 +460,7 @@ export class AuthenticationEffectsService {
         duration: 1000,
         data: message,
         horizontalPosition: 'right',
-        verticalPosition: 'top'
+        verticalPosition: 'bottom'
       })
     )
   );

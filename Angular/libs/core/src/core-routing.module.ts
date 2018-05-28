@@ -1,5 +1,5 @@
 import { HomeComponent } from './components/home/home.component';
-import { LayoutComponent } from './components/layout/layout.component';
+import { LayoutComponent } from './containers/layout/layout.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';

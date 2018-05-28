@@ -1,2 +1,2 @@
-export * from './drawer.component';
-export * from './sidenav.component';
+export * from './drawer';
+export * from './sidenav';

@@ -1,6 +1,7 @@
 :host {
   display: block;
   width: 100%;
+  height: 100%;
 }
 
 .header {
@@ -37,14 +38,22 @@ mat-row:hover {
   background-color: #F5F5F5;
 }
 
-.icon {
+mat-icon {
   position: relative;
-  visibility: hidden;
+  /*visibility: hidden;*/
   opacity: 0.54;
   transform: scale(0.8);
   z-index: 1000;
 }
 
-mat-row:hover .icon {
-  visibility: visible;
+.hidden {
+  visibility: hidden;
+}
+
+mat-row:hover .hidden {
+  visibility: visible !important;
+}
+
+.mat-column-action {
+  max-width: 25%;
 }
