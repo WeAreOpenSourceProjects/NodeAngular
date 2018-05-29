@@ -20,6 +20,7 @@ import { User } from '../../models/user.model';
 import { AuthenticationState } from '../../+state/states/authentication-state.state';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { filter } from 'rxjs/operators/filter';
+import { of } from 'rxjs/observable/of';
 
 @Injectable()
 export class AuthenticationEffectsService {
@@ -82,13 +83,14 @@ export class AuthenticationEffectsService {
       this._currentUser$.pipe(filter(user => !! user)),
       (_: any, user: User) => user.provider),
     switchMap((provider: string) => {
+      console.log(provider);
       switch (provider) {
         case 'google':
           return this._googleSignInService.signOut();
         case 'microsoft':
           return this._msalService.signOut();
         default:
-          return;
+          return of(empty);
       }
     }),
     map(() => new fromAuthentication.LocalLogout())

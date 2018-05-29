@@ -1,4 +1,4 @@
-<form id="login-form" [formGroup]="loginForm" fxLayout="column" fxLayoutAlign="start stretch" (ngSubmit)="onLoginSubmit()">
+<form [formGroup]="loginForm" fxLayout="column" fxLayoutAlign="start stretch" (ngSubmit)="onLoginSubmit()">
   <mat-form-field fxFlex=50>
     <input matInput placeholder="Email" i18n-placeholder="@@emailPlaceholder" formControlName="email">
     <mat-error i18n="@@emailError"> {emailError, select, required {You must enter a value} email {Wrong Email format}}</mat-error>

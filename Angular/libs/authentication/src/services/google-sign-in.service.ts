@@ -20,7 +20,10 @@ export class GoogleSignInService {
   signIn(): Observable<any> {
     return fromPromise(gapi.auth2
       .getAuthInstance()
-      .signIn()
+      .signIn({
+        prompt: 'consent',
+        ux_mode: 'popup'
+      })
     )
     .pipe(map((googleUser: any) => googleUser.getAuthResponse().id_token));
   }

@@ -10,6 +10,7 @@ import { PasswordResetComponent } from './components/password-reset/password-res
 import { DisableControlDirective } from './directives/disable-control/disable-control.directive';
 import { GoogleSignInComponent } from './components/google-sign-in/google-sign-in.component';
 import { MicrosoftAuthenticationComponent } from './components/microsoft-authentication/microsoft-authentication.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 import {
   MatButtonModule,
@@ -39,6 +40,7 @@ const MATERIAL_MODULES = [
   MatButtonModule,
   MatIconModule,
   MatCardModule,
+  MatDividerModule,
   MatInputModule,
   MatTabsModule,
   MatRadioModule,
