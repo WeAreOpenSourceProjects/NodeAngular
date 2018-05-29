@@ -2,6 +2,38 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="fr" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="windowsLogin" datatype="html">
+        <source>Login with Windows</source>
+        <target>Se connecter avec Windows</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../libs/core/src/components/microsoft-authentication/microsoft-authentication.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="googleLogin" datatype="html">
+        <source>Login with Google</source>
+        <target>Se connecter avec Google</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../libs/core/src/components/google-sing-in/google-sign-in.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="logout" datatype="html">
+        <source>Logout</source>
+        <target>Déconnexion</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../libs/core/src/components/layout/layout.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="users" datatype="html">
+        <source>Users</source>
+        <target>Utilisateurs</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">../../../libs/core/src/components/layout/layout.component.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="avatar" datatype="html">
         <source>Avatar</source>
         <target>Avatar</target>
@@ -542,9 +574,9 @@
           <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="editProfile" datatype="html">
-        <source>Edit Profile</source>
-        <target>Editer votre profile</target>
+      <trans-unit id="profile" datatype="html">
+        <source>Profile</source>
+        <target>Profile</target>
         <context-group purpose="location">
           <context context-type="sourcefile">../../../libs/core/src/components/layout/layout.component.ts</context>
           <context context-type="linenumber">30</context>

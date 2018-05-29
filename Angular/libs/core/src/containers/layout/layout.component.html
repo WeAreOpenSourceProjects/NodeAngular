@@ -1,6 +1,6 @@
 <router-outlet name="profile"></router-outlet>
-<core-sidenav-container [collapsedWidth]="collapsedWidth$ | async">
-  <core-sidenav [opened]="isSidenavOpened$ | async" [mode]="mode$ | async" [collapsedWidth]="collapsedWidth$ | async" disableClose="true">
+<core-sidenav-container [widths]="widths$ | async">
+  <core-sidenav [opened]="isSidenavOpened$ | async" [mode]="mode$ | async" [widths]="widths$ | async" disableClose="true">
     <img fxHide.xs [attr.src]="logo$ | async" width="36px" style="color:black;">
     <button fxHide.gt-xs mat-icon-button (click)="closeSidenav()">
         <mat-icon id="close" mat-list-icon svgIcon="navigation:ic_close_24px"></mat-icon>
@@ -34,24 +34,25 @@
         <mat-icon svgIcon="social:ic_person_24px" matTooltip="menu" i18n-matTooltip="@@menu" [ngClass]="{ 'red': isAdmin$ | async }"></mat-icon>
       </button>
       <mat-menu #profileMenu="matMenu" yPosition="above" [overlapTrigger]="false">
-        <button mat-menu-item (click)="editProfile()" i18n="@@editProfile">Edit Profile</button>
+        <button mat-menu-item (click)="profile()">
+          <mat-icon svgIcon="social:ic_person_24px"></mat-icon>
+          <span i18n="@@profile">Profile</span>
+        </button>
         <div *ngIf="isAdmin$ | async">
           <mat-divider></mat-divider>
-          <button mat-menu-item (click)="userManagement()" i18n="@@usersManagement" >Users Management</button>
+          <button mat-menu-item (click)="userManagement()">
+            <mat-icon svgIcon="social:ic_people_24px"></mat-icon>
+            <span i18n="@@users">Users</span>
+          </button>
         </div>
+        <button mat-menu-item Logout (click)="logout()">
+          <mat-icon svgIcon="action:ic_power_settings_new_24px"></mat-icon>
+          <span i18n="@@logout">Logout</span>
+        </button>
       </mat-menu>
-
-      <div *ngIf="isLoggedIn$ | async; then logoutButton else loginButton"></div>
-      <ng-template #logoutButton>
-        <button mat-icon-button Logout (click)="logout()">
-          <mat-icon svgIcon="action:ic_power_settings_new_24px" matTooltip="exit" i18n-matTooltip="@@exit"></mat-icon>
-        </button>
-      </ng-template>
-      <ng-template #loginButton>
-        <button mat-icon-button (click)="goToAuthenticationPage()">
-          <mat-icon svgIcon="action:ic_exit_to_app_24px" matTooltip="login"></mat-icon>
-        </button>
-      </ng-template>
+      <button *ngIf="(isLoggedIn$ | async) === false;" mat-icon-button (click)="goToAuthenticationPage()">
+        <mat-icon svgIcon="action:ic_exit_to_app_24px" matTooltip="login"></mat-icon>
+      </button>
     </mat-toolbar>
     <!--mat-progress-bar *ngIf="$ | async"></mat-progress-bar-->
     <div class="main" [@routesAnimation]="outlet.activatedRouteData['page']" [ngClass]="{'full-screen-content': media.isActive('xs')}">

@@ -40,10 +40,10 @@ export class LayoutComponent implements OnInit {
   .asObservable()
   .pipe(map(media => (media.mqAlias === 'xs') ? 'over' : 'side'));
 
-  public collapsedWidth$ = this.media
+  public widths$ = this.media
   .asObservable()
   .pipe(
-    map((media: any) => (media.mqAlias === 'xs') ?  0 : 70)
+    map((media: any) => (media.mqAlias === 'xs') ?  { collapsedWidth: 0, width: '100%' } : { collapsedWidth: 70, width: '300px' })
   );
 
   constructor(private _store: Store<any>, public media: ObservableMedia) { }
@@ -70,17 +70,14 @@ export class LayoutComponent implements OnInit {
     this._store.dispatch(new fromCore.CloseSidenav());
   }
 
-  public editProfile(): void {
+  public profile(): void {
     this._store.dispatch(new fromRouter.Go({
       path: [{ outlets: { profile: 'profile' } }]
     }));
-    this._store.dispatch(new fromCore.CloseSidenav());
   }
 
   public userManagement(): void {
     this._store.dispatch(new fromRouter.Go({ path: ['users'] }));
-    this._store.dispatch(new fromCore.CloseSidenav());
-
   }
 
   public goToAuthenticationPage(): void {
