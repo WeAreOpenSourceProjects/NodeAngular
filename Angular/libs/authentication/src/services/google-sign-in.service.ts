@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '@labdat/common/environments';
+import { environment } from '@waos/common/environments';
 import { fromPromise } from 'rxjs/observable/fromPromise';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
@@ -20,7 +20,10 @@ export class GoogleSignInService {
   signIn(): Observable<any> {
     return fromPromise(gapi.auth2
       .getAuthInstance()
-      .signIn()
+      .signIn({
+        prompt: 'consent',
+        ux_mode: 'popup'
+      })
     )
     .pipe(map((googleUser: any) => googleUser.getAuthResponse().id_token));
   }

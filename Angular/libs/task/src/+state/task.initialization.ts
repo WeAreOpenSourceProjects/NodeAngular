@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import * as fromTask from './task.actions';
 import { TaskState } from './task.interfaces';
 import { Store } from '@ngrx/store';
-import { getLoggedIn } from '@labdat/authentication';
+import { getLoggedIn } from '@waos/authentication';
 import { first } from 'rxjs/operators/first';
 import { filter } from 'rxjs/operators/filter';
 

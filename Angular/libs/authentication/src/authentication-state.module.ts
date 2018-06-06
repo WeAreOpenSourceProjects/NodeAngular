@@ -11,7 +11,7 @@ import { AuthenticationInterceptorService } from './services/authentication.inte
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { GoogleSignInService } from './services/google-sign-in.service';
 import { MsalService } from './services/msal.service';
-// import { environment } from '@labdat/common/environments'
+// import { environment } from '@waos/common/environments'
 
 export function initialisationFactory(authenticationInitialisation): any {
   return () => authenticationInitialisation.loadUser();

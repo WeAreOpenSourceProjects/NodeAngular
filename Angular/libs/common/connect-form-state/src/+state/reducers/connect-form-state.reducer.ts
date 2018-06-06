@@ -1,4 +1,4 @@
-import { connectFormConfiguration } from '@labdat/common/connect-form/src/components/directives/connect-form.configuration';
+import { connectFormConfiguration } from '@waos/common/connect-form/src/components/directives/connect-form.configuration';
 import { ConnectFormState } from '../states/connect-form-state.state';
 import * as fromConnectForm from '../actions/connect-form-state.actions';
 import { forEach } from 'lodash';

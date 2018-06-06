@@ -8,7 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule, MatInputModule } from '@angular/material';
 import { DisableControlDirective } from '../../directives/disable-control/disable-control.directive';
-import { authenticationReducers } from '@labdat/authentication';
+import { authenticationReducers } from '@waos/authentication';
 import { combineReducers, StoreModule } from '@ngrx/store';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 

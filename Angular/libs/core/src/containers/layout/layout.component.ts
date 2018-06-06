@@ -1,16 +1,18 @@
+import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators/map';
-import { Component, OnInit, ViewChild } from '@angular/core';
 import { combineLatest } from 'rxjs/operators/combineLatest';
 import { intersection, isEmpty, values } from 'lodash';
 import * as fromCore from '../../+state/actions/core-state.actions';
 import { getLogo, getMenuItems, getShowSidenav, getTitle } from '../../+state/selectors/core-state.selectors';
-import { fromAuthentication, getLoggedIn, getUser, User } from '@labdat/authentication';
-import { Store } from '@ngrx/store';
+import { fromAuthentication, getLoggedIn, getUser, User } from '@waos/authentication';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { routesAnimation } from '../../animations/routes.animation';
-import { fromRouter } from '@labdat/common/router-state';
+import { fromRouter } from '@waos/common/router-state';
 import { ObservableMedia } from '@angular/flex-layout';
 import { CoreSidenav } from '../../components/sidenav/sidenav';
 import { MenuItem } from '../../models/menu-item.model';
+import { Subject, Subscription } from 'rxjs';
+import { withLatestFrom } from 'rxjs/operators/withLatestFrom';
 
 @Component({
   selector: 'core-layout',
@@ -18,7 +20,7 @@ import { MenuItem } from '../../models/menu-item.model';
   styleUrls: ['./layout.component.scss'],
   animations: [routesAnimation]
 })
-export class LayoutComponent implements OnInit {
+export class LayoutComponent implements OnInit, AfterViewInit {
 
   @ViewChild('outlet')
   public outlet;
@@ -40,11 +42,14 @@ export class LayoutComponent implements OnInit {
   .asObservable()
   .pipe(map(media => (media.mqAlias === 'xs') ? 'over' : 'side'));
 
-  public collapsedWidth$ = this.media
+  public widths$ = this.media
   .asObservable()
   .pipe(
-    map((media: any) => (media.mqAlias === 'xs') ?  0 : 70)
+    map((media: any) => (media.mqAlias === 'xs') ?  { collapsedWidth: 0, width: '100%' } : { collapsedWidth: 70, width: '300px' })
   );
+
+  public profile$ = new Subject();
+  private _subscriptions: Subscription;
 
   constructor(private _store: Store<any>, public media: ObservableMedia) { }
 
@@ -62,6 +67,18 @@ export class LayoutComponent implements OnInit {
     );
   }
 
+  ngAfterViewInit(): void {
+    this._subscriptions = this.profile$
+    .pipe(
+      withLatestFrom(this.currentUser$, (_click, user) =>
+        this._store.dispatch(new fromRouter.Go({
+          path: ['users', user.id]
+        }))
+      )
+    )
+    .subscribe();
+  }
+
   public openSidenav(): void {
     this._store.dispatch(new fromCore.OpenSidenav());
   }
@@ -70,17 +87,8 @@ export class LayoutComponent implements OnInit {
     this._store.dispatch(new fromCore.CloseSidenav());
   }
 
-  public editProfile(): void {
-    this._store.dispatch(new fromRouter.Go({
-      path: [{ outlets: { profile: 'profile' } }]
-    }));
-    this._store.dispatch(new fromCore.CloseSidenav());
-  }
-
   public userManagement(): void {
     this._store.dispatch(new fromRouter.Go({ path: ['users'] }));
-    this._store.dispatch(new fromCore.CloseSidenav());
-
   }
 
   public goToAuthenticationPage(): void {
@@ -99,5 +107,9 @@ export class LayoutComponent implements OnInit {
 
   public trackByOrder(item: MenuItem): number {
     return item.order;
+  }
+
+  ngOnDestroy() {
+    this._subscriptions.unsubscribe();
   }
 }

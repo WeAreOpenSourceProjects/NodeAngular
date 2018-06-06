@@ -1,6 +1,6 @@
 import * as fromUser from './user.actions';
 import { userAdapter, UserState } from './user.interfaces';
-import { fromAuthentication } from '@labdat/authentication';
+import { fromAuthentication } from '@waos/authentication';
 
 export const userInitialState: UserState = userAdapter.getInitialState({
   loading: false,
@@ -11,10 +11,16 @@ export function userReducer(
   action: fromUser.Actions | fromAuthentication.Actions
 ): UserState {
   switch (action.type) {
-    case fromUser.LOAD: {
-      return { ...state, loading: true };
+    case fromUser.LOAD_ALL:
+    case fromUser.LOAD_ONE: {
+      return userAdapter.removeAll({ ...state, loading: true, loaded: false });
     }
-    case fromUser.LOAD_SUCCESS: {
+
+    case fromUser.LOAD_ONE_SUCCESS: {
+      return userAdapter.addOne(action.payload, { ...state, loading: false, loaded: true });
+    }
+
+    case fromUser.LOAD_ALL_SUCCESS: {
       return userAdapter.addAll(action.payload.users, { ...state, loading: false, loaded: true });
     }
 
@@ -22,6 +28,7 @@ export function userReducer(
       //      return adapter.removeAll({ ...state, selectedUserId: null });
       return userInitialState;
     }
+
     case fromAuthentication.USER_UPDATE_SUCCESS: {
       return userAdapter.updateOne(
         {
@@ -31,6 +38,7 @@ export function userReducer(
         state
       );
     }
+
     case fromUser.ADD_SUCCESS: {
       return userAdapter.addOne(action.payload.user, state);
     }

@@ -1,6 +1,6 @@
 import * as fromTask from './task.actions';
 import { taskAdapter, TaskState } from './task.interfaces';
-import { fromAuthentication } from '@labdat/authentication';
+import { fromAuthentication } from '@waos/authentication';
 
 export const taskInitialState: TaskState = taskAdapter.getInitialState({
   loading: false,

@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { userAdapter, UserState } from './user.interfaces';
 import { isEmpty } from 'lodash';
-import { selectCurrentUrl } from '@labdat/common/router-state';
+import { selectCurrentUrl } from '@waos/common/router-state';
 
 const selectUserState = createFeatureSelector<UserState>('user');
 
@@ -12,9 +12,16 @@ export const {
   selectTotal: selectUserTotal
 } = userAdapter.getSelectors(selectUserState);
 
+export const selectSelectedUserId = createSelector(selectCurrentUrl, (currentUrl: string) => {
+  // tslint:disable-next-line:newline-per-chained-call
+  const userId = currentUrl.split('/')[2];
+
+  return userId || undefined;
+});
+
 export const selectSelectedUser = createSelector(selectUserEntities, selectCurrentUrl, (userEntities, currentUrl) => {
   // tslint:disable-next-line:newline-per-chained-call
-  const userId = currentUrl.split('/')[2] && currentUrl.split('/')[2].split('(')[0];
+  const userId = currentUrl.split('/')[2];
 
   return !isEmpty(userEntities[userId]) ? userEntities[userId] : undefined;
 });

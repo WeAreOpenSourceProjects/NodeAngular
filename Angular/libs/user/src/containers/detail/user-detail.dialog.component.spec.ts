@@ -1,13 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { authenticationReducers } from '@labdat/authentication';
+import { authenticationReducers } from '@waos/authentication';
 import { UserDetailDialogComponent } from './user-detail.dialog.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { combineReducers, StoreModule } from '@ngrx/store';
 import { MatCardModule } from '@angular/material/card';
-import { userReducer } from '@labdat/user';
+import { userReducer } from '@waos/user';
 import { routerReducer } from '@ngrx/router-store';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DisableControlDirective } from '../../directives/disable-control/disable-control.directive';

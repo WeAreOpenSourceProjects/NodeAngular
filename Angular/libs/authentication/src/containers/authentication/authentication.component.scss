@@ -1,14 +1,19 @@
 :host {
-  display: block;
-  height:100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-#container {
-  height: 600px;
+mat-card {
+  max-width: 600px;
+  width: 100%;
 }
 
-.login {
-  padding: 25px;
-  height: 450px;
-  width: 300px;
+auth-google {
+  margin-top: 10px;
+}
+auth-microsoft {
+  margin-top: 10px;
 }

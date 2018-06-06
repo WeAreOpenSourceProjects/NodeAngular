@@ -1,5 +1,5 @@
 import * as fromCore from '../actions/core-state.actions';
-import { fromAuthentication } from '@labdat/authentication';
+import { fromAuthentication } from '@waos/authentication';
 import { ShowSidenavState } from '../states/show-sidenav.state';
 
 export function showSidenavReducer(

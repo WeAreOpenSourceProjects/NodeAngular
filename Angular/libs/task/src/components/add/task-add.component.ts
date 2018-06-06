@@ -6,7 +6,7 @@ import { TaskState } from '../../+state/task.interfaces';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
 import { Task } from '../../models/task.model';
-import { fromRouter } from '@labdat/common/router-state';
+import { fromRouter } from '@waos/common/router-state';
 import { ObservableMedia } from '@angular/flex-layout';
 
 @Component({

@@ -2,9 +2,12 @@ import { Action } from '@ngrx/store';
 import { User } from '../models/user.model';
 
 export const SHOW = '[User] Show';
-export const LOAD = '[User] Load';
-export const LOAD_SUCCESS = '[User] Load Success';
-export const LOAD_FAILURE = '[User] Load Failure';
+export const LOAD_ALL = '[User] Load All';
+export const LOAD_ALL_SUCCESS = '[User] Load All Success';
+export const LOAD_ALL_FAILURE = '[User] Load All Failure';
+export const LOAD_ONE = '[User] Load One';
+export const LOAD_ONE_SUCCESS = '[User] Load One Success';
+export const LOAD_ONE_FAILURE = '[One] Load One Failure';
 export const HANDLE = '[User] Handle';
 export const HANDLE_SUCCESS = '[User] Handle Success';
 export const HANDLE_FAILURE = '[User] Handle Failure';
@@ -22,9 +25,12 @@ export const ADD_MEDIAS_SUCCESS = '[User] Add Medias Success';
 export const DELETE_MEDIAS_SUCCESS = '[User] Delete Medias Success';
 
 export type Actions =
-  | Load
-  | LoadSuccess
-  | LoadFailure
+  | LoadOne
+  | LoadOneSuccess
+  | LoadOneFailure
+  | LoadAll
+  | LoadAllSuccess
+  | LoadAllFailure
   | Handle
   | HandleSuccess
   | HandleFailure
@@ -41,19 +47,38 @@ export type Actions =
   | AddMediasSuccess
   | DeleteMediasSuccess;
 
-export class Load implements Action {
-  readonly type = LOAD;
+export class LoadAll implements Action {
+  readonly type = LOAD_ALL;
 }
 
 // tslint:disable-next-line:max-classes-per-file
-export class LoadSuccess implements Action {
-  readonly type = LOAD_SUCCESS;
-  constructor(public payload: { users: Array<User> }) {}
+export class LoadAllSuccess implements Action {
+  readonly type = LOAD_ALL_SUCCESS;
+  constructor(public payload: { users: [User] }) {}
 }
 
 // tslint:disable-next-line:max-classes-per-file
-export class LoadFailure implements Action {
-  readonly type = LOAD_FAILURE;
+export class LoadAllFailure implements Action {
+  readonly type = LOAD_ALL_FAILURE;
+  constructor(public payload: { error: any }) {}
+}
+
+// tslint:disable-next-line:max-classes-per-file
+export class LoadOne implements Action {
+  readonly type = LOAD_ONE;
+  constructor(public payload: string) {}
+
+}
+
+// tslint:disable-next-line:max-classes-per-file
+export class LoadOneSuccess implements Action {
+  readonly type = LOAD_ONE_SUCCESS;
+  constructor(public payload: User) {}
+}
+
+// tslint:disable-next-line:max-classes-per-file
+export class LoadOneFailure implements Action {
+  readonly type = LOAD_ONE_FAILURE;
   constructor(public payload: { error: any }) {}
 }
 

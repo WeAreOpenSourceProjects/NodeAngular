@@ -6,7 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import * as fromTask from '../../+state/task.actions';
 import { selectAllTasks } from '../../+state/task.selectors';
 import { TaskState } from '../../+state/task.interfaces';
-import { fromRouter } from '@labdat/common/router-state';
+import { fromRouter } from '@waos/common/router-state';
 import { Store } from '@ngrx/store';
 import { Task } from '../../models/task.model';
 import 'rxjs/add/operator/do';

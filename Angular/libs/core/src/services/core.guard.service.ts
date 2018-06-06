@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { getUser } from '@labdat/authentication';
+import { getUser } from '@waos/authentication';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 import { take } from 'rxjs/operators/take';
 import { difference } from 'lodash';
-import { fromRouter } from '@labdat/common/router-state';
+import { fromRouter } from '@waos/common/router-state';
 
 @Injectable()
 export class CoreGuardService implements CanActivate {

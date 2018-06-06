@@ -146,20 +146,22 @@ export class CoreDrawer implements AfterContentInit, AfterContentChecked, OnDest
   private _autoFocus = true;
 
   @Input()
-  get collapsedWidth(): number {
-    return this._collapsedWidth;
+  get widths(): any {
+    return this._widths;
   }
-  set collapsedWidth(value) {
-    this._collapsedWidth = value;
+  set widths(value) {
+    this._widths = value;
     if (!this.opened) {
-      this._elementRef.nativeElement.style.width = `${value}px`;
+      this._elementRef.nativeElement.style.width = `${value.collapsedWidth}px`;
+    } else {
+      this._elementRef.nativeElement.style.width = value.width;
     }
   }
 
-  public _collapsedWidth: number;
+  public _widths = { collapsedWidth: 0, width: '0px' };
 
   /** Current state of the sidenav animation. */
-  public _animationState = { value: 'void', params: { collapsedWidth: this._collapsedWidth } };
+  public _animationState = { value: 'void', params: { collapsedWidth: this._widths.collapsedWidth, width: this._widths.width } };
 
   /** How the sidenav was opened (keypress, mouse click etc.) */
   private _openedVia: FocusOrigin | null;
@@ -347,10 +349,10 @@ export class CoreDrawer implements AfterContentInit, AfterContentChecked, OnDest
     this._opened = isOpen;
 
     if (isOpen) {
-      this._animationState = { value: this._enableAnimations ? 'open' : 'open-instant', params: { collapsedWidth: this.collapsedWidth } };
+      this._animationState = { value: this._enableAnimations ? 'open' : 'open-instant', params: { collapsedWidth: this._widths.collapsedWidth, width: this._widths.width } };
       this._openedVia = openedVia;
     } else {
-      this._animationState = { value: 'void', params: { collapsedWidth: this.collapsedWidth } };
+      this._animationState = { value: 'void', params: { collapsedWidth: this._widths.collapsedWidth, width: this._widths.width } };
       this._restoreFocus();
     }
 
@@ -405,14 +407,14 @@ export class CoreDrawerContainer implements AfterContentInit, DoCheck, OnDestroy
   @ContentChild(CoreDrawerContent) _content: CoreDrawerContent;
 
   @Input()
-  get collapsedWidth(): number {
-    return this._collapsedWidth;
+  get widths(): any {
+    return this._widths;
   }
-  set collapsedWidth(value) {
-    this._collapsedWidth = value;
+  set widths(value) {
+    this._widths = value;
   }
 
-  public _collapsedWidth = 0;
+  public _widths: any;
 
   /** The drawer child with the `start` position. */
   get start(): CoreDrawer | null { return this._start; }
@@ -504,10 +506,9 @@ export class CoreDrawerContainer implements AfterContentInit, DoCheck, OnDestroy
     this._autosize = defaultAutosize;
   }
 
-
   ngAfterContentInit() {
 
-    this._contentMargins = { left: this._collapsedWidth, right: 0 };
+    this._contentMargins = { left: this._widths.collapsedWidth, right: 0 };
     this._ngZone.run(() => this._contentMarginChanges.next(this._contentMargins));
 
     this._drawers.changes.pipe(startWith(null)).subscribe(() => {
@@ -674,15 +675,15 @@ export class CoreDrawerContainer implements AfterContentInit, DoCheck, OnDestroy
   _isShowingBackdrop(): boolean {
     return (this._isDrawerOpen(this._start) && this._canHaveBackdrop(this._start)) ||
            (this._isDrawerOpen(this._end) && this._canHaveBackdrop(this._end));
-}
+  }
 
   private _canHaveBackdrop(drawer: CoreDrawer): boolean {
-  return drawer.mode !== 'side' || !!this._backdropOverride;
-}
+    return drawer.mode !== 'side' || !!this._backdropOverride;
+  }
 
   private _isDrawerOpen(drawer: CoreDrawer | null): drawer is CoreDrawer {
-  return drawer !== undefined && drawer.opened;
-}
+    return drawer !== undefined && drawer.opened;
+  }
 
   /**
    * Recalculates and updates the inline styles for the content. Note that this should be used
@@ -695,11 +696,10 @@ export class CoreDrawerContainer implements AfterContentInit, DoCheck, OnDestroy
     // 3. For drawers in `push` mode the should shift the content without resizing it. We do this by
     //    adding to the left or right margin and simultaneously subtracting the same amount of
     //    margin from the other side.
+let left = this._widths.collapsedWidth;
+let right = 0;
 
-    let left = this._collapsedWidth;
-    let right = 0;
-
-  if (this._left && this._left.opened) {
+if (this._left && this._left.opened) {
       if (this._left.mode === 'side') {
         left = 300;
       } else if (this._left.mode === 'push') {
@@ -708,9 +708,9 @@ export class CoreDrawerContainer implements AfterContentInit, DoCheck, OnDestroy
         left += width;
         right -= width;
       }
-    }
+}
 
-    if (this._right && this._right.opened) {
+if (this._right && this._right.opened) {
       if (this._right.mode === 'side') {
         right += this._right._width;
       } else if (this._right.mode === 'push') {
@@ -720,13 +720,13 @@ export class CoreDrawerContainer implements AfterContentInit, DoCheck, OnDestroy
       }
     }
 
-    if (left !== this._contentMargins.left || right !== this._contentMargins.right) {
-    this._contentMargins = { left, right };
+if (left !== this._contentMargins.left || right !== this._contentMargins.right) {
+      this._contentMargins = { left, right };
 
       // Pull back into the NgZone since in some cases we could be outside. We need to be careful
       // to do it only when something changed, otherwise we can end up hitting the zone too often.
-    this._ngZone.run(() => this._contentMarginChanges.next(this._contentMargins));
-  }
+      this._ngZone.run(() => this._contentMarginChanges.next(this._contentMargins));
+    }
 
   }
 }

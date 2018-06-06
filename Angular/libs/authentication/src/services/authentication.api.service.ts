@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Credentials } from '../models/authenticate.model';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '@labdat/common/environments';
+import { environment } from '@waos/common/environments';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()

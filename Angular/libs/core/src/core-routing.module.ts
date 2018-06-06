@@ -4,8 +4,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CoreGuardService } from './services/core.guard.service';
-import { AuthenticationGuardService } from '@labdat/authentication';
-import { TaskGuardService } from '@labdat/task';
+import { AuthenticationGuardService } from '@waos/authentication';
+import { TaskGuardService } from '@waos/task';
 
 const coreRoutes: Routes = [
   {

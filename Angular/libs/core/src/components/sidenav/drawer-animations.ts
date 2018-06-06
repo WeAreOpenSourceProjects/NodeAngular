@@ -14,15 +14,12 @@ export const coreDrawerAnimations: {
   /** Animation that slides a drawer in and out. */
   transformDrawer: trigger('transform', [
     state('open, open-instant', style({
-      width: '300px'
-//      transform: 'translate3d(0, 0, 0)'
-//      visibility: 'visible'
-    })),
+      width: '{{width}}'
+    }), { params: { width: '0px' } }),
     state('void', style({
       // Avoids the shadow showing up when closed in SSR.
       width: '{{collapsedWidth}}px',
       'box-shadow': 'none'
-//      visibility: 'hidden'
     }), { params: { collapsedWidth: 0 } }
   ),
     transition('void => open-instant', animate('0ms')),

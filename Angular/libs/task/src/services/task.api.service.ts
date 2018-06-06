@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Task } from '../models/task.model';
 import { Observable } from 'rxjs/Observable';
-import { environment } from '@labdat/common/environments';
+import { environment } from '@waos/common/environments';
 
 @Injectable()
 export class TaskApiService {

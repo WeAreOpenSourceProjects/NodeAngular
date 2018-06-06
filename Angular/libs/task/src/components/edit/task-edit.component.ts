@@ -5,7 +5,7 @@ import * as fromTask from '../../+state/task.actions';
 import { selectCurrentTask } from '../../+state/task.selectors';
 import { TaskState } from '../../+state/task.interfaces';
 import { Store } from '@ngrx/store';
-import { fromRouter } from '@labdat/common/router-state';
+import { fromRouter } from '@waos/common/router-state';
 import { Task } from '../../models/task.model';
 import { first } from 'rxjs/operators/first';
 import { Subscription } from 'rxjs/Subscription';

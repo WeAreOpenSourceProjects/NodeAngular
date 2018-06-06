@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/combineLatest';
 import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
-import { fromRouter } from '@labdat/common/router-state';
+import { fromRouter } from '@waos/common/router-state';
 import { AuthenticationState } from '../+state/states/authentication-state.state';
 import { Store } from '@ngrx/store';
 import * as jsrsasign from 'jsrsasign';

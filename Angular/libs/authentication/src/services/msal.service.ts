@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '@labdat/common/environments';
+import { environment } from '@waos/common/environments';
 import { fromPromise } from 'rxjs/observable/fromPromise';
 import { Observable } from 'rxjs/Observable';
 

@@ -10,7 +10,7 @@ import { combineReducers, Store, StoreModule } from '@ngrx/store';
 import { coreReducers } from '../../+state/reducers/core-state.reducers';
 import { CoreState } from '../../+state/states/core-state.state';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { authenticationReducers } from '@labdat/authentication';
+import { authenticationReducers } from '@waos/authentication';
 
 describe('LayoutComponent', () => {
 
