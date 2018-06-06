@@ -22,8 +22,7 @@ mat-card-subtitle[contenteditable=true], mat-card-title[contenteditable=true] {
 
 button {
   position: absolute;
-  right: 0px;
-  top: 0px;
+  right: 20px;
 }
 
 img {
@@ -41,4 +40,8 @@ img.edit {
 
 mat-card {
   width: 60%;
+}
+
+.full-screen-dialog mat-card {
+  width: 100% !important;
 }

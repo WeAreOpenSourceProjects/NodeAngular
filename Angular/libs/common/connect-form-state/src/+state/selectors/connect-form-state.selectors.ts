@@ -2,7 +2,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { forEach } from 'lodash';
 
 import { ConnectFormState } from '../states/connect-form-state.state';
-import { connectFormConfiguration } from '@labdat/common/connect-form/src/components/directives/connect-form.configuration';
+import { connectFormConfiguration } from '@waos/common/connect-form/src/components/directives/connect-form.configuration';
 
 const getConnectFormState = createFeatureSelector<ConnectFormState>('connectForm');
 

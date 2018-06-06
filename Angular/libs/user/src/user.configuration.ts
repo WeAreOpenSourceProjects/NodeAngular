@@ -1,4 +1,4 @@
-import { MenuItem } from '@labdat/core';
+import { MenuItem } from '@waos/core';
 
 export interface UserConfiguration {
   core: { sidenav: Array<MenuItem> };

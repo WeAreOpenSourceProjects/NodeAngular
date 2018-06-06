@@ -1,5 +1,5 @@
 import * as fromAuthentication from '../actions/authentication-state.actions';
-import { fromUser } from '@labdat/user';
+import { fromUser } from '@waos/user';
 import { StatusState } from '../states/status.state';
 
 const initialStatusState: StatusState = {

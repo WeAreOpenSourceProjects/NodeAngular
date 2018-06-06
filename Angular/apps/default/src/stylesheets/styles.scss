@@ -113,3 +113,32 @@ mat-card {
 .mat-tab-body-content {
   padding: 25px !important;
 }
+
+/**/
+
+.user-edit-dialog {
+  max-width: 50vh !important;
+}
+
+.user-edit-dialog mat-dialog-container {
+  padding: 0px !important;
+}
+
+.user-edit-dialog .mat-dialog-content {
+  margin: 0px;
+  padding: 0px;
+}
+
+.user-edit-dialog #dialog-content {
+  padding: 0px !important;
+}
+
+.user-edit-dialog mat-card {
+  width: 100% !important;
+}
+
+/**/
+
+.user-edit-dialog.full-screen-dialog {
+  max-width: none !important;
+}

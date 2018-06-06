@@ -27,7 +27,7 @@
           </button>
         <button mat-icon-button fxShow.xs [ngClass]="{ hidden: !media.isActive('xs') }">
           <mat-icon class="icon" svgIcon="action:ic_delete_24px" (click)="delete$.next(row.id); $event.stopPropagation();"></mat-icon>
-          </button>
+        </button>
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

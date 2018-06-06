@@ -6,7 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import * as fromUser from '../../+state/user.actions';
 import { UserState } from '../../+state/user.interfaces';
 import { selectAllUsers } from '../../+state/user.selectors';
-import { fromRouter } from '@labdat/common/router-state';
+import { fromRouter } from '@waos/common/router-state';
 import { Store } from '@ngrx/store';
 import { User } from '../../models/user.model';
 import { Subscription } from 'rxjs/Subscription';
@@ -39,6 +39,7 @@ export class UsersListComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource();
+
     const allUsersSubscriptions = this._store
     .select(selectAllUsers)
     .subscribe(users => (this.dataSource.data = users));

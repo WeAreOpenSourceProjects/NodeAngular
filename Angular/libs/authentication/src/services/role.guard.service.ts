@@ -6,7 +6,7 @@ import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/operator/take';
 import { AuthenticationState } from '../+state/states/authentication-state.state';
 import { getUser } from '../+state/selectors/authentication-state.selectors';
-import { fromRouter } from '@labdat/common/router-state';
+import { fromRouter } from '@waos/common/router-state';
 import { intersection } from 'lodash';
 import { User } from '../models/user.model';
 import { map } from 'rxjs/operators/map';

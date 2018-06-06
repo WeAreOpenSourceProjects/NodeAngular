@@ -8,9 +8,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 
 @NgModule({
-  declarations: [ UserSnackComponent ],
-  exports: [ UserSnackComponent ],
-  entryComponents: [ UserSnackComponent ],
+  declarations: [UserSnackComponent],
+  exports: [UserSnackComponent],
+  entryComponents: [UserSnackComponent],
   imports: [
     MatSnackBarModule,
     StoreModule.forFeature('user', userReducer),

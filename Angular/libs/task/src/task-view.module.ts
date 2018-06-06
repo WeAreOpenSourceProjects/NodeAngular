@@ -1,4 +1,4 @@
-// import { ConnectFormDirective } from '@labdat/connect-form/src/components/directives';
+// import { ConnectFormDirective } from '@waos/connect-form/src/components/directives';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TaskDetailComponent } from './containers/detail/task-detail.component';
 import { TasksListComponent } from './containers/list/tasks-list.component';

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user.model';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
-import { environment } from '@labdat/common/environments';
+import { environment } from '@waos/common/environments';
 
 @Injectable()
 export class UserApiService {
@@ -17,9 +17,14 @@ export class UserApiService {
     this._endpoints = endpoints;
   }
 
+  loadUser(userId: string): Observable<any> {
+    return this.http.get(`${this._baseUrl}/${this._endpoints.users}/${userId}`)
+    .pipe(map((user: User) => ({ ...user, id: user.id })));
+  }
+
   loadUsers(): Observable<any> {
     return this.http.get(`${this._baseUrl}/${this._endpoints.users}`)
-    .pipe(map((users: Array<User>) => users.map(user => ({ ...user, id: user.id }))));
+    .pipe(map((users: [User]) => users.map(user => ({ ...user, id: user.id }))));
   }
 
   addUser(idToken: any): Observable<any> {

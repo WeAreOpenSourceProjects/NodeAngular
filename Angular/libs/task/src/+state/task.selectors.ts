@@ -2,7 +2,7 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { taskAdapter, TaskState } from './task.interfaces';
 import { isEmpty } from 'lodash';
 import { Task } from '../models/task.model';
-import { selectCurrentUrl } from '@labdat/common/router-state';
+import { selectCurrentUrl } from '@waos/common/router-state';
 
 const selectTaskState = createFeatureSelector<TaskState>('task');
 

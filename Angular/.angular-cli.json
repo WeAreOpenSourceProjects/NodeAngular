@@ -1,8 +1,8 @@
 {
   "$schema": "./node_modules/@nrwl/schematics/src/schema.json",
   "project": {
-    "name": "labdat",
-    "npmScope": "labdat",
+    "name": "waos",
+    "npmScope": "waos",
     "latestMigration": "20171213-update-tsconfig-spec-to-exclude-e2e"
   },
   "apps": [

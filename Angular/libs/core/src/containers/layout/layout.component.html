@@ -34,7 +34,7 @@
         <mat-icon svgIcon="social:ic_person_24px" matTooltip="menu" i18n-matTooltip="@@menu" [ngClass]="{ 'red': isAdmin$ | async }"></mat-icon>
       </button>
       <mat-menu #profileMenu="matMenu" yPosition="above" [overlapTrigger]="false">
-        <button mat-menu-item (click)="profile()">
+        <button mat-menu-item (click)="profile$.next()">
           <mat-icon svgIcon="social:ic_person_24px"></mat-icon>
           <span i18n="@@profile">Profile</span>
         </button>

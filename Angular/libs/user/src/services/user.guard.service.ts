@@ -5,19 +5,20 @@ import { Observable } from 'rxjs/Observable';
 import { filter } from 'rxjs/operators/filter';
 import { first } from 'rxjs/operators/first';
 import * as fromUser from '../+state/user.actions';
-import { selectUserLoaded } from '../+state/user.selectors';
+import { selectSelectedUserId, selectUserLoaded } from '../+state/user.selectors';
+import { tap } from 'rxjs/operators/tap';
+import { switchMap } from 'rxjs/operators/switchMap';
 
 @Injectable()
-export class UsersGuardService implements CanActivate {
+export class UserGuardService implements CanActivate {
   constructor(private store: Store<any>) { }
 
   canActivate(): Observable<boolean> | boolean {
 
-    this.store.dispatch(new fromUser.LoadAll());
-
-    return this.store
-    .select(selectUserLoaded)
+    return this.store.select(selectSelectedUserId)
     .pipe(
+      tap(userId => this.store.dispatch(new fromUser.LoadOne(userId))),
+      switchMap(() => this.store.select(selectUserLoaded)),
       filter((loaded: boolean) => loaded),
       first()
     );

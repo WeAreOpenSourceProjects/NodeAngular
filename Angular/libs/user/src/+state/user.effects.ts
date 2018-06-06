@@ -15,27 +15,50 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class UserEffects {
 
   @Effect()
-  load$ = this._actions$
-    .ofType(fromUser.LOAD)
+  loadAll$ = this._actions$
+    .ofType(fromUser.LOAD_ALL)
     .pipe(
       switchMap(() => this._userApiService.loadUsers()),
-      map((response: any) => new fromUser.LoadSuccess({ users: response })),
-      catchError(error => of(new fromUser.LoadFailure(error)))
+      map((response: any) => new fromUser.LoadAllSuccess({ users: response })),
+      catchError(error => of(new fromUser.LoadAllFailure(error)))
     );
 
-    @Effect({ dispatch: false })
-    loadFailure$ = this._actions$.ofType(fromUser.LOAD_FAILURE)
+  @Effect({ dispatch: false })
+  loadAllFailure$ = this._actions$.ofType(fromUser.LOAD_ALL_FAILURE)
+  .pipe(
+    map((action: fromUser.LoadAllFailure) => action.payload),
+    tap(() =>
+      this.snackBar.openFromComponent(UserSnackComponent, {
+        duration: 1000,
+        data: 'User Load Failure',
+        horizontalPosition: 'right',
+        verticalPosition: 'bottom'
+      })
+    )
+  );
+
+  @Effect()
+  loadOne$ = this._actions$
+    .ofType(fromUser.LOAD_ONE)
     .pipe(
-      map((action: fromUser.LoadFailure) => action.payload),
-      tap(() =>
-        this.snackBar.openFromComponent(UserSnackComponent, {
-          duration: 1000,
-          data: 'User Load Failure',
-          horizontalPosition: 'right',
-          verticalPosition: 'bottom'
-        })
-      )
+      switchMap((action: any) => this._userApiService.loadUser(action.payload)),
+      map((response: any) => new fromUser.LoadOneSuccess(response)),
+      catchError(error => of(new fromUser.LoadOneFailure(error)))
     );
+
+  @Effect({ dispatch: false })
+  loadOneFailure$ = this._actions$.ofType(fromUser.LOAD_ONE_FAILURE)
+  .pipe(
+    map((action: fromUser.LoadOneFailure) => action.payload),
+    tap(() =>
+      this.snackBar.openFromComponent(UserSnackComponent, {
+        duration: 1000,
+        data: 'User Load Failure',
+        horizontalPosition: 'right',
+        verticalPosition: 'bottom'
+      })
+    )
+  );
 
   @Effect()
   add$ = this._actions$
@@ -47,32 +70,32 @@ export class UserEffects {
       catchError(error => of(new fromUser.AddFailure({ error })))
     );
 
-    @Effect({ dispatch: false})
-    addSuccess$ = this._actions$.ofType(fromUser.ADD_SUCCESS)
-    .pipe(
-      tap(() => {
-        this.snackBar.openFromComponent(UserSnackComponent, {
-          duration: 1000,
-          data: 'User Created',
-          horizontalPosition: 'right',
-          verticalPosition: 'bottom'
-        });
-      })
-    );
+  @Effect({ dispatch: false })
+  addSuccess$ = this._actions$.ofType(fromUser.ADD_SUCCESS)
+  .pipe(
+    tap(() => {
+      this.snackBar.openFromComponent(UserSnackComponent, {
+        duration: 1000,
+        data: 'User Created',
+        horizontalPosition: 'right',
+        verticalPosition: 'bottom'
+      });
+    })
+  );
 
   @Effect({ dispatch: false })
-    addFailure$ = this._actions$.ofType(fromUser.ADD_FAILURE)
-    .pipe(
-      map((action: fromUser.AddFailure) => action.payload),
-      tap(() =>
-        this.snackBar.openFromComponent(UserSnackComponent, {
-          duration: 1000,
-          data: 'User Creation Failure',
-          horizontalPosition: 'right',
-          verticalPosition: 'bottom'
-        })
-      )
-    );
+  addFailure$ = this._actions$.ofType(fromUser.ADD_FAILURE)
+  .pipe(
+    map((action: fromUser.AddFailure) => action.payload),
+    tap(() =>
+      this.snackBar.openFromComponent(UserSnackComponent, {
+        duration: 1000,
+        data: 'User Creation Failure',
+        horizontalPosition: 'right',
+        verticalPosition: 'bottom'
+      })
+    )
+  );
 
   @Effect()
   update$ = this._actions$
@@ -84,7 +107,7 @@ export class UserEffects {
       catchError(error => of(new fromUser.UpdateFailure(error)))
     );
 
-  @Effect({dispatch: false})
+  @Effect({ dispatch: false })
     updateSuccess$ = this._actions$.ofType(fromUser.UPDATE_SUCCESS)
     .pipe(
       tap(() => {

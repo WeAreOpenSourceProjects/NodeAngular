@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { AuthenticationState } from '../+state/states/authentication-state.state';
 import { getIsUserLoading, getLoggedIn } from '../+state/selectors/authentication-state.selectors';
-import { fromRouter } from '@labdat/common/router-state';
+import { fromRouter } from '@waos/common/router-state';
 import { map } from 'rxjs/operators/map';
 import { switchMap } from 'rxjs/operators/switchMap';
 import { filter } from 'rxjs/operators/filter';

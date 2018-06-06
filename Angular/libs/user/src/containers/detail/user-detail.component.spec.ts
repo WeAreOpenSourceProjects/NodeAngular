@@ -5,8 +5,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { combineReducers, StoreModule } from '@ngrx/store';
-import { authenticationReducers } from '@labdat/authentication';
-import { userReducer } from '@labdat/user';
+import { authenticationReducers } from '@waos/authentication';
+import { userReducer } from '@waos/user';
 import { routerReducer } from '@ngrx/router-store';
 
 describe('UserDetailComponent', () => {
