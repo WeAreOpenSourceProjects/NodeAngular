@@ -1,10 +1,20 @@
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/weareopensource?utm_source=share-link&utm_medium=link&utm_campaign=share-link)
+[![Build Status](https://travis-ci.org/weareopensource/angular.svg?branch=master)](https://travis-ci.org/weareopensource/angular)
+[![Dependencies Status](https://david-dm.org/weareopensource/angular.svg)](https://david-dm.org/weareopensource/angular)
+[![Coverage Status](https://coveralls.io/repos/weareopensource/angular/badge.svg?branch=master&service=github)](https://coveralls.io/github/weareopensource/angular?branch=master)
+[![Known Vulnerabilities](https://snyk.io/test/github/weareopensource/angular/badge.svg)](https://snyk.io/test/github/weareopensource/angular)
 
-# WAOS Angular
 
-## Angular X / material / ngRx Starter 
-## Presentation 
-This project is part of MEANie stack but can be ran as a standalone application. It's build upon angular 5+ , [angular material](https://github.com/angular/material2), [angular-cli](https://github.com/angular/angular-cli) / [Nx](https://github.com/nrwl/nx) and [ngRx](https://github.com/ngrx).
+
+# [WeAreOpenSource](https://weareopensource.me) Angular
+
+### Angular / material / ngRx Starter
+
+## Presentation
+This project a stack Angular that can be ran as a standalone application. Or in a fullstack, like this example, [MEANie](https://github.com/weareopensource/MEANie). We are actually in Beta.
+
+It's build upon angular 5+ , [angular material](https://github.com/angular/material2), [angular-cli](https://github.com/angular/angular-cli) / [Nx](https://github.com/nrwl/nx) and [ngRx](https://github.com/ngrx).
+
 <br><br><br>
 ![demo-stack](https://raw.githubusercontent.com/weareopensource/Angular/assets/screenshot.png)
 
@@ -21,12 +31,14 @@ $ npm i
 ```
 
 ## Running Your Application
-   ### Development
-   * Run `npm start` for a dev server. Navigate to `http://localhost:4200/`.
-   ### Production
-   * Run `npm run build:prod` to build your client App
-   
-   This process takes into account all system environment variables defined under the form FRONT_PATH_TO_VARIABLE. Basicly, it turns those system environment variables into an object, infering paths from the varialbles name, and merges it to the environment object defined on environment.prod.ts to regenerate that file. You can for instance define the API server coordonates by defining those system environment variables:
+
+### Development
+* Run `npm start` for a dev server. Available at `http://localhost:4200/`.
+
+### Production
+* Run `npm run build:prod` to build your client App
+
+This process takes into account all system environment variables defined under the form FRONT_PATH_TO_VARIABLE. Basicly, it turns those system environment variables into an object, infering paths from the varialbles name, and merges it to the environment object defined on environment.prod.ts to regenerate that file. You can for instance define the API server coordonates by defining those system environment variables:
 
 -  FRONT_API_HOST='my-server'
 -  FRONT_API_PORT=4000
@@ -82,10 +94,13 @@ export const coreConfiguration: CoreConfiguration = {
 };
 ```
 
-## Contributing
-We welcome pull requests from the community! Want to contribute ? It's simple as
-  * Forking the repository
-  * Making a PR
+## [Contribute](CONTRIBUTING.md)
+
+## History
+
+This work is based on [MEAN.js](http://meanjs.org). We want to create updated stack with same mindset "simple", "easy to use". The toolbox needed to start projects.
+
+Today, we dreams to create Backs/Fronts, aligns on feats, in multiple languages, in order to allow anyone to compose fullstack on demand. Feel free to discuss, share other bricks, and invite whoever you want with this mindset to come help us.
 
 ## License
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](/LICENSE.md)
