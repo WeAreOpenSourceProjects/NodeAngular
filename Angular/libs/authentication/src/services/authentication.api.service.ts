@@ -7,49 +7,49 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AuthenticationApiService {
   private _baseUrl: string;
-  private _endpoints: any;
+  private _endPoints: any;
 
   constructor(private http: HttpClient) {
-    const { protocol, host, port, endpoints } = environment.api;
-    this._baseUrl = `${protocol}://${host}:${port}/${endpoints.basepath}`;
-    this._endpoints = endpoints;
+    const { protocol, host, port, endPoints } = environment.api;
+    this._baseUrl = `${protocol}://${host}:${port}/${endPoints.basePath}`;
+    this._endPoints = endPoints;
   }
 
   login({ email, password }: Credentials): Observable<any> {
     return this.http.post(
-      `${this._baseUrl}/${this._endpoints.auth}/signin`,
+      `${this._baseUrl}/${this._endPoints.auth}/signin`,
       { password, usernameOrEmail: email },
       { withCredentials: true }
     );
   }
 
   register(registration: any): Observable<any> {
-    return this.http.post(`${this._baseUrl}/${this._endpoints.auth}/signup`, registration);
+    return this.http.post(`${this._baseUrl}/${this._endPoints.auth}/signup`, registration);
     //      .do(token => this.setAuthorizationHeader(token));
   }
 
   addUser(idToken: any): Observable<any> {
-    return this.http.post(`${this._baseUrl}/${this._endpoints.users}/accounts`, idToken);
+    return this.http.post(`${this._baseUrl}/${this._endPoints.users}/accounts`, idToken);
     //      .do(token => this.setAuthorizationHeader(token));
   }
 
   loadUser(): Observable<any> {
-    return this.http.get(`${this._baseUrl}/${this._endpoints.users}/me`);
+    return this.http.get(`${this._baseUrl}/${this._endPoints.users}/me`);
     //      .do(token => this.setAuthorizationHeader(token));
   }
 
   updateUser(user): Observable<any> {
-    return this.http.put(`${this._baseUrl}/${this._endpoints.users}`, user);
+    return this.http.put(`${this._baseUrl}/${this._endPoints.users}`, user);
     //      .do(token => this.setAuthorizationHeader(token));
   }
 
   changePassword(email: string): Observable<any> {
-    return this.http.post(`${this._baseUrl}/${this._endpoints.auth}/forgot`, { email });
+    return this.http.post(`${this._baseUrl}/${this._endPoints.auth}/forgot`, { email });
     //      .do(token => this.setAuthorizationHeader(token));
   }
 
   resetPassword(newPassword: string, token: string): Observable<any> {
-    return this.http.post(`${this._baseUrl}/${this._endpoints.auth}/reset`, { newPassword, token });
+    return this.http.post(`${this._baseUrl}/${this._endPoints.auth}/reset`, { newPassword, token });
     //      .do(token => this.setAuthorizationHeader(token));
   }
 

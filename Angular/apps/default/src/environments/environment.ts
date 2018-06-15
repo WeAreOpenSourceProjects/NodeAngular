@@ -8,11 +8,11 @@ export const environment = {
   authentication: {
     providers: {
       google: {
-        clientid: '307800239261-ha4hmdkrhsq8ftac7uoo66gbt3fmcetv.apps.googleusercontent.com'
+        clientId: '307800239261-ha4hmdkrhsq8ftac7uoo66gbt3fmcetv.apps.googleusercontent.com'
       },
       microsoft: {
-        clientid: '5707a45e-3a3b-40fc-9827-f51c697e6fdd',
-        redirecturi: 'http://localhost:4200/',
+        clientId: '5707a45e-3a3b-40fc-9827-f51c697e6fdd',
+        redirectUri: 'http://localhost:4200/',
         scopes: 'https://graph.microsoft.com/user.read'
       }
     }
@@ -21,12 +21,11 @@ export const environment = {
     protocol: 'http',
     host: 'localhost',
     port: '3000',
-    endpoints: {
-      basepath: 'api',
+    endPoints: {
+      basePath: 'api',
       auth: 'auth',
       users: 'users',
-      tasks: 'tasks',
-      media: 'media'
+      tasks: 'tasks'
     }
   }
 };

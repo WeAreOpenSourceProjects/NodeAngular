@@ -7,31 +7,31 @@ import { environment } from '@waos/common/environments';
 @Injectable()
 export class TaskApiService {
   private _baseUrl: string;
-  private _endpoints: any;
+  private _endPoints: any;
 
   constructor(private http: HttpClient) {
-    const { protocol, host, port, endpoints } = environment.api;
-    this._baseUrl = `${protocol}://${host}:${port}/${endpoints.basepath}`;
-    this._endpoints = endpoints;
+    const { protocol, host, port, endPoints } = environment.api;
+    this._baseUrl = `${protocol}://${host}:${port}/${endPoints.basePath}`;
+    this._endPoints = endPoints;
   }
 
   loadTasks(): Observable<any> {
-    return this.http.get(`${this._baseUrl}/${this._endpoints.tasks}/me`);
+    return this.http.get(`${this._baseUrl}/${this._endPoints.tasks}/me`);
   }
 
   addTask(task: Task): Observable<any> {
-    return this.http.post(`${this._baseUrl}/${this._endpoints.tasks}`, task);
+    return this.http.post(`${this._baseUrl}/${this._endPoints.tasks}`, task);
   }
 
   deleteTask(taskId: string): Observable<any> {
-    return this.http.delete(`${this._baseUrl}/${this._endpoints.tasks}/${taskId}`);
+    return this.http.delete(`${this._baseUrl}/${this._endPoints.tasks}/${taskId}`);
   }
 
   updateTask(task: any): Observable<any> {
-    return this.http.put(`${this._baseUrl}/${this._endpoints.tasks}/${task.id}`, task.changes);
+    return this.http.put(`${this._baseUrl}/${this._endPoints.tasks}/${task.id}`, task.changes);
   }
 
   deleteImage(imageId: string): Observable<any> {
-    return this.http.delete(`${this._baseUrl}/${this._endpoints.media}/${imageId}`);
+    return this.http.delete(`${this._baseUrl}/${this._endPoints.media}/${imageId}`);
   }
 }
