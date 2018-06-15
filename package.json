@@ -7,7 +7,7 @@
     "front": "cd Angular && npm run-script start",
     "back": "cd Node && npm run-script start",
     "front:prod": "cd Angular && npm run-script build:prod",
-    "back:prod": "crossenv NODE_ENV=production cd Node && npm run-script prod"
+    "back:prod": "cd Node && npm run-script prod"
 },
   "devDependencies": {
     "npm-run-all": "^4.1.2"
