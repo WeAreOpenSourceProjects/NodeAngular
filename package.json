@@ -1,16 +1,16 @@
 {
-	"scripts": {
-		"back:install": "cd Node && npm install",
-		"front:install": "cd Angular && npm install",
-		"install": "run-p front:install back:install",
-		"start": "run-p front back",
-		"prod": "run-p front:prod back:prod",
-		"front": "cd Angular && npm run-script start",
-		"front:prod": "cd Angular && npm run-script build:prod",
-		"back": "cd Node && npm run-script start",
-		"back:prod": "cd Node && npm run-script prod"
-	},
-	"devDependencies": {
-		"npm-run-all": "^4.1.2"
-	}
+  "scripts": {
+    "install": "run-p front:install back:install",
+    "back:install": "cd Node && npm install",
+    "front:install": "cd Angular && npm install",
+    "start": "run-p front back",
+    "front": "cd Angular && npm run-script start",
+    "back": "cd Node && npm run-script start",
+    "prod": "run-p front:prod back:prod",
+    "front:prod": "cd Angular && npm run-script build:prod",
+    "back:prod": "crossenv NODE_ENV=production cd Node && npm run-script prod"
+},
+  "devDependencies": {
+    "npm-run-all": "^4.1.2"
+  }
 }
