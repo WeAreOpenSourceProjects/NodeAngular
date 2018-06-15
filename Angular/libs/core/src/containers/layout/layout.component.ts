@@ -11,7 +11,8 @@ import { fromRouter } from '@waos/common/router-state';
 import { ObservableMedia } from '@angular/flex-layout';
 import { CoreSidenav } from '../../components/sidenav/sidenav';
 import { MenuItem } from '../../models/menu-item.model';
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs/Subject';
+import { Subscription } from 'rxjs/subscription';
 import { withLatestFrom } from 'rxjs/operators/withLatestFrom';
 
 @Component({

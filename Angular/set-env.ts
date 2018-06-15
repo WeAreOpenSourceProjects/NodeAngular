@@ -3,10 +3,9 @@ import * as _ from 'lodash';
 import * as objectPath from 'object-path';
 import { environment as fileEnv } from './apps/default/src/environments/environment.prod';
 
-let sysEnv = _.pickBy(process.env, (_value, key) => key.startsWith('FRONT_'));
+let sysEnv = _.pickBy(process.env, (_value, key) => key.startsWith('WAOS_FRONT_'));
 
-sysEnv = _.mapKeys(sysEnv, (_v, k) => k.replace(/FRONT_/g, '')
-.toLowerCase()
+sysEnv = _.mapKeys(sysEnv, (_v, k) => k.replace(/WAOS_FRONT_/g, '')
 .replace(/_/g, '.'));
 
 const sysMemEnv = {};

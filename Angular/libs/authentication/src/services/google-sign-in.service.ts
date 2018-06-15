@@ -11,7 +11,7 @@ export class GoogleSignInService {
   constructor() {
     gapi.load('auth2', () => {
       gapi.auth2.init({
-        client_id: environment.authentication.providers.google.clientid,
+        client_id: environment.authentication.providers.google.clientId,
         fetch_basic_profile: true
       });
     });

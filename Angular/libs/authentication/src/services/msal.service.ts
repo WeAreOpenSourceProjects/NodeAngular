@@ -12,11 +12,11 @@ export class MsalService {
 
   constructor() {
     this._userAgentApplication = new Msal.UserAgentApplication(
-      environment.authentication.providers.microsoft.clientid,
+      environment.authentication.providers.microsoft.clientId,
       undefined,
       undefined,
       {
-        redirectUri: environment.authentication.providers.microsoft.redirecturi
+        redirectUri: environment.authentication.providers.microsoft.redirectUri
       });
   }
 
