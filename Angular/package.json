@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "setenv": "ts-node ./set-env",
-    "build": "ng build --prod --environment=prod --aot --i18nFile=apps/default/src/locale/messages.fr.xlf --i18nFormat=xlf --locale=fr --missingTranslation=error",
     "build:prod": "run-s setenv build ",
+    "build": "ng build --prod --environment=prod --aot --i18nFile=apps/default/src/locale/messages.fr.xlf --i18nFormat=xlf --locale=fr --missingTranslation=error",
+    "setenv": "ts-node ./set-env",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
