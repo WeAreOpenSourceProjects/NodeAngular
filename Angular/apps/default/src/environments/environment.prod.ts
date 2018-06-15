@@ -3,12 +3,12 @@ export const environment = {
   authentication: {
     providers: {
       google: {
-        clientId: '307800239261-ha4hmdkrhsq8ftac7uoo66gbt3fmcetv.apps.googleusercontent.com'
+        clientId: 'WAOS_FRONT_authentication_providers_google_clientId'
       },
       microsoft: {
-        clientId: '5707a45e-3a3b-40fc-9827-f51c697e6fdd',
+        clientId: 'WAOS_FRONT_authentication_providers_microsoft_clientId',
         redirectUri: 'http://localhost:3000/',
-        scopes: 'https://graph.microsoft.com/user.read'
+        scopes: 'WAOS_FRONT_authentication_providers_microsoft_scopes'
       }
     }
   },
