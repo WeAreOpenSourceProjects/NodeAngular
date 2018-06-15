@@ -6,7 +6,6 @@
     "start": "run-p front back",
     "front": "cd Angular && npm run-script start",
     "back": "cd Node && npm run-script start",
-    "prod": "run-p front:prod back:prod",
     "front:prod": "cd Angular && npm run-script build:prod",
     "back:prod": "crossenv NODE_ENV=production cd Node && npm run-script prod"
 },
