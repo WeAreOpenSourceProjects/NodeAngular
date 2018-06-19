@@ -28,11 +28,11 @@ $ npm i
    ### Production
    * Run `npm run start:prod` to build your client app and start a web server on `http://localhost:4200/`
 
-   This process takes into account all system environment variables defined under the form FRONT_PATH_TO_VARIABLE or BACK_PATH_TO_VARIABLE. You can for instance overide the environment.ts global variables for API server by redefining them throught system environment variables:
-   -  FRONT_API_HOST='my-server' overides environemnt.api.host value
-   -  FRONT_API_PORT=4000 overides environemnt.api.port value
-   -  FRONT_API_ENDPOINTS_BASEPATH='api2' overides environemnt.api.enpoints.basepath value
+   This process takes into account all system environment variables defined under the form WAOS_<BACK|FRONT>_<path_toVariable>. You can for instance overide the front or back default configuration by redefining them throught system environment variables:
+   -  WAOS_FRONT_API_PORT=3200 overides environemnt.api.host value
+   -  WAOS_BACK_PORT=3200 overides config.port value
 
+All front/back configuration varialables are overidable.
 
 ## Define your own project repo and keep it sync with MEANie
 This step is not mandatory. You can directly clone the repository and get a working app. But since you will need to deploy your app soon, hosting your own project on github and configuring it to get the last update from the kick starter is a must. This is done this way:
