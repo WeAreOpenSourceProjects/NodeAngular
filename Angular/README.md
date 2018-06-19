@@ -38,11 +38,14 @@ $ npm i
 ### Production
 * Run `npm run build:prod` to build your client App
 
-This process takes into account all system environment variables defined under the form FRONT_PATH_TO_VARIABLE. Basicly, it turns those system environment variables into an object, infering paths from the varialbles name, and merges it to the environment object defined on environment.prod.ts to regenerate that file. You can for instance define the API server coordonates by defining those system environment variables:
+### Configuration
+Both processes take into account all system environment variables defined under the form WAOS_FRONT_<path_toVariable>. A pre-build npm script turns under the hood those system environment variables into an object, infering paths from the varialbles name, merged to the environment object defined on environment.prod.ts to regenerate that file, regardless of the production or developement mode.
 
--  FRONT_API_HOST='my-server'
--  FRONT_API_PORT=4000
--  FRONT_API_ENDPOINTS_BASEPATH='api2'
+All configuration avalable on environment.ts file are overidable. You can for instance define the API server coordonates by defining those system environment variables:
+
+-  WAOS_FRONT_api_host='my-server'
+-  WAOS_FRONT_api_port=4000
+-  WAOS_FRONT_api_endPoints_basePath='api2'
 
 <!--
 ## Running unit tests
