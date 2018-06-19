@@ -1,18 +1,18 @@
+import { routesAnimation } from '../../animations/routes.animation';
 import { Store } from '@ngrx/store';
-import { map } from 'rxjs/operators/map';
 import { combineLatest } from 'rxjs/operators/combineLatest';
 import { intersection, isEmpty, values } from 'lodash';
 import * as fromCore from '../../+state/actions/core-state.actions';
 import { getLogo, getMenuItems, getShowSidenav, getTitle } from '../../+state/selectors/core-state.selectors';
 import { fromAuthentication, getLoggedIn, getUser, User } from '@waos/authentication';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { routesAnimation } from '../../animations/routes.animation';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { map } from 'rxjs/operators/map';
 import { fromRouter } from '@waos/common/router-state';
 import { ObservableMedia } from '@angular/flex-layout';
 import { CoreSidenav } from '../../components/sidenav/sidenav';
 import { MenuItem } from '../../models/menu-item.model';
 import { Subject } from 'rxjs/Subject';
-import { Subscription } from 'rxjs/subscription';
+import { Subscription } from 'rxjs/Subscription';
 import { withLatestFrom } from 'rxjs/operators/withLatestFrom';
 
 @Component({
@@ -21,7 +21,7 @@ import { withLatestFrom } from 'rxjs/operators/withLatestFrom';
   styleUrls: ['./layout.component.scss'],
   animations: [routesAnimation]
 })
-export class LayoutComponent implements OnInit, AfterViewInit {
+export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('outlet')
   public outlet;
@@ -110,7 +110,7 @@ export class LayoutComponent implements OnInit, AfterViewInit {
     return item.order;
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this._subscriptions.unsubscribe();
   }
 }
