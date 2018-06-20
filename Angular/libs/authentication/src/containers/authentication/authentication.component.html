@@ -12,10 +12,12 @@
       <auth-microsoft *ngIf="isMicrosoftConfigured"
         (login)="onMicrosoftLogin()">
       </auth-microsoft>
-      <br><mat-divider></mat-divider><br>
-      <auth-forgot *ngIf="isMailerConfigured"
-        (changePasswordRequest)="onPasswordChangeRequest($event)">
-      </auth-forgot>
+      <div *ngIf="isMailerConfigured">
+        <br><mat-divider></mat-divider><br>
+        <auth-forgot
+          (changePasswordRequest)="onPasswordChangeRequest($event)">
+        </auth-forgot>
+      </div>
     </mat-tab>
     <mat-tab label="Register" i18n-label="@@registerTab">
       <auth-register

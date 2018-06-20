@@ -16,7 +16,7 @@ export class AuthenticationComponent {
   public loginPending$ = this._store.select(getLoginPagePending);
   public loginError$ = this._store.select(getLoginPageError);
 
-  public isMailerConfigured = environment.back.isMailerConfigured;
+  public isMailerConfigured = environment.api.isMailerConfigured;
   public isGoogleConfigured = environment.authentication.providers.google;
   public isMicrosoftConfigured = environment.authentication.providers.microsoft;
 
