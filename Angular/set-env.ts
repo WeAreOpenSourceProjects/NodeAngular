@@ -13,7 +13,7 @@ frontSysEnv = _.mapKeys(frontSysEnv, (_v, k) => k.replace(/WAOS_FRONT_/g, '')
 
 const isMailerConfigured = !_.isEmpty(_.pickBy(process.env, (_value, key) => key.startsWith('WAOS_BACK_mailer')));
 
-const sysMemEnv = { isMailerConfigured };
+const sysMemEnv = { api: { isMailerConfigured } };
 _.forEach(frontSysEnv, (v, k) => objectPath.set(sysMemEnv, k, v));
 const env = _.merge(fileEnv, sysMemEnv);
 
