@@ -26,7 +26,7 @@ $ npm i
    ### Development
    * Run `npm start` for dev. Navigate to `http://localhost:4200/`.
    ### Production
-   * Run `npm run start:prod` to build your client app and start a web server on `http://localhost:4200/`
+   * Run `npm run prod` to build your client app and start a web server on `http://localhost:4200/`
 
    This process takes into account all system environment variables defined under the form WAOS_<BACK|FRONT>_<path_toVariable>. You can for instance overide the front or back default configuration by redefining them throught system environment variables:
    -  WAOS_FRONT_API_PORT=3200 overides environemnt.api.host value
