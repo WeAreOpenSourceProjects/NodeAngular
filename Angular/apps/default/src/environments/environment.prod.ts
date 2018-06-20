@@ -3,12 +3,12 @@ export const environment = {
   authentication: {
     providers: {
       google: {
-        clientId: 'WAOS_FRONT_authentication_providers_google_clientId'
+        clientId: '307800239261-ha4hmdkrhsq8ftac7uoo66gbt3fmcetv.apps.googleusercontent.com'
       },
       microsoft: {
-        clientId: 'WAOS_FRONT_authentication_providers_microsoft_clientId',
+        clientId: '5707a45e-3a3b-40fc-9827-f51c697e6fdd',
         redirectUri: 'http://localhost:3000/',
-        scopes: 'WAOS_FRONT_authentication_providers_microsoft_scopes'
+        scopes: 'https://graph.microsoft.com/user.read'
       }
     }
   },
@@ -22,5 +22,9 @@ export const environment = {
       users: 'users',
       tasks: 'tasks'
     }
-  }
+  },
+  back: {
+    isMailerConfigured: false
+  },
+  isMailerConfigured: true
 };

@@ -5,6 +5,7 @@ import { getLoginPageError, getLoginPagePending } from '../../+state/selectors/a
 import { Store } from '@ngrx/store';
 import * as fromAuthentication from '../../+state/actions/authentication-state.actions';
 import { Credentials } from '../../models/authenticate.model';
+import { environment } from '@waos/common/environments';
 
 @Component({
   templateUrl: './authentication.component.html',
@@ -14,6 +15,10 @@ export class AuthenticationComponent {
 
   public loginPending$ = this._store.select(getLoginPagePending);
   public loginError$ = this._store.select(getLoginPageError);
+
+  public isMailerConfigured = environment.back.isMailerConfigured;
+  public isGoogleConfigured = environment.authentication.providers.google;
+  public isMicrosoftConfigured = environment.authentication.providers.microsoft;
 
   constructor(private _store: Store<AuthenticationState>) { }
 
