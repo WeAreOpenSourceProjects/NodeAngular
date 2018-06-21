@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { authenticationReducers } from '@waos/authentication';
+// import { authenticationReducers } from '@waos/authentication';
 import { UserDetailDialogComponent } from './user-detail.dialog.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -29,7 +29,7 @@ describe('UserDetailDialogComponent', () => {
         FormsModule,
         ReactiveFormsModule,
         StoreModule.forRoot({
-          authentication: combineReducers(authenticationReducers),
+          authentication: (state: any, _action: any) => state,
           user: combineReducers(userReducer),
           router: combineReducers(routerReducer)
         }),

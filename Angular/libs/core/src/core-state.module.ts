@@ -1,6 +1,6 @@
 import { APP_INITIALIZER, InjectionToken, ModuleWithProviders, NgModule } from '@angular/core';
 import { CoreInitializationService } from './services/core.initialization.service';
-import { coreReducers } from './+state/reducers/core-state.reducers';
+import { coreReducers } from './+state/reducers';
 import { StoreModule } from '@ngrx/store';
 
 const CORE_CONFIGURATION = new InjectionToken('CORE_CONFIGURATION');

@@ -11,6 +11,7 @@ import { taskReducer } from '../../+state/task.reducer';
 import { StoreModule } from '@ngrx/store';
 import { TasksListComponent } from './tasks-list.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 describe('TasksListComponent', () => {
   let component: TasksListComponent;
@@ -40,11 +41,12 @@ describe('TasksListComponent', () => {
         StoreModule.forRoot({
           task: taskReducer
         }, { initialState: storeMock }),
-        NoopAnimationsModule
+        NoopAnimationsModule,
+        FlexLayoutModule
       ],
-      declarations: [ TasksListComponent ],
+      declarations: [TasksListComponent],
       providers: [
-        { provide: MatDialog, useValue: {open: () => {}} },
+        { provide: MatDialog, useValue: { open: () => {} } },
         { provide: MAT_DIALOG_DATA, useValue: {} }
       ]
     })
