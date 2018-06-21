@@ -3,7 +3,7 @@
     <mat-tab label="Login" i18n-label="@@loginTab">
       <auth-local
         [isPending]=" loginPending$ | async"
-        [errorMassage]=" loginError$ | async"
+        [errorMessage]=" loginError$ | async"
         (login)="onLocalLogin($event)">
       </auth-local>
       <auth-google *ngIf="isGoogleConfigured"

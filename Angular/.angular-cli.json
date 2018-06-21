@@ -37,6 +37,7 @@
         "./stylesheets/theme.scss"
       ],
       "scripts": [
+        "../../../node_modules/msal/dist/msal.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

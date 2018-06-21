@@ -1,12 +1,12 @@
+import { map } from 'rxjs/operators/map';
 import { routesAnimation } from '../../animations/routes.animation';
-import { Store } from '@ngrx/store';
 import { combineLatest } from 'rxjs/operators/combineLatest';
-import { intersection, isEmpty, values } from 'lodash';
+import { includes, intersection, isEmpty, values } from 'lodash';
 import * as fromCore from '../../+state/actions/core-state.actions';
 import { getLogo, getMenuItems, getShowSidenav, getTitle } from '../../+state/selectors/core-state.selectors';
 import { fromAuthentication, getLoggedIn, getUser, User } from '@waos/authentication';
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { map } from 'rxjs/operators/map';
+import { Store } from '@ngrx/store';
 import { fromRouter } from '@waos/common/router-state';
 import { ObservableMedia } from '@angular/flex-layout';
 import { CoreSidenav } from '../../components/sidenav/sidenav';
@@ -36,7 +36,7 @@ export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
   public isLoggedIn$ = this._store.select(getLoggedIn);
   public currentUser$ = this._store.select(getUser);
   public isAdmin$ = this.currentUser$.pipe(
-    map((user: User) => (user) ? user.roles.includes('admin') : false)
+    map((user: User) => (user) ? includes(user.roles, 'admin') : false)
   );
 
   public mode$ = this.media

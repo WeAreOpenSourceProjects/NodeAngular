@@ -1,6 +1,6 @@
 import { AuthenticationSnackComponent } from './components/authentication-snack/authentication-snack.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { authenticationReducers } from './+state/reducers/authentication-state.reducers';
+import { authenticationReducers } from './+state/reducers';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthenticationEffectsService } from './+state/effects/authentication-state.effects.service';

@@ -1,16 +1,17 @@
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatListModule } from '@angular/material/list';
 import { LayoutComponent } from './layout.component';
-import { CoreSidenav, CoreSidenavContainer, CoreSidenavContent } from '../sidenav/sidenav.component';
+import { CoreSidenav, CoreSidenavContainer, CoreSidenavContent } from '../../components/sidenav/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { combineReducers, Store, StoreModule } from '@ngrx/store';
-import { coreReducers } from '../../+state/reducers/core-state.reducers';
+import { coreReducers } from '../../+state/reducers';
 import { CoreState } from '../../+state/states/core-state.state';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { authenticationReducers } from '@waos/authentication';
+import { FlexLayoutModule } from '@angular/flex-layout';
+// import { authenticationReducers } from '@waos/authentication';
 
 describe('LayoutComponent', () => {
 
@@ -20,6 +21,26 @@ describe('LayoutComponent', () => {
 
   beforeEach(
     async(() => {
+
+      const initialState = {
+        authentication: {
+          loginPage: {
+            error: undefined,
+            pending: false
+          },
+          status: {
+            user: undefined,
+            loading: false
+          }
+        },
+        core: {
+          logo: '',
+          menuItems: {},
+          showSidenav: false,
+          title: ''
+        }
+      };
+
       TestBed.configureTestingModule({
         imports: [
           MatIconModule,
@@ -29,9 +50,10 @@ describe('LayoutComponent', () => {
           RouterTestingModule,
           NoopAnimationsModule,
           StoreModule.forRoot({
-            authentication: combineReducers(authenticationReducers),
+            authentication: (state: any, _action: any) => state,
             core: combineReducers(coreReducers)
-          })
+          }, { initialState }),
+          FlexLayoutModule
         ],
         declarations: [
           CoreSidenav,

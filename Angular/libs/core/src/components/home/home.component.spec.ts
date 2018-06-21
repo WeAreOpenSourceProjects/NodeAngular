@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatCardModule } from '@angular/material/card';
 
 import { HomeComponent } from './home.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatIconModule } from '@angular/material';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -11,7 +13,9 @@ describe('HomeComponent', () => {
     async(() => {
       TestBed.configureTestingModule({
         imports: [
-          MatCardModule
+          MatCardModule,
+          FlexLayoutModule,
+          MatIconModule
         ],
         declarations: [HomeComponent]
       })
