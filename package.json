@@ -9,7 +9,13 @@
     "prod": "run-s front:prod move-build back:prod",
     "front:prod": "cd Angular && npm run-script build",
     "back:prod": "cd Node && npm run-script prod",
-    "move-build": "rimraf Node/public && mv Angular/dist/fr Node/public"
+    "move-build": "rimraf Node/public && mv Angular/dist/fr Node/public",
+    "test": "run-s front:test move-build back:test",
+    "lint": "run-s front:lint back:lint",
+    "front:test": "cd Angular && npm run-script test",
+    "front:lint": "cd Angular && npm run-script lint",
+    "back:test": "echo \"No tests yet\"",
+    "back:lint": "cd Node && npm run-script lint"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.2",
