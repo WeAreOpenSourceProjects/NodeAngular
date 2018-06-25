@@ -27,6 +27,6 @@ fs.open(filePath, 'w', (err, fd) => {
     JSON.stringify(env, undefined, 2)
     .replace(/\"([^(\")"]+)\":/g, '$1:')
     .replace(/"/g, '\'')};
-    `;
+`;
   fs.writeSync(fd, envConfigFile);
 });
