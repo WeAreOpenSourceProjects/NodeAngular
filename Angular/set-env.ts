@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 import * as _ from 'lodash';
 import * as objectPath from 'object-path';
-import { environment as fileProdEnv } from './apps/default/src/environments/environment.prod';
-import { environment as fileDevEnv } from './apps/default/src/environments/environment';
+import { environment as fileProdEnv } from './src/environments/environment.prod';
+import { environment as fileDevEnv } from './src/environments/environment';
 
 const fileEnv = (process.env.NODE_ENV === 'prod') ? fileProdEnv : fileDevEnv;
 
@@ -17,7 +17,7 @@ const sysMemEnv = { api: { isMailerConfigured } };
 _.forEach(frontSysEnv, (v, k) => objectPath.set(sysMemEnv, k, v));
 const env = _.merge(fileEnv, sysMemEnv);
 
-const filePath = `./apps/default/src/environments/${(process.env.NODE_ENV === 'prod') ? 'environment.prod.ts' : 'environment.ts'}`;
+const filePath = `./src/environments/${(process.env.NODE_ENV === 'production') ? 'environment.prod.ts' : 'environment.ts'}`;
 
 fs.open(filePath, 'w', (err, fd) => {
   if (err) {
@@ -26,6 +26,7 @@ fs.open(filePath, 'w', (err, fd) => {
   const envConfigFile = `export const environment = ${
     JSON.stringify(env, undefined, 2)
     .replace(/\"([^(\")"]+)\":/g, '$1:')
-    .replace(/"/g, '\'')};`;
+    .replace(/"/g, '\'')};
+    `;
   fs.writeSync(fd, envConfigFile);
 });

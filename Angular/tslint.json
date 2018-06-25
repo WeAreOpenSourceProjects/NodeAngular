@@ -1,29 +1,9 @@
 {
   "rulesDirectory": [
     "node_modules/codelyzer",
-    "node_modules/@nrwl/schematics/src/tslint"
+    "node_modules/rxjs-tslint"
   ],
-  "extends": ["tslint-config-airbnb", "codelyzer", "angular-tslint-rules", "tslint-angular", "rxjs-tslint"],
   "rules": {
-
-    "no-implicit-dependencies": false,
-
-    "angular-whitespace": [true, "check-interpolation", "check-semicolon"],
-    "banana-in-box": true,
-    "templates-no-negated-async": true,
-    "use-view-encapsulation": true,
-    "no-attribute-parameter-decorator": true,
-    "no-output-named-after-standard-event": true,
-    "no-output-on-prefix": true,
-    "no-forward-ref": true,
-    "no-unused-css": true,
-    "contextual-life-cycle": true,
-    "trackBy-function": true,
-    "pipe-impure": true,
-    "i18n": [true, "check-id", "check-text"],
-    "template-cyclomatic-complexity": [true, 5],
-    "template-conditional-complexity": [true, 4],
-
     "arrow-return-shorthand": true,
     "callable-types": true,
     "class-name": true,
@@ -32,11 +12,14 @@
       "check-space"
     ],
     "curly": true,
+    "deprecation": {
+      "severity": "warn"
+    },
     "eofline": true,
     "forin": true,
     "import-blacklist": [
       true,
-      "rxjs"
+      "rxjs/Rx"
     ],
     "import-spacing": true,
     "indent": [
@@ -87,12 +70,24 @@
     "no-string-literal": false,
     "no-string-throw": true,
     "no-switch-case-fall-through": true,
+    "no-trailing-whitespace": true,
     "no-unnecessary-initializer": true,
     "no-unused-expression": true,
     "no-use-before-declare": true,
     "no-var-keyword": true,
     "object-literal-sort-keys": false,
+    "one-line": [
+      true,
+      "check-open-brace",
+      "check-catch",
+      "check-else",
+      "check-whitespace"
+    ],
     "prefer-const": true,
+    "quotemark": [
+      true,
+      "single"
+    ],
     "radix": true,
     "semicolon": [
       true,
@@ -102,10 +97,27 @@
       true,
       "allow-null-check"
     ],
+    "typedef-whitespace": [
+      true,
+      {
+        "call-signature": "nospace",
+        "index-signature": "nospace",
+        "parameter": "nospace",
+        "property-declaration": "nospace",
+        "variable-declaration": "nospace"
+      }
+    ],
     "unified-signatures": true,
     "variable-name": false,
-    "directive-selector": [true, "attribute", "", "camelCase"],
-    "component-selector": [true, "element", "", "kebab-case"],
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-separator",
+      "check-type"
+    ],
+    "no-output-on-prefix": true,
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
     "use-host-property-decorator": true,
@@ -113,15 +125,9 @@
     "no-output-rename": true,
     "use-life-cycle-interface": true,
     "use-pipe-transform-interface": true,
-    "component-class-suffix": [true, "Component"],
-    "directive-class-suffix": [true, "Directive"],
-
-    "nx-enforce-module-boundaries": [
-      true,
-      {
-        "lazyLoad": [],
-        "allow": []
-      }
-    ]
+    "component-class-suffix": true,
+    "directive-class-suffix": true,
+    "directive-selector": [true, "attribute", "", "camelCase"],
+    "component-selector": [true, "element", "", "kebab-case"]
   }
 }

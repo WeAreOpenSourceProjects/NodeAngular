@@ -1,8 +1,8 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
@@ -13,22 +13,8 @@
       "node_modules/@types"
     ],
     "lib": [
-      "es2015",
+      "es2017",
       "dom"
-    ],
-    "baseUrl": ".",
-    "paths": {
-      "@waos/*": [
-        "libs/*"
-      ]
-    }
-  },
-  "include": [
-    "apps/**/*.ts",
-    "libs/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+    ]
+  }
 }
