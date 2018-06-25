@@ -7,9 +7,9 @@
     "front": "cd Angular && npm run-script start",
     "back": "cd Node && npm run-script start",
     "prod": "run-s front:prod move-build back:prod",
-    "front:prod": "cd Angular && npm run-script build:prod",
+    "front:prod": "cd Angular && npm run-script build",
     "back:prod": "cd Node && npm run-script prod",
-    "move-build": "rimraf Node/public && mv Angular/dist/apps/default Node/public"
+    "move-build": "rimraf Node/public && mv Angular/dist/fr Node/public"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.2",
