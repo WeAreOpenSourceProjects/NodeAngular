@@ -1,0 +1,62 @@
+<router-outlet name="profile"></router-outlet>
+<core-sidenav-container [widths]="widths$ | async">
+  <core-sidenav [opened]="isSidenavOpened$ | async" [mode]="mode$ | async" [widths]="widths$ | async" disableClose="true">
+    <img fxHide.xs [attr.src]="logo$ | async" width="36px" style="color:black;">
+    <button fxHide.gt-xs mat-icon-button (click)="closeSidenav()">
+        <mat-icon id="close" mat-list-icon svgIcon="navigation:ic_close_24px"></mat-icon>
+    </button>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let item of menuItems$ | async; trackBy:trackByOrder" (click)="goTo(item.link)">
+        <mat-icon mat-list-icon svgIcon="{{item.icon}}"></mat-icon>
+        <h4 mat-line>{{ item.name }}</h4>
+      </mat-list-item>
+    </mat-nav-list>
+    <div *ngIf="isSidenavOpened$ | async; then sidenavOpen else sidenavClose"></div>
+    <ng-template #sidenavOpen>
+      <button fxHide.xs class="menu-trigger" mat-icon-button (click)="closeSidenav()">
+          <mat-icon svgIcon="navigation:ic_chevron_left_24px" matTooltip="close" i18n-matTooltip="@@close"></mat-icon>
+      </button>
+    </ng-template>
+    <ng-template #sidenavClose>
+      <button fxHide.xs class="menu-trigger" mat-icon-button (click)="openSidenav()">
+        <mat-icon svgIcon="navigation:ic_chevron_right_24px" matTooltip="open" i18n-matTooltip="@@open"></mat-icon>
+      </button>
+    </ng-template>
+  </core-sidenav>
+  <core-sidenav-content>
+    <mat-toolbar>
+      <h1 fxHide.xs>{{ title$ | async }}</h1>
+      <button fxHide.gt-xs mat-icon-button (click)="openSidenav()">
+          <mat-icon svgIcon="navigation:ic_menu_24px"></mat-icon>
+        </button>
+      <span class="toolbar-spacer"></span>
+      <button mat-icon-button *ngIf="isLoggedIn$ | async" [matMenuTriggerFor]="profileMenu">
+        <mat-icon svgIcon="social:ic_person_24px" matTooltip="menu" i18n-matTooltip="@@menu" [ngClass]="{ 'red': isAdmin$ | async }"></mat-icon>
+      </button>
+      <mat-menu #profileMenu="matMenu" yPosition="above" [overlapTrigger]="false">
+        <button mat-menu-item (click)="profile$.next()">
+          <mat-icon svgIcon="social:ic_person_24px"></mat-icon>
+          <span i18n="@@profile">Profile</span>
+        </button>
+        <div *ngIf="isAdmin$ | async">
+          <mat-divider></mat-divider>
+          <button mat-menu-item (click)="userManagement()">
+            <mat-icon svgIcon="social:ic_people_24px"></mat-icon>
+            <span i18n="@@users">Users</span>
+          </button>
+        </div>
+        <button mat-menu-item Logout (click)="logout()">
+          <mat-icon svgIcon="action:ic_power_settings_new_24px"></mat-icon>
+          <span i18n="@@logout">Logout</span>
+        </button>
+      </mat-menu>
+      <button *ngIf="(isLoggedIn$ | async) === false;" mat-icon-button (click)="goToAuthenticationPage()">
+        <mat-icon svgIcon="action:ic_exit_to_app_24px" matTooltip="login"></mat-icon>
+      </button>
+    </mat-toolbar>
+    <!--mat-progress-bar *ngIf="$ | async"></mat-progress-bar-->
+    <div class="main" [@routesAnimation]="outlet.activatedRouteData['page']" [ngClass]="{'full-screen-content': media.isActive('xs')}">
+      <router-outlet #outlet="outlet"></router-outlet>
+    </div>
+  </core-sidenav-content>
+</core-sidenav-container>

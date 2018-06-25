@@ -1,0 +1,181 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "meanie": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "assets": [
+              "src/assets",
+              "src/favicon.ico",
+              { "glob": "svg-sprite-file.svg", "input": "./node_modules/material-design-icons/sprites/svg-sprite/", "output": "assets/" },
+              { "glob": "svg-sprite-editor.svg", "input": "./node_modules/material-design-icons/sprites/svg-sprite/", "output": "assets/" },
+              { "glob": "svg-sprite-action.svg", "input": "./node_modules/material-design-icons/sprites/svg-sprite/", "output": "assets/" },
+              { "glob": "svg-sprite-navigation.svg", "input": "./node_modules/material-design-icons/sprites/svg-sprite/", "output": "assets/" },
+              { "glob": "svg-sprite-av.svg", "input": "./node_modules/material-design-icons/sprites/svg-sprite/", "output": "assets/" },
+              { "glob": "svg-sprite-image.svg", "input": "./node_modules/material-design-icons/sprites/svg-sprite/", "output": "assets/" },
+              { "glob": "svg-sprite-content.svg", "input": "./node_modules/material-design-icons/sprites/svg-sprite/", "output": "assets/" },
+              { "glob": "svg-sprite-hardware.svg", "input": "./node_modules/material-design-icons/sprites/svg-sprite/", "output": "assets/" },
+              { "glob": "svg-sprite-social.svg", "input": "./node_modules/material-design-icons/sprites/svg-sprite/", "output": "assets/" },
+              { "glob": "*", "input": "./src/app/core/assets/", "output": "assets/" },
+              { "glob": "*", "input": "./src/app/authentication/assets/", "output": "assets/" }
+            ],
+            "styles": [
+              "./src/stylesheets/styles.scss",
+              "./src/stylesheets/theme.scss"
+            ],
+            "scripts": [
+              "./node_modules/msal/dist/msal.min.js"
+            ],
+            "showCircularDependencies": false
+          },
+          "configurations": {
+            "production-fr": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "outputPath": "dist/fr/",
+              "i18nFile": "src/locale/messages.fr.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "fr",
+              "i18nMissingTranslation": "error"
+            },
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "outputPath": "dist/en/"
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "meanie:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "meanie:build:production"
+            },
+            "production-fr": {
+              "browserTarget": "meanie:build:production-fr"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "meanie:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
+            "karmaConfig": "src/karma.conf.js",
+            "styles": [
+            ],
+            "scripts": [
+              "./node_modules/msal/dist/msal.min.js"
+            ],
+            "assets": [
+              "src/assets",
+              "src/favicon.ico",
+              { "glob": "svg-sprite-file.svg", "input": "./node_modules/material-design-icons/sprites/svg-sprite/", "output": "assets/" },
+              { "glob": "svg-sprite-editor.svg", "input": "./node_modules/material-design-icons/sprites/svg-sprite/", "output": "assets/" },
+              { "glob": "svg-sprite-action.svg", "input": "./node_modules/material-design-icons/sprites/svg-sprite/", "output": "assets/" },
+              { "glob": "svg-sprite-navigation.svg", "input": "./node_modules/material-design-icons/sprites/svg-sprite/", "output": "assets/" },
+              { "glob": "svg-sprite-av.svg", "input": "./node_modules/material-design-icons/sprites/svg-sprite/", "output": "assets/" },
+              { "glob": "svg-sprite-image.svg", "input": "./node_modules/material-design-icons/sprites/svg-sprite/", "output": "assets/" },
+              { "glob": "svg-sprite-content.svg", "input": "./node_modules/material-design-icons/sprites/svg-sprite/", "output": "assets/" },
+              { "glob": "svg-sprite-hardware.svg", "input": "./node_modules/material-design-icons/sprites/svg-sprite/", "output": "assets/" },
+              { "glob": "svg-sprite-social.svg", "input": "./node_modules/material-design-icons/sprites/svg-sprite/", "output": "assets/" },
+              { "glob": "*", "input": "./src/app/core/assets/", "output": "assets/" },
+              { "glob": "*", "input": "./src/app/authentication/assets/", "output": "assets/" }
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "**/src/app/core/components/sidenav/**"
+            ]
+          }
+        }
+      }
+    },
+    "meanie-e2e": {
+      "root": "e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "meanie:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "meanie:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "meanie"
+}

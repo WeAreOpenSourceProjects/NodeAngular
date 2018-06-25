@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+mat-card {
+  max-width: 600px;
+  width: 100%;
+}
+
+auth-google {
+  margin-top: 10px;
+}
+auth-microsoft {
+  margin-top: 10px;
+}

@@ -1,0 +1,28 @@
+<mat-card>
+  <mat-tab-group>
+    <mat-tab label="Login" i18n-label="@@loginTab">
+      <auth-local
+        [isPending]=" loginPending$ | async"
+        [errorMessage]=" loginError$ | async"
+        (login)="onLocalLogin($event)">
+      </auth-local>
+      <auth-google *ngIf="isGoogleConfigured"
+        (login)="onGoogleLogin()">
+      </auth-google>
+      <auth-microsoft *ngIf="isMicrosoftConfigured"
+        (login)="onMicrosoftLogin()">
+      </auth-microsoft>
+      <div *ngIf="isMailerConfigured">
+        <br><mat-divider></mat-divider><br>
+        <auth-forgot
+          (changePasswordRequest)="onPasswordChangeRequest($event)">
+        </auth-forgot>
+      </div>
+    </mat-tab>
+    <mat-tab label="Register" i18n-label="@@registerTab">
+      <auth-register
+        (register)="onRegister($event)">
+      </auth-register>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>

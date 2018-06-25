@@ -1,0 +1,50 @@
+:host {
+  display: block;
+  position: relative;
+  height: 100%;
+}
+
+[mat-card-avatar] {
+  background-size: cover;
+}
+
+[contenteditable=true] {
+  outline: none;
+  text-decoration: underline;
+}
+
+mat-card-subtitle[contenteditable=true], mat-card-title[contenteditable=true] {
+  outline-offset: 2px;
+}
+
+[contenteditable=false] {
+  outline: none;
+}
+
+button {
+  position: absolute;
+  right: 20px;
+}
+
+img {
+  background-size: cover !important;
+}
+
+img.edit {
+  object-fit: none;
+  cursor: pointer;
+}
+
+mat-card {
+  width: 60%;
+  margin: auto;
+  max-width: 50vh;
+}
+
+
+mat-card.responsive {
+  width: 100%;
+  margin: initial;
+  max-width: none;
+  height: 100%;
+}

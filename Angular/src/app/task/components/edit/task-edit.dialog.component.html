@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<mat-dialog-content>
+  <form [formGroup]="taskForm">
+    <mat-form-field>
+      <input matInput formControlName="title" placeholder="Enter a title">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <textarea matInput formControlName="description" placeholder="Enter the description"></textarea>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button type="submit" (click)="onSubmit()">Save</button>
+</mat-dialog-actions>

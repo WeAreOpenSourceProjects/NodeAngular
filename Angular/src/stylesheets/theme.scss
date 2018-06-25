@@ -1,0 +1,9 @@
+@import './theme.core';
+
+@include mat-core();
+@include angular-material-theme($default-light-theme);
+
+@import '../app/core/components/sidenav/sidenav-theme';
+@include core-sidenav-theme($default-dark-theme);
+
+@include mat-list-theme($default-dark-theme);

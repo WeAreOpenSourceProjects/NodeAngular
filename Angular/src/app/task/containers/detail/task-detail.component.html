@@ -1,0 +1,11 @@
+<mat-card>
+  <mat-card-title>
+    <button mat-icon-button (click)="back()">
+      <mat-icon svgIcon="navigation:ic_arrow_back_24px" matTooltip="close"></mat-icon>
+    </button>
+  </mat-card-title>
+  <mat-card-content>
+    <h1>{{ (currentTask$ | async)?.title }}</h1>
+    <p>{{ (currentTask$ | async)?.description }}</p>
+  </mat-card-content>
+</mat-card>

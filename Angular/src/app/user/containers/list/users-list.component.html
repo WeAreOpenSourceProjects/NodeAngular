@@ -1,0 +1,38 @@
+<mat-card>
+  <div class="header">
+    <mat-form-field floatPlaceholder="never">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtre">
+    </mat-form-field>
+  </div>
+  <mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="avatar">
+      <mat-header-cell *matHeaderCellDef i18n="@@avatar">Avatar</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+          <img [attr.src]="row.profileImageURL">
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="username">
+      <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@userName">User Name</mat-header-cell>
+      <mat-cell draggable="true" *matCellDef="let row" [innerHtml]="row.username"></mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef mat-sort-header i18n="@@email">Email</mat-header-cell>
+      <mat-cell draggable="true" *matCellDef="let row" [innerHtml]="row.email"></mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef><span fxHide.gt-xs i18n="@@action">Action</span></mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-icon-button fxShow.xs [ngClass]="{ hidden: !media.isActive('xs') }">
+          <mat-icon class="icon" svgIcon="image:ic_edit_24px" (click)="edit$.next(row.id); $event.stopPropagation();"></mat-icon>
+          </button>
+        <button mat-icon-button fxShow.xs [ngClass]="{ hidden: !media.isActive('xs') }">
+          <mat-icon class="icon" svgIcon="action:ic_delete_24px" (click)="delete$.next(row.id); $event.stopPropagation();"></mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="view$.next(row.id)"></mat-row>
+  </mat-table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+</mat-card>
+<router-outlet></router-outlet>

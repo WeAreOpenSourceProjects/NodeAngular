@@ -1,0 +1,67 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  min-height: 64px;
+  display: flex;
+  align-items: baseline;
+  padding: 8px 24px 0;
+  font-size: 20px;
+  justify-content: space-between;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  flex-grow: 1;
+  margin-left: 32px;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.detail {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+}
+
+img {
+  display: flex;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
+
+mat-row:hover {
+  cursor: pointer;
+  position: relative;
+  background-color: #F5F5F5;
+}
+
+mat-icon {
+  position: relative;
+  /*visibility: hidden;*/
+  opacity: 0.54;
+  transform: scale(0.8);
+  z-index: 1000;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+mat-row:hover .hidden {
+  visibility: visible !important;
+}
+
+.mat-column-action {
+  max-width: 25%;
+}

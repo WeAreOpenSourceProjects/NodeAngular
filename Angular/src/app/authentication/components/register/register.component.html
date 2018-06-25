@@ -1,0 +1,48 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="stretch stretch">
+  <mat-form-field>
+    <input matInput placeholder="First Name" i18n-placeholder="@@firstNamePlaceholder" formControlName="firstName">
+    <mat-error i18n="@@firstNameError"> {firstNameError, select, required {You  must enter a value}}</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Last Name" i18n-placeholder="@@lastNamePlaceholder" formControlName="lastName">
+    <mat-error i18n="@@lastNameError"> {lastNameError, select, required {You  must enter a value}}</mat-error>
+  </mat-form-field>
+  <fieldset formGroupName="emailGroup">
+    <mat-form-field>
+      <input matInput placeholder="Email" i18n-placeholder="@@emailPlaceholder" formControlName="email">
+      <mat-error i18n="@@emailError"> {emailError, select, required {You  must enter a value} email {Wrong Email format}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Confirm Email"
+        i18n-placeholder="@@confirmEmailPlaceholder"
+        formControlName="confirmEmail"
+        [errorStateMatcher]="confirmValidParentMatcher"
+        [disableControl]="registerForm.get('emailGroup').get('email').invalid">
+      <mat-error i18n="@@confirmEmailError"> {confirmEmailError, select, required {You  must enter a value} childrenNotEqual {Emails don't match}}</mat-error>
+    </mat-form-field>
+  </fieldset>
+  <fieldset formGroupName="passwordGroup">
+    <mat-form-field>
+      <input matInput placeholder="Password" i18n-placeholder="@@passwordPlaceholder" formControlName="password" [type]="hide ? 'password' : 'text'">
+      <mat-icon [svgIcon]="visibility" matSuffix (click)="hide = !hide"></mat-icon>
+      <mat-error i18n="@@passwordError"> {passwordError, select, required {You must enter a value} minlength {A minimum of 8 caraters are required}}</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input
+        matInput
+        formControlName="confirmPassword"
+        placeholder="Confirm Password"
+        i18n-placeholder="@@confirmPasswordPlaceholder"
+        [type]="hide ? 'password' : 'text'"
+        [disableControl]="registerForm.get('passwordGroup').get('password').invalid"
+        [errorStateMatcher]="confirmValidParentMatcher">
+      <mat-icon [svgIcon]="visibility" matSuffix (click)="hide = !hide"></mat-icon>
+      <mat-error i18n="@@confirmPasswordError"> {confirmPasswordError, select, required {You must enter a value} childrenNotEqual {Passwords don't match}}</mat-error>
+    </mat-form-field>
+  </fieldset>
+  <br>
+  <button type="submit" [disabled]="!registerForm.valid" mat-raised-button i18n="@@registerButton">Register</button>
+</form>

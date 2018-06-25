@@ -1,0 +1,25 @@
+@mixin core-sidenav-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  $drawer-background-color: mat-color($background, dialog) !default;
+  $drawer-container-background-color: map_get($mat-grey, 50) !default;
+  $drawer-push-background-color: mat-color($background, dialog) !default;
+
+  .core-drawer-container {
+    background-color: $drawer-container-background-color;
+    color: invert(mat-color($foreground, text));
+  }
+
+  .core-drawer {
+    background-color: $drawer-background-color;
+    color: mat-color($foreground, text);
+
+    &.core-drawer-push {
+      background-color: $drawer-push-background-color;
+    }
+  }
+}

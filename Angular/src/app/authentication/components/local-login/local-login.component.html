@@ -1,0 +1,13 @@
+<form [formGroup]="loginForm" fxLayout="column" fxLayoutAlign="start stretch" (ngSubmit)="onLoginSubmit()">
+  <mat-form-field fxFlex=50>
+    <input matInput placeholder="Email" i18n-placeholder="@@emailPlaceholder" formControlName="email">
+    <mat-error i18n="@@emailError"> {emailError, select, required {You must enter a value} email {Wrong Email format}}</mat-error>
+  </mat-form-field>
+  <mat-form-field fxFlex="40">
+    <input formControlName="password" matInput placeholder="Password" i18n-placeholder="@@passwordPlaceholder" [type]="hide ? 'password' : 'text'">
+    <mat-icon [svgIcon]="visibility" matSuffix (click)="hide = !hide"></mat-icon>
+    <mat-error i18n="@@passwordError"> {passwordError, select, required {You must enter a value}}</mat-error>
+  </mat-form-field>
+  <br>
+  <button type="submit" [disabled]="!loginForm.valid" mat-raised-button i18n="@@loginButton">Login</button>
+</form>

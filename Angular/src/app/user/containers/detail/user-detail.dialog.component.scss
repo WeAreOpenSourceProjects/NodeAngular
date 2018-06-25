@@ -1,0 +1,47 @@
+:host {
+  display: block;
+  position: relative;
+}
+
+[mat-card-avatar] {
+  background-size: cover;
+}
+
+[contenteditable=true] {
+  outline: none;
+  text-decoration: underline;
+}
+
+mat-card-subtitle[contenteditable=true], mat-card-title[contenteditable=true] {
+  outline-offset: 2px;
+}
+
+[contenteditable=false] {
+  outline: none;
+}
+
+button {
+  position: absolute;
+  right: 20px;
+}
+
+img {
+  background-size: cover !important;
+}
+
+img.edit {
+  object-fit: none;
+  cursor: pointer;
+}
+
+#dialog-content {
+  padding: 3px;
+}
+
+mat-card {
+  width: 60%;
+}
+
+.full-screen-dialog mat-card {
+  width: 100% !important;
+}
