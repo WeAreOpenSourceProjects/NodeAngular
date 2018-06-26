@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { AuthenticationState } from '../+state/states/authentication-state.state';
 import { getIsUserLoading, getLoggedIn } from '../+state/selectors/authentication-state.selectors';
 import { fromRouter } from 'src/app/common/router-state';
-import { map, switchMap, filter } from 'rxjs/operators';
+import { map, switchMapTo, filter } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class AuthenticationGuardService implements CanActivate {
     return this._store.select(getIsUserLoading)
     .pipe(
       filter(isUserLoading => !isUserLoading),
-      switchMap(() => this._store.select(getLoggedIn)),
+      switchMapTo(this._store.select(getLoggedIn)),
       map((loggedIn: boolean) => {
         if (loggedIn) {
           if (path === 'auth') {

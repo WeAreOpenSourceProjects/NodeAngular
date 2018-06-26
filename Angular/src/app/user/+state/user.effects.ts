@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map, catchError, tap, switchMap } from 'rxjs/operators';
+import { map, catchError, tap, switchMap, switchMapTo } from 'rxjs/operators';
 import { Actions, Effect } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { UserApiService } from '../services/user.api.service';
@@ -15,7 +15,7 @@ export class UserEffects {
   loadAll$ = this._actions$
     .ofType(fromUser.LOAD_ALL)
     .pipe(
-      switchMap(() => this._userApiService.loadUsers()),
+      switchMapTo(this._userApiService.loadUsers()),
       map((response: any) => new fromUser.LoadAllSuccess({ users: response })),
       catchError(error => of(new fromUser.LoadAllFailure(error)))
     );
