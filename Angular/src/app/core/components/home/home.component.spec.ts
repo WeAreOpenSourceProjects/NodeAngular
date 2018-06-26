@@ -3,7 +3,7 @@ import { MatCardModule } from '@angular/material/card';
 
 import { HomeComponent } from './home.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatIconModule } from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;

@@ -4,8 +4,11 @@ import { User } from '../models/user.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { UserStateModule } from '../user-state.module';
 
-@Injectable()
+@Injectable({
+  providedIn: UserStateModule
+})
 export class UserApiService {
 
   private _baseUrl: string;

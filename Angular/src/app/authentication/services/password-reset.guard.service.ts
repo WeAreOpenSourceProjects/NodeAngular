@@ -7,8 +7,11 @@ import { fromRouter } from 'src/app/common/router-state';
 import { AuthenticationState } from '../+state/states/authentication-state.state';
 import { Store } from '@ngrx/store';
 import { decode } from 'jwt-decode';
+import { AuthenticationRoutingModule } from '../authentication-routing.module';
 
-@Injectable()
+@Injectable({
+  providedIn: AuthenticationRoutingModule
+})
 export class PasswordResetGuardService implements CanActivate {
   constructor(private _store: Store<AuthenticationState>) { }
 

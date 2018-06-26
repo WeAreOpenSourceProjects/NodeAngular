@@ -36,14 +36,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RouterStateModule.forRoot(),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
 
-    AuthenticationRoutingModule.forRoot(),
-    UserRoutingModule.forRoot(),
-    TaskRoutingModule.forRoot(),
-
     CoreStateModule.forRoot([coreConfiguration.self, taskConfiguration.core]),
     AuthenticationStateModule.forRoot(),
-    UserStateModule.forRoot(),
-    TaskStateModule.forRoot(),
+    UserStateModule,
+    TaskStateModule,
 
     CoreViewModule,
     CoreRoutingModule,

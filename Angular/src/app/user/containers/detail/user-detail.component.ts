@@ -4,7 +4,7 @@ import { selectSelectedUser } from '../../+state/user.selectors';
 import { first, delay, map, switchMap } from 'rxjs/operators';
 import { fromRouter } from 'src/app/common/router-state';
 import { Subscription } from 'rxjs';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { UserState } from '../../+state/user.interfaces';
 import { cloneDeep } from 'lodash';
 import * as fromUser from '../../+state/user.actions';

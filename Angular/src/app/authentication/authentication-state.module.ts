@@ -11,7 +11,6 @@ import { AuthenticationInterceptorService } from './services/authentication.inte
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { GoogleSignInService } from './services/google-sign-in.service';
 import { MsalService } from './services/msal.service';
-// import { environment } from '@waos/common/environments'
 
 export function initialisationFactory(authenticationInitialisation): any {
   return () => authenticationInitialisation.loadUser();
@@ -33,9 +32,6 @@ export class AuthenticationStateModule {
       ngModule: AuthenticationStateModule,
       providers: [
         AuthenticationInitializationService,
-        AuthenticationApiService,
-        GoogleSignInService,
-        MsalService,
         {
           provide: APP_INITIALIZER,
           useFactory: initialisationFactory,

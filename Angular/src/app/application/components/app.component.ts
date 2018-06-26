@@ -1,6 +1,6 @@
 import { Component, HostBinding, HostListener } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { MatIconRegistry } from '@angular/material';
+import { MatIconRegistry } from '@angular/material/icon';
 
 // Just to close the MS login popup on redirect
 declare const Msal;
