@@ -20,14 +20,4 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     EffectsModule.forFeature([TaskEffects])
   ]
 })
-export class TaskStateModule {
-  public static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: TaskStateModule,
-      providers: [
-        TaskInitializationService,
-        TaskApiService
-      ]
-    };
-  }
-}
+export class TaskStateModule { }

@@ -10,18 +10,15 @@ import { DisableControlDirective } from './directives/disable-control/disable-co
 import { GoogleSignInComponent } from './components/google-sign-in/google-sign-in.component';
 import { MicrosoftAuthenticationComponent } from './components/microsoft-authentication/microsoft-authentication.component';
 import { MatDividerModule } from '@angular/material/divider';
-
-import {
-  MatButtonModule,
-  MatCardModule,
-  MatDialogModule,
-  MatIconModule,
-  MatInputModule,
-  MatRadioModule,
-  MatSelectModule,
-  MatSnackBarModule,
-  MatTabsModule
-} from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTabsModule } from '@angular/material/tabs';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 const COMPONENTS = [

@@ -2,10 +2,13 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { from as fromPromise, Observable } from 'rxjs';
 import { get } from 'lodash';
+import { AuthenticationStateModule } from '../authentication-state.module';
 
 declare const Msal;
 
-@Injectable()
+@Injectable({
+  providedIn: AuthenticationStateModule
+})
 export class MsalService {
 
   private _userAgentApplication: any;

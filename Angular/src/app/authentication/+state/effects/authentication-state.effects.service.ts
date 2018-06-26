@@ -1,7 +1,7 @@
 import { fromRouter } from 'src/app/common/router-state';
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthenticationSnackComponent } from '../../components/authentication-snack/authentication-snack.component';
 import { AuthenticationApiService } from '../../services/authentication.api.service';
 import * as fromAuthentication from '../actions/authentication-state.actions';

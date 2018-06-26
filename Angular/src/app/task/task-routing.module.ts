@@ -49,18 +49,7 @@ if (!isEmpty(taskConfiguration.self.roles)) {
 }
 */
 
-@NgModule()
-export class RootTaskRoutingModule { }
-
-// tslint:disable-next-line:max-classes-per-file
 @NgModule({
   imports: [RouterModule.forChild(tasksRoutes)]
 })
-export class TaskRoutingModule {
-  public static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: RootTaskRoutingModule,
-      providers: [TaskGuardService]
-    };
-  }
-}
+export class TaskRoutingModule { }

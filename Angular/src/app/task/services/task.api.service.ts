@@ -3,8 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Task } from '../models/task.model';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { TaskStateModule } from '../task-state.module';
 
-@Injectable()
+@Injectable({
+  providedIn: TaskStateModule
+})
 export class TaskApiService {
   private _baseUrl: string;
   private _endPoints: any;

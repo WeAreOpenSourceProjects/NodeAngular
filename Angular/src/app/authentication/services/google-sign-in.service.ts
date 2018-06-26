@@ -3,10 +3,13 @@ import { environment } from 'src/environments/environment';
 import { from as fromPromise, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { get } from 'lodash';
+import { AuthenticationStateModule } from '../authentication-state.module';
 
 declare const gapi;
 
-@Injectable()
+@Injectable({
+  providedIn: AuthenticationStateModule
+})
 export class GoogleSignInService {
 
   constructor() {

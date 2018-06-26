@@ -1,6 +1,6 @@
 <mat-card [ngClass.xs]="'responsive'">
   <mat-card-header>
-    <div #avatar mat-card-avatar [ngStyle]="{ 'background-image': 'url(' + user?.profileImageURL + ')'}"></div>
+    <div *ngIf="user" #avatar mat-card-avatar [ngStyle]="{ 'background-image': 'url(' + user.profileImageURL + ')'}"></div>
     <mat-card-title [attr.contenteditable]="editMode"><span #userName>{{ user?.username }}</span></mat-card-title>
     <mat-card-subtitle [attr.contenteditable]="editMode"><span #firstName>{{ user?.firstName }}</span>&nbsp;<span #lastName>{{ user?.lastName }}</span></mat-card-subtitle>
     <button *ngIf="editMode === true" mat-icon-button (click)="update$.next()">
@@ -11,9 +11,10 @@
       </button>
   </mat-card-header>
   <img
+    *ngIf="user"
     #image
     mat-card-image
-    [attr.src]="editMode ? '/assets/svg-sprite-file.svg#svgView(viewBox(72, 24, 24, 24))' : user?.profileImageURL"
+    [attr.src]="editMode ? '/assets/svg-sprite-file.svg#svgView(viewBox(72, 24, 24, 24))' : user.profileImageURL"
     [ngClass]="{'edit': editMode}"
     [ngStyle]="{ 'background': editMode ? 'linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url(' + user?.profileImageURL + ') no-repeat center' : ''}"
     alt="photo of the profile"

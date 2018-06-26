@@ -6,7 +6,9 @@ import { filter, first, tap, switchMap } from 'rxjs/operators';
 import * as fromUser from '../+state/user.actions';
 import { selectSelectedUserId, selectUserLoaded } from '../+state/user.selectors';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class UserGuardService implements CanActivate {
   constructor(private store: Store<any>) { }
 

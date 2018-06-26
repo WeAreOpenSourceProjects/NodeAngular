@@ -17,13 +17,4 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
     EffectsModule.forFeature([UserEffects])
   ]
 })
-export class UserStateModule {
-  public static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: UserStateModule,
-      providers: [
-        UserApiService
-      ]
-    };
-  }
-}
+export class UserStateModule { }

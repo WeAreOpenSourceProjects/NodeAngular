@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TaskDetailComponent } from './task-detail.component';
-import { MatCardModule, MatIconModule } from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { combineReducers, StoreModule } from '@ngrx/store';
 import { taskReducer } from '../../+state/task.reducer';
 import { routerReducer } from '@ngrx/router-store';

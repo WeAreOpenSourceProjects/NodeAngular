@@ -11,7 +11,9 @@ import { intersection } from 'lodash';
 import { User } from '../models/user.model';
 import { map, filter } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class RoleGuardService implements CanActivate {
   constructor(private _store: Store<AuthenticationState>) { }
 

@@ -3,8 +3,10 @@ import { Credentials } from '../models/authenticate.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-
-@Injectable()
+import { AuthenticationStateModule } from '../authentication-state.module';
+@Injectable({
+  providedIn: AuthenticationStateModule
+})
 export class AuthenticationApiService {
   private _baseUrl: string;
   private _endPoints: any;

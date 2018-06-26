@@ -2,8 +2,11 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromAutentication from '../+state/actions/authentication-state.actions';
 import { AuthenticationState } from '../+state/states/authentication-state.state';
+import { AuthenticationStateModule } from '../authentication-state.module';
 
-@Injectable()
+@Injectable({
+  providedIn: AuthenticationStateModule
+})
 export class AuthenticationInitializationService {
   constructor(private _store: Store<AuthenticationState>) {}
 

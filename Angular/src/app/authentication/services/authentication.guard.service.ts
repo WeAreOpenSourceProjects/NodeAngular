@@ -7,7 +7,9 @@ import { getIsUserLoading, getLoggedIn } from '../+state/selectors/authenticatio
 import { fromRouter } from 'src/app/common/router-state';
 import { map, switchMap, filter } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthenticationGuardService implements CanActivate {
   constructor(private _store: Store<AuthenticationState>) { }
 

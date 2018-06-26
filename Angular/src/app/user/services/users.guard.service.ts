@@ -6,7 +6,9 @@ import { filter, first } from 'rxjs/operators';
 import * as fromUser from '../+state/user.actions';
 import { selectUserLoaded } from '../+state/user.selectors';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class UsersGuardService implements CanActivate {
   constructor(private store: Store<any>) { }
 

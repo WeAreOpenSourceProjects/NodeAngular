@@ -11,7 +11,7 @@ const userRoutes: Routes = [
   {
     path: '',
     component: UsersListComponent,
-    canActivate: [/*AuthenticationGuardService, RoleGuardService,*/ UsersGuardService],
+    canActivate: [AuthenticationGuardService, RoleGuardService, UsersGuardService],
     data: {
       page: 'users-list',
       roles: ['admin']
@@ -37,21 +37,7 @@ const userRoutes: Routes = [
   }
 ];
 
-@NgModule()
-export class RootUserRoutingModule { }
-
-// tslint:disable-next-line:max-classes-per-file
 @NgModule({
   imports: [RouterModule.forChild(userRoutes)]
 })
-export class UserRoutingModule {
-  public static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: RootUserRoutingModule,
-      providers: [
-        UserGuardService,
-        UsersGuardService
-      ]
-    };
-  }
-}
+export class UserRoutingModule { }
