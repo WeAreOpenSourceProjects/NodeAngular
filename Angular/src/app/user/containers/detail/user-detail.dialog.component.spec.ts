@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 
 // import { authenticationReducers } from '@waos/authentication';
 import { UserDetailDialogComponent } from './user-detail.dialog.component';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { combineReducers, StoreModule } from '@ngrx/store';
@@ -13,6 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DisableControlDirective } from '../../directives/disable-control/disable-control.directive';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { DomSanitizer, BrowserModule } from '@angular/platform-browser';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('UserDetailDialogComponent', () => {
   let component: UserDetailDialogComponent;
@@ -33,6 +35,8 @@ describe('UserDetailDialogComponent', () => {
           user: combineReducers(userReducer),
           router: combineReducers(routerReducer)
         }),
+        BrowserModule,
+        HttpClientTestingModule,
         NoopAnimationsModule
       ],
       providers: [
@@ -44,11 +48,15 @@ describe('UserDetailDialogComponent', () => {
     .compileComponents();
   }));
 
-  beforeEach(() => {
+  beforeEach(inject([MatIconRegistry, DomSanitizer], (matIconRegistry: MatIconRegistry, sanitizer: DomSanitizer) => {
+    matIconRegistry.addSvgIconSetInNamespace(
+      'image',
+      sanitizer.bypassSecurityTrustResourceUrl(`assets/svg-sprite-image.svg`)
+    );
     fixture = TestBed.createComponent(UserDetailDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }));
 
   it('should create', () => {
     expect(component)
