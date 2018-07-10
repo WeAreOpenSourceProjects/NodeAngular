@@ -137,7 +137,7 @@ export class UserEffects {
     .pipe(
       map((action: fromUser.Delete) => action.payload),
       switchMap(payload => this._userApiService.deleteUser(payload.userId)),
-      map((response: any) => new fromUser.DeleteSuccess({ userId: response.id })),
+      map((response: any) => new fromUser.DeleteSuccess({ userId: response.userId })),
       catchError(error => of(new fromUser.DeleteFailure(error)))
     );
 

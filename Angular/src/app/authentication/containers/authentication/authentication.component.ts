@@ -20,7 +20,7 @@ export class AuthenticationComponent {
   public isGoogleConfigured = !!get(environment, ['authentication', 'providers', 'google']);
   public isMicrosoftConfigured = !!get(environment, ['authentication', 'providers', 'microsoft']);
 
-  constructor(private _store: Store<AuthenticationState>) { console.log(environment, this.isMicrosoftConfigured); }
+  constructor(private _store: Store<AuthenticationState>) { }
 
   public onLocalLogin(credentials: Credentials): void {
     this._store.dispatch(new fromAuthentication.LocalLogin(credentials));

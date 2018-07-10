@@ -12,7 +12,5 @@ export class DisableControlDirective {
     this._ngControl.control[action]();
   }
 
-  constructor(private _ngControl: NgControl) {
-  }
-
+  constructor(private _ngControl: NgControl) { }
 }

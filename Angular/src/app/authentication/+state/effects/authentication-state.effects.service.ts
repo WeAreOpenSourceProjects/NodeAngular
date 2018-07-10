@@ -75,7 +75,6 @@ export class AuthenticationEffectsService {
       (_: any, user: User) => user.provider
     ),
     switchMap((provider: string) => {
-      console.log('?', provider);
       switch (provider) {
         case 'google':
           return this._googleSignInService.signOut();
@@ -91,7 +90,6 @@ export class AuthenticationEffectsService {
   @Effect()
   localLogout$ = this._actions$.ofType(fromAuthentication.LOCAL_LOGOUT)
   .pipe(
-    tap(console.log),
     tap(() => {
       localStorage.removeItem('tokenExpiresIn');
       (document as any).cookie = 'TOKEN=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';

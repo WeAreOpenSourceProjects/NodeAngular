@@ -27,18 +27,15 @@ export class AppComponent {
     event.preventDefault();
   }
 
-  constructor(private _mdIconRegistry: MatIconRegistry, private _sanitizer: DomSanitizer) {
+  constructor(private _matIconRegistry: MatIconRegistry, private _sanitizer: DomSanitizer) {
     ['file', 'editor', 'action', 'navigation', 'av', 'image', 'content', 'hardware', 'social'].forEach(iconSet =>
-      this._mdIconRegistry.addSvgIconSetInNamespace(
+      this._matIconRegistry.addSvgIconSetInNamespace(
         iconSet,
         this._sanitizer.bypassSecurityTrustResourceUrl(`assets/svg-sprite-${iconSet}.svg`)
       )
     );
-    this._mdIconRegistry.addSvgIcon('file-image', this._sanitizer.bypassSecurityTrustResourceUrl('assets/file.svg'));
-    this._mdIconRegistry.addSvgIcon('google', this._sanitizer.bypassSecurityTrustResourceUrl('assets/google.svg'));
-    this._mdIconRegistry.addSvgIcon('twitter', this._sanitizer.bypassSecurityTrustResourceUrl('assets/twitter.svg'));
-    this._mdIconRegistry.addSvgIcon('facebook', this._sanitizer.bypassSecurityTrustResourceUrl('assets/facebook.svg'));
-    this._mdIconRegistry.addSvgIcon('github', this._sanitizer.bypassSecurityTrustResourceUrl('assets/github.svg'));
-    this._mdIconRegistry.addSvgIcon('windows', this._sanitizer.bypassSecurityTrustResourceUrl('assets/windows.svg'));
+    this._matIconRegistry.addSvgIcon('file-image', this._sanitizer.bypassSecurityTrustResourceUrl('assets/file.svg'));
+    this._matIconRegistry.addSvgIcon('google', this._sanitizer.bypassSecurityTrustResourceUrl('assets/google.svg'));
+    this._matIconRegistry.addSvgIcon('windows', this._sanitizer.bypassSecurityTrustResourceUrl('assets/windows.svg'));
   }
 }

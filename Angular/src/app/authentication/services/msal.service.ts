@@ -21,12 +21,6 @@ export class MsalService {
       {
         redirectUri: get(environment, ['authentication', 'providers', 'microsoft', 'redirectUri'])
       });
-
-      console.log(
-        get(environment, ['authentication', 'providers', 'microsoft', 'clientId']),
-        get(environment, ['authentication', 'providers', 'microsoft', 'redirectUri']),
-        get(environment, ['authentication', 'providers', 'microsoft', 'scopes'])
-      );
   }
 
   signIn(): Observable<any> {
