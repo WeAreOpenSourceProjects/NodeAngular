@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { UserState } from '../../+state/user.interfaces';
-import { getUser, User } from 'src/app/authentication';
+import { selectSelectedUser, User } from 'src/app/user';
 import { Store } from '@ngrx/store';
 import { fromUser } from 'src/app/user';
 import { Subject, Subscription } from 'rxjs';
@@ -41,7 +41,7 @@ export class UserDetailPageComponent implements OnInit, AfterViewInit, OnDestroy
 
   private _reader = new FileReader();
 
-  public currentUser$ = this._store.select(getUser);
+  public currentUser$ = this._store.select(selectSelectedUser);
   public user: User;
   public rolesControl = this._formBuilder.control([]);
   public emailControl = this._formBuilder.control('');

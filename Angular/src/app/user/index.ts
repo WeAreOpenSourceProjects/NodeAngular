@@ -15,3 +15,4 @@ import * as fromUser from './+state/user.actions';
 export { fromUser };
 export { userReducer } from './+state/user.reducer';
 export { UserDetailDialogComponent } from './containers/detail/user-detail.dialog.component';
+export { User } from './models/user.model';
