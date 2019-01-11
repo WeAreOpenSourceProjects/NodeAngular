@@ -4,6 +4,8 @@
 
 # MEANie
 
+**/!\ This fullstack is an assembly example of two of our stack [Angular](https://github.com/weareopensource/Angular) / [Node](https://github.com/weareopensource/Node). This repo is not necessarily up to date, if you want to start a project, thank you to rely on the desired technos available [here](https://github.com/weareopensource/) based on our [wiki](https://github.com/weareopensource/weareopensource.github.io/wiki).**
+
 ## Presentation 
 [Angular](https://github.com/weareopensource/Angular) / [Node](https://github.com/weareopensource/Node) repo association. This FullStack, on active developpement, aims to be the next MEAN exemple of our work, and our first FullStack. 
 <br><br><br>
